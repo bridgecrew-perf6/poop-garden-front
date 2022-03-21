@@ -1,0 +1,7 @@
+{
+  "name": "poop-garden-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
