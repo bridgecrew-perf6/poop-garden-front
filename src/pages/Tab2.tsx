@@ -4,7 +4,8 @@ import React from 'react';
 // import axios from 'axios';
 import './Tab2.css';
 // import Card from '../components/Card'
-import Chart from '../components/Charty';
+import Charty from '../components/Charty';
+
 
 
 // type Friend = {
@@ -29,7 +30,7 @@ const Tab2: React.FC = () => {
             <IonTitle size='large'>Poop Statistics</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <Chart />
+        <Charty />
       </IonContent>
     </IonPage>
   );

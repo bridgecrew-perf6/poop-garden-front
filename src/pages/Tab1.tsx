@@ -1,9 +1,13 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 // import ExploreContainer from '../components/ExploreContainer';
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios';
 import './Tab1.css';
 import Card from '../components/Card'
+//connecting to 'state store
+import { MyStore } from '../store'
+
+
 
 
 type Friend = {
@@ -14,8 +18,11 @@ type Friend = {
 
 
 const Tab1: React.FC = () => {
-  //creating list to be held in state
-  const [listItems, setListItems] = useState<any>([])
+
+  //grabbing userInfo variable from store to be used as state
+  const userInfo = MyStore.useState(s => s.userInfo);
+  //user info is blank before getting information from the api
+  console.log(userInfo)
 
   // function that communicates with the server
   const sendRequest = () => {
@@ -26,34 +33,35 @@ const Tab1: React.FC = () => {
       },
       })
       .then((response) => {
-      return response.data;
+        // console.log(response.data.results);
+      return response.data.results;
       })
   };
 
-  // Use effect to run function
-
+  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
   React.useEffect(() => {
     sendRequest().then(data => {
-      setListItems(data.results)
+      MyStore.update(s => {
+        s.userInfo = data;
+      })
     });
-  }, []);
+  }, [userInfo]);
 
-  // console.log(listItems);
   return (
     
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>people</IonTitle>
+          <IonTitle>Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
       <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size='large'>people</IonTitle>
+            <IonTitle size='large'>Friends</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {listItems?.map((Friend: Friend, index: number) => (
+        {userInfo.map((Friend: Friend, index: number) => (
           <Card
             key={index}
             title={Friend.name}
