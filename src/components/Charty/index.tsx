@@ -1,39 +1,19 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Bar } from 'react-chartjs-2'
 import { Chart, registerables } from 'chart.js';
+//connecting to state store
+import { MyStore } from '../../store'
 Chart.register(...registerables);
 
 // type BarChart = {
-//   name: string;
-//   height: string;
+  //   name: string;
+  //   height: string;
 // }
 
 const Charty: React.FC = () => {
 
-  //creating list to be held in state
-  const [userData, setUserData] = useState<any>({})
-
-  // function that communicates with the server
-  const GetChartData = () => {
-    return axios
-      .get('https://swapi.dev/api/people',{
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      })
-      .then((response) => {
-      let finalData = response.data;
-      return finalData;
-      })
-  };
-
-  // Use effect to run function
-  React.useEffect(() => {
-    GetChartData().then(data => {
-      setUserData(data.results)
-    });
-  }, []);
+  //grabbing userInfo variable from state
+  const userInfo = MyStore.useState(s => s.userInfo);
 
   // functions to get only the data we need for the chart
   const getNames = (array: any[]) => {
@@ -54,17 +34,17 @@ const Charty: React.FC = () => {
     return heightArray
   }
 
-  let namesArray = getNames(userData);
-  let heightArray = getHeight(userData);
+  let namesArray2 = getNames(userInfo);
+  let heightArray2 = getHeight(userInfo);
 
-  console.log(namesArray,heightArray);
+  console.log(namesArray2,heightArray2);
 
   const data = {
-    labels: namesArray,
+    labels: namesArray2,
     datasets: [
         {
           label: 'Total Poop Weight',
-          data: heightArray,
+          data: heightArray2,
           // you can set indiviual colors for each bar
           backgroundColor: [
             'rgba(255, 255, 255, 0.6)',
