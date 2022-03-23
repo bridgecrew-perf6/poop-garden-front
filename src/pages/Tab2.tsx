@@ -1,6 +1,6 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonAvatar, IonImg, IonLabel, IonList } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 // import ExploreContainer from '../components/ExploreContainer';
-import React, {useState} from 'react';
+import React from 'react';
 // import axios from 'axios';
 import './Tab2.css';
 // import Card from '../components/Card'
