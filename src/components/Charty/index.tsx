@@ -3,6 +3,8 @@ import { Bar } from 'react-chartjs-2'
 import { Chart, registerables } from 'chart.js';
 //connecting to state store
 import { MyStore } from '../../store'
+import axios from 'axios';
+
 Chart.register(...registerables);
 
 // type BarChart = {
@@ -12,8 +14,32 @@ Chart.register(...registerables);
 
 const Charty: React.FC = () => {
 
-  //grabbing userInfo variable from state
+
   const userInfo = MyStore.useState(s => s.userInfo);
+  
+  const sendRequest = () => {
+    return axios
+      .get('https://swapi.dev/api/people',{
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      })
+      .then((response) => {
+        // console.log(response.data.results);
+      return response.data.results;
+      })
+  };
+
+  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
+  React.useEffect(() => {
+    sendRequest().then(data => {
+      MyStore.update(s => {
+        s.userInfo = data;
+      })
+    });
+  }, [userInfo]);
+  //grabbing userInfo variable from state
+  
 
   // functions to get only the data we need for the chart
   const getNames = (array: any[]) => {

@@ -3,20 +3,25 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import './Tab3.css';
 // import { UIStore } from '../store'
 // import { MyStore } from '../store'
+// import LoginButton from '../components/Login/LoginButton'
+// import LogoutButton from '../components/Login/LogoutButton'
+import React from "react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const Tab3: React.FC = () => {
 
-  // const isDarkMode = UIStore.useState(s => s.isDarkMode);
-  // const userInfo = MyStore.useState(s => s.userInfo);
-  // let userName = userInfo[0]
-  // console.log(userInfo)
+  // const { user, isAuthenticated, isLoading } = useAuth0();
+  // const userEmail = user?.email;
 
+  // if (isLoading) {
+  //   return <div>Loading ...</div>;
+  // }
+  // console.log(user);
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          {/* <IonTitle>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</IonTitle> */}
-          {/* <IonTitle>{userInfo[0] === 'michael' ? 'michael' : 'someone else'}</IonTitle> */}
+          <IonTitle>Tab 3</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -25,11 +30,7 @@ const Tab3: React.FC = () => {
             <IonTitle size="large">Tab 3</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* <button onClick = {() => MyStore.update(s => {
-          s.userInfo.push('david');
-        })}
-        > Toggle use info 
-        </button> */}
+        tab 3 stuff
       </IonContent>
     </IonPage>
   );
