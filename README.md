@@ -20,3 +20,6 @@ This is the front end for my poop garden app
 
 - made the poop statistics page the homepage
 
+## day-5 mar 25
+
+connected my frontend to backend. am now pulling from my api and showing it in a friends list and on the screen
