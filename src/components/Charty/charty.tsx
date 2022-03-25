@@ -19,16 +19,17 @@ const Charty: React.FC = () => {
   
   const sendRequest = () => {
     return axios
-      .get('https://swapi.dev/api/people',{
+      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
       headers:{
         'Content-Type': 'application/json'
       },
       })
       .then((response) => {
-        // console.log(response.data.results);
-      return response.data.results;
+        // console.log(response.data);
+      return response.data;
       })
   };
+  
 
   // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
   React.useEffect(() => {
@@ -51,26 +52,26 @@ const Charty: React.FC = () => {
     return namesArray
   }
 
-  const getHeight = (array: any[]) => {
-    let heightArray = []
+  const getPoop = (array: any[]) => {
+    let poopArray = []
     for (let i = 0; i < array.length; i++) {
-      let height = array[i].height
-      heightArray.push(height)
+      let poop = array[i].poopInfo
+      poopArray.push(poop)
     }
-    return heightArray
+    return poopArray
   }
 
-  let namesArray2 = getNames(userInfo);
-  let heightArray2 = getHeight(userInfo);
+  let namesArray = getNames(userInfo);
+  let poopArray = getPoop(userInfo);
 
-  console.log(namesArray2,heightArray2);
+  // console.log(namesArray2,heightArray2);
 
   const data = {
-    labels: namesArray2,
+    labels: namesArray,
     datasets: [
         {
           label: 'Total Poop Weight',
-          data: heightArray2,
+          data: poopArray,
           // you can set indiviual colors for each bar
           backgroundColor: [
             'rgba(255, 255, 255, 0.6)',

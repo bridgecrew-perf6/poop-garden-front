@@ -8,8 +8,8 @@ import { MyStore } from '../store'
 
 type Friend = {
   name: string;
-  height: string;
-  mass: string;
+  email: string;
+  poopInfo: number;
 }
 
 const Tab1: React.FC = () => {
@@ -36,8 +36,8 @@ const Tab1: React.FC = () => {
           <Card
             key={index}
             title={Friend.name}
-            content={Friend.height}
-            subtitle={Friend.mass}
+            content={Friend.poopInfo}
+            subtitle={Friend.email}
           />
         ))}
       </IonContent>
