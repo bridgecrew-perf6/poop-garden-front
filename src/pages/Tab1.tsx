@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 // import ExploreContainer from '../components/ExploreContainer';
 import React from 'react';
-import './Tab1.css';
+import './Tab1.scss';
 import Card from '../components/Card'
 //connecting to 'state store
 import { MyStore } from '../store'

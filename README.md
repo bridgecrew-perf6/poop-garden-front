@@ -10,7 +10,7 @@ This is the front end for my poop garden app
 
 - Today i was able to render a bar graph with API information. I had to do it on the page that i made the axios call because i was having trouble passing the props around. I need to get better at typescript. used chart.js
 
-- I installed and implemented Pullstate which is a global state store library. I really like the ease of it so far and was able o remove an api call that i was making and just pass the data around through state properly.
+- I installed and implemented Pullstate which is a global state store library. I really like the ease of it so far and was able to remove an api call that i was making and just pass the data around through state properly.
 
 - I think tomorrow I will start putting together my backend so that i can start trying to creat information and pull it back.
 
@@ -20,6 +20,6 @@ This is the front end for my poop garden app
 
 - made the poop statistics page the homepage
 
-## day-5 mar 25
+## day-5 mar 24
 
 connected my frontend to backend. am now pulling from my api and showing it in a friends list and on the screen
