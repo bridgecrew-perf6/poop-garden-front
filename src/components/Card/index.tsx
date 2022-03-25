@@ -10,7 +10,7 @@ import React, { ReactElement } from "react";
 export type CardProps = {
   title: string;
   subtitle: string;
-  content: string;
+  content: number;
 };
 
 export default function Card({
