@@ -18,16 +18,16 @@ const Charty: React.FC = () => {
   const userInfo = MyStore.useState(s => s.userInfo);
   const userEmail = MyStore.useState(s => s.userEmail);
   
-  const sendRequest = () => {
+  const getUserRequest = () => {
     return axios
-      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
+      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper?email=${userEmail}',{
       .get(`http://127.0.0.1:8000/api/v1/pooper?email=${userEmail}`,{
       headers:{
         'Content-Type': 'application/json'
       },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       return response.data;
       })
   };
@@ -35,13 +35,15 @@ const Charty: React.FC = () => {
 
   // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
   React.useEffect(() => {
-    sendRequest().then(data => {
+    getUserRequest().then(data => {
       MyStore.update(s => {
         s.userInfo = data;
+        s.userName = data[0].name
       })
     });
-  }, [userInfo]);
+  },);
   //grabbing userInfo variable from state
+  const userName = MyStore.useState(s => s.userName);
   
 
   // functions to get only the data we need for the chart
@@ -86,7 +88,9 @@ const Charty: React.FC = () => {
 }
 
   return (
+    
     <div>
+      {userName ? 
       <Bar
         data={data}
         options={{
@@ -101,7 +105,9 @@ const Charty: React.FC = () => {
            }
           }
         }}
-      />
+      />:
+      // This below means that the user has not been added to our database, or we would have pulled the name back with it. which means that i really should make both the email and the name required for our database. I am going to replace the string below with a "create user/create username" component that will prompt the user to add a user name and then it will make a post request to my api with the username and email 
+      'There is no user name!!'}
     </div>
   );
 };

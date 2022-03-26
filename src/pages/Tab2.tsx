@@ -10,6 +10,8 @@ import LoginButton from '../components/Login/LoginButton'
 import LogoutButton from '../components/Login/LogoutButton'
 import Landing from '../components/Landing'
 import Home from '../components/Home/home'
+import { MyStore } from '../store'
+
 
 // type Friend = {
 //   name: string;
@@ -19,7 +21,13 @@ import Home from '../components/Home/home'
 
 const Tab2: React.FC = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const userEmail = user?.email;
+  // const userEmail = user?.email;
+  const userName = MyStore.useState(s => s.userName);
+  
+  MyStore.update(s => {
+    s.userEmail = user?.email;
+  })
+  const userEmail = MyStore.useState(s => s.userEmail);
   
   
   if (isLoading) {
@@ -32,7 +40,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{ userEmail }</IonTitle>
+          <IonTitle>{ userName || userEmail }</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
