@@ -4,13 +4,15 @@ interface UserInfoStore {
   // storeArray: Array<any>;
   userInfo: [];
   userEmail: string | undefined;
-  userName: string;
+  userName: string | undefined;
+  databaseId: number | undefined;
 }
 
 export const MyStore = new Store<UserInfoStore>({
   userInfo: [],
-  userEmail: '',
-  userName: ''
+  userEmail: undefined,
+  userName: undefined,
+  databaseId: undefined
 })
 
 
