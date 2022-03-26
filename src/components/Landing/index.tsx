@@ -1,4 +1,4 @@
-import { IonButton, IonCardTitle, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonImg, IonPage, IonRouterLink, IonRow, IonToolbar, IonTitle } from '@ionic/react';
+import { IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonToolbar, IonTitle } from '@ionic/react';
 import React from "react";
 import LoginButton from '../Login/LoginButton'
 

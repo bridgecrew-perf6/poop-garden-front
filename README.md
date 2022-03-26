@@ -23,3 +23,9 @@ This is the front end for my poop garden app
 ## day-5 mar 24
 
 connected my frontend to backend. am now pulling from my api and showing it in a friends list and on the screen
+
+## days 6 and 7 mar 25 and 26
+
+am making differnt api calls now for different information. the friends list currently pull all users and shows their info. The poop statistics page now only shows a bar chart for the user signed in.
+
+i also applied some conditional rendering to make sure the user is logged in. once the user signs in, and we pull their info from the backend, if we dont have a username to pull, we know they are not in the database, so we render a create user page. here the user will be prompted to enter a userName that will be saved to state. once the user submits the name, they will be saved to the database along with their name and email and redirecte3d to the poop statistics page.

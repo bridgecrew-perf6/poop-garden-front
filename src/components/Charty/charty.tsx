@@ -15,10 +15,11 @@ Chart.register(...registerables);
 
 const Charty: React.FC = () => {
 
-
+  // variables retrieved from global state
   const userInfo = MyStore.useState(s => s.userInfo);
   const userEmail = MyStore.useState(s => s.userEmail);
   
+  //function to call api for user's information
   const getUserRequest = () => {
     return axios
       // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper?email=${userEmail}',{
@@ -34,7 +35,7 @@ const Charty: React.FC = () => {
   };
   
 
-  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
+  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently empty)
   React.useEffect(() => {
     getUserRequest().then(data => {
       MyStore.update(s => {
@@ -42,8 +43,8 @@ const Charty: React.FC = () => {
         s.userName = data[0].name
       })
     });
-  },);
-  //grabbing userInfo variable from state
+  });
+  //grabbing userInfo variable from state after updating
   const userName = MyStore.useState(s => s.userName);
   
 
@@ -71,6 +72,7 @@ const Charty: React.FC = () => {
 
   // console.log(namesArray2,heightArray2);
 
+  //setting data for the chart
   const data = {
     labels: namesArray,
     datasets: [
@@ -106,8 +108,7 @@ const Charty: React.FC = () => {
            }
           }
         }}
-      />:
-      // This below means that the user has not been added to our database, or we would have pulled the name back with it. which means that i really should make both the email and the name required for our database. I am going to replace the string below with a "create user/create username" component that will prompt the user to add a user name and then it will make a post request to my api with the username and email 
+      />: 
       <CreateUser />}
     </div>
   );
