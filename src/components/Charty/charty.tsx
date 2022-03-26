@@ -4,6 +4,7 @@ import { Chart, registerables } from 'chart.js';
 //connecting to state store
 import { MyStore } from '../../store'
 import axios from 'axios';
+import CreateUser from '../Login/CreateUser'
 
 Chart.register(...registerables);
 
@@ -14,12 +15,15 @@ Chart.register(...registerables);
 
 const Charty: React.FC = () => {
 
-
+  // variables retrieved from global state
   const userInfo = MyStore.useState(s => s.userInfo);
+  const userEmail = MyStore.useState(s => s.userEmail);
   
-  const sendRequest = () => {
+  //function to call api for user's information
+  const getUserRequest = () => {
     return axios
-      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
+      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper?email=${userEmail}',{
+      .get(`http://127.0.0.1:8000/api/v1/pooper?email=${userEmail}`,{
       headers:{
         'Content-Type': 'application/json'
       },
@@ -31,15 +35,17 @@ const Charty: React.FC = () => {
   };
   
 
-  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
+  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently empty)
   React.useEffect(() => {
-    sendRequest().then(data => {
+    getUserRequest().then(data => {
       MyStore.update(s => {
         s.userInfo = data;
+        s.userName = data[0].name
       })
     });
-  }, [userInfo]);
-  //grabbing userInfo variable from state
+  });
+  //grabbing userInfo variable from state after updating
+  const userName = MyStore.useState(s => s.userName);
   
 
   // functions to get only the data we need for the chart
@@ -66,6 +72,7 @@ const Charty: React.FC = () => {
 
   // console.log(namesArray2,heightArray2);
 
+  //setting data for the chart
   const data = {
     labels: namesArray,
     datasets: [
@@ -84,7 +91,9 @@ const Charty: React.FC = () => {
 }
 
   return (
+    
     <div>
+      {userName ? 
       <Bar
         data={data}
         options={{
@@ -99,7 +108,8 @@ const Charty: React.FC = () => {
            }
           }
         }}
-      />
+      />: 
+      <CreateUser />}
     </div>
   );
 };

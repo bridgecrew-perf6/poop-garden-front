@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 // import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import './Tab3.scss';
 // import { UIStore } from '../store'
 // import { MyStore } from '../store'
 // import LoginButton from '../components/Login/LoginButton'
