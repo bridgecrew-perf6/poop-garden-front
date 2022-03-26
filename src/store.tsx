@@ -3,10 +3,14 @@ import { Store } from 'pullstate';
 interface UserInfoStore {
   // storeArray: Array<any>;
   userInfo: [];
+  userEmail: string | undefined;
+  userName: string;
 }
 
 export const MyStore = new Store<UserInfoStore>({
   userInfo: [],
+  userEmail: '',
+  userName: ''
 })
 
 

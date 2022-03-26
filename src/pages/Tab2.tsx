@@ -9,9 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from '../components/Login/LoginButton'
 import LogoutButton from '../components/Login/LogoutButton'
 import Landing from '../components/Landing'
-
-
-
+import Home from '../components/Home/home'
 
 // type Friend = {
 //   name: string;
@@ -27,7 +25,7 @@ const Tab2: React.FC = () => {
   if (isLoading) {
     return <div>Loading ...</div>;
   }
-  console.log(user);
+  // console.log(user);
 
   return (
     
@@ -41,8 +39,7 @@ const Tab2: React.FC = () => {
       
       {isAuthenticated ?
         <div>
-          <LogoutButton />
-          <Charty /> 
+          <Home />
         </div>:
         <div>
           <Landing />
