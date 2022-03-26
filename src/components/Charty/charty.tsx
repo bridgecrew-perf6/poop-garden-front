@@ -93,7 +93,9 @@ const Charty: React.FC = () => {
   return (
     
     <div>
-      {userName ? 
+      {userName ?
+      poopArray[0] === 0 ?
+        'Thank you for visiting the poop Garden! Please fill out your poop information to see statistics':
       <Bar
         data={data}
         options={{

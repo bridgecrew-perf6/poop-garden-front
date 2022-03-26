@@ -25,7 +25,7 @@ const CreateUser: React.FC = () => {
     let data = {
       name: tempName,
       email: userEmail,
-      poopInfo: 101
+      poopInfo: 0,
     }
     axios.post(url, data, {headers: {'Content-Type': 'application/json'}})
     .then((response) => {
