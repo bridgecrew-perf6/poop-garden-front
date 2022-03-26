@@ -16,16 +16,18 @@ const Charty: React.FC = () => {
 
 
   const userInfo = MyStore.useState(s => s.userInfo);
+  const userEmail = MyStore.useState(s => s.userEmail);
   
   const sendRequest = () => {
     return axios
-      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
+      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
+      .get(`http://127.0.0.1:8000/api/v1/pooper?email=${userEmail}`,{
       headers:{
         'Content-Type': 'application/json'
       },
       })
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
       return response.data;
       })
   };
