@@ -4,6 +4,7 @@ import { Chart, registerables } from 'chart.js';
 //connecting to state store
 import { MyStore } from '../../store'
 import axios from 'axios';
+import CreateUser from '../Login/CreateUser'
 
 Chart.register(...registerables);
 
@@ -107,7 +108,7 @@ const Charty: React.FC = () => {
         }}
       />:
       // This below means that the user has not been added to our database, or we would have pulled the name back with it. which means that i really should make both the email and the name required for our database. I am going to replace the string below with a "create user/create username" component that will prompt the user to add a user name and then it will make a post request to my api with the username and email 
-      'There is no user name!!'}
+      <CreateUser />}
     </div>
   );
 };
