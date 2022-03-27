@@ -63,18 +63,18 @@ const Charty: React.FC = () => {
     return namesArray
   }
 
-  // const getPoop = (array: any[]) => {
-  //   let poopArray = []
-  //   for (let i = 0; i < array.length; i++) {
-  //     let poop = array[i].poopInfo
-  //     poopArray.push(poop)
-  //   }
-  //   return poopArray
-  // }
+  const getPoop = (array: any[]) => {
+    let poopArray = []
+    for (let i = 0; i < array.length; i++) {
+      let poop = array[i].poopInfo
+      poopArray.push(poop)
+    }
+    return poopArray
+  }
 
   let namesArray = getNames(userInfo);
-  // let poopArray = getPoop(userInfo);
-  let poopArray = [userPoopInfo]
+  let poopArray = getPoop(userInfo);
+  // let poopArray = [userPoopInfo]
 
   // console.log(namesArray2,heightArray2);
 
