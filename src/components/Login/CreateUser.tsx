@@ -20,8 +20,8 @@ const CreateUser: React.FC = () => {
       s.userName = tempName;
     })
 
-    // let url = 'https://poop-garden-back.herokuapp.com/api/v1/pooper/';
-    let url = `http://127.0.0.1:8000/api/v1/pooper/`
+    let url = 'https://poop-garden-back.herokuapp.com/api/v1/pooper/';
+    // let url = `http://127.0.0.1:8000/api/v1/pooper/`
     let data = {
       name: tempName,
       email: userEmail,
@@ -34,16 +34,11 @@ const CreateUser: React.FC = () => {
     })
   }
 
-  //function that captures the user's input as they type in a temporary state to be submitted once they hit submit button
-  const handleChange = (name: string | undefined) => {
-    setTempName(name);
-    console.log(name);
-  }
 
   return (
     <form onSubmit={setName}>
       <IonItem>
-       <IonInput  placeholder="Enter Name" onIonChange={e => handleChange(e.detail.value!)}></IonInput>
+       <IonInput  placeholder="Enter Name" onIonChange={e => setTempName(e.detail.value!)}></IonInput>
       </IonItem>
 
       <IonButton className="ion-margin-top" type="submit" expand="block">

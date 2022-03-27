@@ -22,8 +22,8 @@ const Tab1: React.FC = () => {
 
   const getFriendsRequest = () => {
     return axios
-      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
-      .get('http://127.0.0.1:8000/api/v1/pooper/',{
+      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
+      // .get('http://127.0.0.1:8000/api/v1/pooper/',{
       headers:{
         'Content-Type': 'application/json'
       },

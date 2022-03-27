@@ -18,12 +18,15 @@ const Charty: React.FC = () => {
   // variables retrieved from global state
   const userInfo = MyStore.useState(s => s.userInfo);
   const userEmail = MyStore.useState(s => s.userEmail);
+  const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
+
+  console.log(userPoopInfo)
   
   //function to call api for user's information
   const getUserRequest = () => {
     return axios
-      // .get('https://poop-garden-back.herokuapp.com/api/v1/pooper?email=${userEmail}',{
-      .get(`http://127.0.0.1:8000/api/v1/pooper?email=${userEmail}`,{
+      .get(`https://poop-garden-back.herokuapp.com/api/v1/pooper?email=${userEmail}`,{
+      // .get(`http://127.0.0.1:8000/api/v1/pooper?email=${userEmail}`,{
       headers:{
         'Content-Type': 'application/json'
       },
@@ -41,11 +44,13 @@ const Charty: React.FC = () => {
       MyStore.update(s => {
         s.userInfo = data;
         s.userName = data[0].name
+        s.userPoopInfo = data[0].poopInfo
       })
     });
   });
   //grabbing userInfo variable from state after updating
   const userName = MyStore.useState(s => s.userName);
+  // console.log(userInfo)
   
 
   // functions to get only the data we need for the chart
@@ -58,17 +63,18 @@ const Charty: React.FC = () => {
     return namesArray
   }
 
-  const getPoop = (array: any[]) => {
-    let poopArray = []
-    for (let i = 0; i < array.length; i++) {
-      let poop = array[i].poopInfo
-      poopArray.push(poop)
-    }
-    return poopArray
-  }
+  // const getPoop = (array: any[]) => {
+  //   let poopArray = []
+  //   for (let i = 0; i < array.length; i++) {
+  //     let poop = array[i].poopInfo
+  //     poopArray.push(poop)
+  //   }
+  //   return poopArray
+  // }
 
   let namesArray = getNames(userInfo);
-  let poopArray = getPoop(userInfo);
+  // let poopArray = getPoop(userInfo);
+  let poopArray = [userPoopInfo]
 
   // console.log(namesArray2,heightArray2);
 
@@ -94,7 +100,7 @@ const Charty: React.FC = () => {
     
     <div>
       {userName ?
-      poopArray[0] === 0 ?
+      userPoopInfo === 0 ?
         'Thank you for visiting the poop Garden! Please fill out your poop information to see statistics':
       <Bar
         data={data}

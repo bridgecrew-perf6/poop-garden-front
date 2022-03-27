@@ -29,3 +29,5 @@ connected my frontend to backend. am now pulling from my api and showing it in a
 am making differnt api calls now for different information. the friends list currently pull all users and shows their info. The poop statistics page now only shows a bar chart for the user signed in.
 
 i also applied some conditional rendering to make sure the user is logged in. once the user signs in, and we pull their info from the backend, if we dont have a username to pull, we know they are not in the database, so we render a create user page. here the user will be prompted to enter a userName that will be saved to state. once the user submits the name, they will be saved to the database along with their name and email and redirecte3d to the poop statistics page.
+
+Can now fully add a user to the database through the front end. the user can only look at the graphs if they hav inputed information. Tab 3 has been modified to make ti where the user poop information is grabbed. If they havent inputed information, there is an input box for them to do so. If they have, it will direct them to their graphs.
