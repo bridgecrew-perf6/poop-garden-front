@@ -35,3 +35,7 @@ Can now fully add a user to the database through the front end. the user can onl
 ## days 8-11 march 27-31
 
 Spent the last 4 days working on the API, mostly the friends part of it I took a shot at writing some friends models and methods from scratch, but ended up going with a couple of libraries. I am glad i went through writing most of it, because it really helped me understand what is going on under the hood, but i like the expanded functionality of the third pary libraries. I am using django-friendships which is a library that helps creat friend, friend request, etc, models. I also used django-rest-friendships which is a wrapper around django-friendships to turn everything into api endpoints that i can reach from my front end. I also expanded my profile app so that once i expand past poop to other profiles, it wont be too hard to scale. tomorrow I want to focus on connecting the front and the back end. I think i still need to figure out some more authentication stuu to do that, but i want to be able to create a new user from the front end(which should also allow me to create a poop profile and friend list for that user)
+
+## day 12 april 1
+
+made some pretty cool changes in my ionic front end. put all of the routes/tabs into a list so that i can easily traverse through it as well as add new tabs or routes
