@@ -38,4 +38,6 @@ Spent the last 4 days working on the API, mostly the friends part of it I took a
 
 ## day 12 april 1
 
-made some pretty cool changes in my ionic front end. put all of the routes/tabs into a list so that i can easily traverse through it as well as add new tabs or routes
+made some pretty cool changes in my ionic front end. put all of the routes/tabs into a list so that i can easily traverse through it as well as add new tabs or routes.
+
+On the backend, i installed jwt to my django api and can now sign in with a token or on the views. I also added the ability to sign in from my react app. tomorrw i will go back into the react app to connect via token

@@ -16,18 +16,3 @@ export const MyStore = new Store<UserInfoStore>({
   userFriends: [],
   userPoopInfo: 0,
 })
-
-
-
-
-
-
-
-// interface IUIStore {
-//   isDarkMode: boolean;
-  
-// }
-
-// export const UIStore = new Store<IUIStore>({
-//   isDarkMode: true,
-// });
