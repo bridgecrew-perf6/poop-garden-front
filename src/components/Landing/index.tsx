@@ -17,7 +17,7 @@ const Landing: React.FC = () => {
         <IonGrid>
 						<IonRow className={ `ion-text-center ion-justify-content-center` }>
 							<IonCol size="11">
-								<IonCardTitle> Lets all count our poops?</IonCardTitle>
+								<IonCardTitle> Lets all count our poops!</IonCardTitle>
 							</IonCol>
 						</IonRow>
 

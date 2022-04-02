@@ -6,6 +6,7 @@ import Card from '../components/Card'
 //connecting to 'state store
 import { MyStore } from '../store'
 import axios from 'axios';
+import { AuthProvider } from '../contexts/auth.js';
 
 type Friend = {
   name: string;

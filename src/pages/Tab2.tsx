@@ -1,11 +1,12 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 // import ExploreContainer from '../components/ExploreContainer';
-import React from 'react';
+import React, { useState } from 'react';
 // import axios from 'axios';
 import './Tab2.scss';
 // import Card from '../components/Card'
 // import Charty from '../components/Charty/charty';
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from '../contexts/auth.js';
 // import LoginButton from '../components/Login/LoginButton'
 // import LogoutButton from '../components/Login/LogoutButton'
 import Landing from '../components/Landing'
@@ -20,19 +21,29 @@ import { MyStore } from '../store'
 // }
 
 const Tab2: React.FC = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  // const userEmail = user?.email;
+  // const { user, isAuthenticated, isLoading } = useAuth0();
+  // const { user, login } = useAuth();
+  const { user, login } = useAuth();
   const userName = MyStore.useState(s => s.userName);
-  
+  const userEmail = MyStore.useState(s => s.userEmail);
+    
+  useIonViewWillEnter(() => {
+    login('lexi', 'Nuggets35')
+  })
+
+  console.log(user)
+
   MyStore.update(s => {
     s.userEmail = user?.email;
+    s.userName = user?.username;
   })
-  const userEmail = MyStore.useState(s => s.userEmail);
+
+  console.log(userEmail, userName)
   
-  
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+
+  // if (isLoading) {
+  //   return <div>Loading ...</div>;
+  // }
   // console.log(user);
 
   return (
@@ -44,15 +55,15 @@ const Tab2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      
-      {isAuthenticated ?
+      hi
+      {/* {isAuthenticated ?
         <div>
           <Home />
         </div>:
         <div>
           <Landing />
         </div>
-        }
+        } */}
       </IonContent>
     </IonPage>
   );
