@@ -6,8 +6,8 @@ interface UserInfoStore {
   userEmail: string | undefined;
   userPassword: string | undefined;
   userId: number | undefined;
-  userInfo: Array<any>;
-  userPoopInfo: number | 0;
+  PoopProfileInfo: Array<any>;
+  userPoopInfo: number | null;
   userFriends: [];//right now is connected to all users. will eventually be a real friends list
 }
 
@@ -16,7 +16,7 @@ export const MyStore = new Store<UserInfoStore>({
   userEmail: undefined,
   userPassword: undefined,
   userId: undefined,
-  userInfo: [],
+  PoopProfileInfo: [],
   userFriends: [],
-  userPoopInfo: 0,
+  userPoopInfo: null,
 })

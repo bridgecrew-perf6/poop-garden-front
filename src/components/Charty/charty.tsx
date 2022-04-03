@@ -16,7 +16,7 @@ Chart.register(...registerables);
 const Charty: React.FC = () => {
 
   // variables retrieved from global state
-  const userInfo = MyStore.useState(s => s.userInfo);
+  const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);
   const userEmail = MyStore.useState(s => s.userEmail);
   const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
 
@@ -42,7 +42,7 @@ const Charty: React.FC = () => {
   React.useEffect(() => {
     getUserRequest().then(data => {
       MyStore.update(s => {
-        s.userInfo = data;
+        s.PoopProfileInfo = data;
         s.userName = data[0].name
         s.userPoopInfo = data[0].poopInfo
       })
@@ -72,8 +72,8 @@ const Charty: React.FC = () => {
     return poopArray
   }
 
-  let namesArray = getNames(userInfo);
-  let poopArray = getPoop(userInfo);
+  let namesArray = getNames(PoopProfileInfo);
+  let poopArray = getPoop(PoopProfileInfo);
   // let poopArray = [userPoopInfo]
 
   // console.log(namesArray2,heightArray2);

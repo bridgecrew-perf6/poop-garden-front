@@ -10,12 +10,12 @@ import axios from 'axios';
 const Tab3: React.FC = () => {
   // Right now you absolutely have to start on tab 2 on every refresh. will haveto see how i feel about that in the long run
 
-  const userInfo = MyStore.useState(s => s.userInfo);
+  const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);
   const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
   const [text, setText] = useState<any>();
-  const dbId = userInfo[0].id
+  const dbId = PoopProfileInfo[0].id
   console.log(userPoopInfo)
-  console.log(userInfo)
+  console.log(PoopProfileInfo)
 
   const printText = (e: any) => {
     e.preventDefault();
@@ -27,8 +27,8 @@ const Tab3: React.FC = () => {
     // let url = `http://127.0.0.1:8000/api/v1/pooper/${dbId}/`
     let url = `https://poop-garden-back.herokuapp.com/api/v1/pooper/${dbId}/`
     let data = {
-      name: userInfo[0].name,
-      email: userInfo[0].email,
+      name: PoopProfileInfo[0].name,
+      email: PoopProfileInfo[0].email,
       poopInfo: text,
     }
     axios.put(url, data, {headers: {'Content-Type': 'application/json'}})

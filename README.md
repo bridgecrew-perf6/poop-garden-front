@@ -45,3 +45,7 @@ On the backend, i installed jwt to my django api and can now sign in with a toke
 ## day 13 april 2
 
 switched from auth0 to my own custom auth to work in tandem with my django authorization so that users can sign into their data profiles in the back end at the same time as signing in to the front end. is currently only working to sign in and get the username/email on tab3
+
+## day 14 april 3
+
+1 small thing that i did was figure out routers. they give me the ability to send the user to any particular route or tab. Mostly added the ability to actually get information while signed in to the api. did this by adding a useResource hook that grabs and stores the api information for me to retrieve on later renders. Right now there is only 1 use resource hook, but tomorrow i am going to change that to be specifically a poop profile hook and then make seperate hooks for the friends list and any other models that i end up bringing in like farts. right now i have the ability to sign in on my sign in page and as soon as the user is signed in, they are routed to the second tab which right now shows their name and poop info from the api
