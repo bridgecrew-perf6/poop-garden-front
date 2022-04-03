@@ -1,61 +1,79 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
-// import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonButton, IonInput, useIonViewWillEnter, useIonViewDidEnter } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 import React, { useState } from 'react';
-// import axios from 'axios';
 import './Tab2.scss';
 // import Card from '../components/Card'
 // import Charty from '../components/Charty/charty';
-// import { useAuth0 } from "@auth0/auth0-react";
 import { useAuth } from '../contexts/auth.js';
 // import LoginButton from '../components/Login/LoginButton'
 // import LogoutButton from '../components/Login/LogoutButton'
 import Landing from '../components/Landing'
 import Home from '../components/Home/home'
 import { MyStore } from '../store'
+import axios from 'axios';
 
 
-// type Friend = {
-//   name: string;
-//   height: string;
-//   mass: string;
-// }
 
 const Tab2: React.FC = () => {
-  // const { user, isAuthenticated, isLoading } = useAuth0();
-  // const { user, login } = useAuth();
-  const { user, login } = useAuth();
+  const { user, login, logout } = useAuth();
   const userName = MyStore.useState(s => s.userName);
   const userEmail = MyStore.useState(s => s.userEmail);
-    
-  useIonViewWillEnter(() => {
-    login('lexi', 'Nuggets35')
-  })
+  const userId = MyStore.useState(s => s.userId);
+  const userPassword = MyStore.useState(s => s.userPassword);
 
-  console.log(user)
 
-  MyStore.update(s => {
-    s.userEmail = user?.email;
-    s.userName = user?.username;
-  })
-
-  console.log(userEmail, userName)
+  // const [user, setUser] = useState();
   
+  React.useEffect(() => {
+    // use what the user entered to log them into their api profile
+    MyStore.update(s => {
+      s.userId = user?.id
+      s.userEmail = user?.email;
+    })
+    if (userId){
+      console.log(userId);
+      login(userName, userPassword)
+      .then(
+      axios.get('http://127.0.0.1:8000/api/data_profiles/poop_profiles/'))
+      .then((response: { data: any; }) => {
+        console.log(response.data)
+      })
+    }
+  },);
 
-  // if (isLoading) {
-  //   return <div>Loading ...</div>;
+  // console.log(userEmail, userId)
+
+  // const handleLogin = () => {
+  //   // console.log(tempName)
+
+  //   // MyStore.update(s => {
+  //   //   s.userName = tempName;
+  //   // })
+  //   // let url = 'http://127.0.0.1:8000/api/data_profiles/poop_profiles/'
+  //   // axios.get(url)
+  //   // .then((response) => {
+  //   //   console.log(response.data);
+  //   // })
+  //   // console.log(user)
   // }
-  // console.log(user);
+
+
+  // const [tempName, setTempName] = useState<string>()
+  // const [tempPassword, setTempPassword] = useState<any>()
+  // console.log(tempName)
+  // console.log(tempPassword)
+
 
   return (
     
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{ userName || userEmail }</IonTitle>
+          <IonTitle>{ userName }</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      hi
+      
+
       {/* {isAuthenticated ?
         <div>
           <Home />

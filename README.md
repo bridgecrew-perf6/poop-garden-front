@@ -41,3 +41,7 @@ Spent the last 4 days working on the API, mostly the friends part of it I took a
 made some pretty cool changes in my ionic front end. put all of the routes/tabs into a list so that i can easily traverse through it as well as add new tabs or routes.
 
 On the backend, i installed jwt to my django api and can now sign in with a token or on the views. I also added the ability to sign in from my react app. tomorrw i will go back into the react app to connect via token
+
+## day 13 april 2
+
+switched from auth0 to my own custom auth to work in tandem with my django authorization so that users can sign into their data profiles in the back end at the same time as signing in to the front end. is currently only working to sign in and get the username/email on tab3
