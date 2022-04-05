@@ -1,51 +1,33 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
 // import ExploreContainer from '../components/ExploreContainer';
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
-import Card from '../components/Card'
+import Cards from '../components/Cards'
 //connecting to 'state store
 import { MyStore } from '../store'
-import axios from 'axios';
-import { AuthProvider } from '../contexts/auth.js';
+import useResourceFriends from '../hooks/useResourceFriends';
 
-type Friend = {
-  name: string;
-  email: string;
-  poopInfo: number;
-}
+
 
 const Tab1: React.FC = () => {
 
   //grabbing userInfo variable from store to be used as state
-  // const userInfo = MyStore.useState(s => s.userInfo);
   const userFriends = MyStore.useState(s => s.userFriends);
 
-
-  const getFriendsRequest = () => {
-    return axios
-      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
-      // .get('http://127.0.0.1:8000/api/v1/pooper/',{
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      })
-      .then((response) => {
-        // console.log(response.data);
-      return response.data;
-      })
-  };
+  const { resourcesFriends } = useResourceFriends();
   
+ 
+  useEffect(() => {
 
-  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
-  React.useEffect(() => {
-    getFriendsRequest().then(data => {
+    const fetchFriends = async () => {
       MyStore.update(s => {
-        s.userFriends = data;
+        s.userFriends = resourcesFriends;
       })
-    });
-  },);
-
-
+    }
+      
+    fetchFriends()
+    .catch(console.error)    
+  },[resourcesFriends]);
 
   return (
     
@@ -61,14 +43,7 @@ const Tab1: React.FC = () => {
             <IonTitle size='large'>Friends</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {userFriends.map((Friend: Friend, index: number) => (
-          <Card
-            key={index}
-            title={Friend.name}
-            content={Friend.poopInfo}
-            subtitle={Friend.email}
-          />
-        ))}
+        {userFriends ? <Cards />: 'Loading...'}
       </IonContent>
     </IonPage>
   );

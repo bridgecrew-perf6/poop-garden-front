@@ -8,7 +8,9 @@ interface UserInfoStore {
   userId: number | undefined;
   PoopProfileInfo: Array<any>;
   userPoopInfo: number | null;
-  userFriends: [];//right now is connected to all users. will eventually be a real friends list
+  userFriends: any[];
+  friendsPoop: any[];
+  allPoop: any[];
 }
 
 export const MyStore = new Store<UserInfoStore>({
@@ -18,5 +20,7 @@ export const MyStore = new Store<UserInfoStore>({
   userId: undefined,
   PoopProfileInfo: [],
   userFriends: [],
+  friendsPoop: [],
   userPoopInfo: null,
+  allPoop: [],
 })

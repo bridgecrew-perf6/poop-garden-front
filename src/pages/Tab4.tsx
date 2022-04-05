@@ -39,7 +39,7 @@ const Tab4: React.FC = () => {
       s.userPassword = tempPassword;
     })
     // using Ion router to send user to the next page
-    router.push('/tab2')
+    router.push('/tab1')
   }
 
   console.log(user)

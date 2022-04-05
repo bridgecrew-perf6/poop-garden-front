@@ -2,15 +2,15 @@ import axios from 'axios'
 import useSWR from 'swr'
 
 import { useAuth } from '../contexts/auth'
-export const apiUrl = 'http://127.0.0.1:8000/api/data_profiles/poop_profiles/';
+export const apiUrl = 'http://127.0.0.1:8000/api/friends/';
 
-export default function useResource() {
+export default function useResourceFriends() {
 
     const { tokens, logout } = useAuth()
 
-    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
+    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResourceFriends);
 
-    async function fetchResource(url: string) {
+    async function fetchResourceFriends(url: string) {
 
         if (!tokens) {
             return;
@@ -26,7 +26,7 @@ export default function useResource() {
         }
     }
 
-    async function createResource(info: any) {
+    async function createResourceFriends(info: any) {
 
         try {
             await axios.post(apiUrl, info, config());
@@ -36,7 +36,7 @@ export default function useResource() {
         }
     }
 
-    async function deleteResource(id: string) {
+    async function deleteResourceFriends(id: string) {
 
         try {
             const url = apiUrl + id;
@@ -47,7 +47,7 @@ export default function useResource() {
         }
     }
 
-    async function updateResource(resource: any) {
+    async function updateResourceFriends(resource: any) {
         // STRETCH
         // Add ability for user to update an existing resource
     }
@@ -72,11 +72,11 @@ export default function useResource() {
     }
 
     return {
-        resources: data,
+        resourcesFriends: data,
         error,
-        loading: tokens && !error && !data,
-        createResource,
-        deleteResource,
-        updateResource,
+        loadingFriends: tokens && !error && !data,
+        createResourceFriends,
+        deleteResourceFriends,
+        updateResourceFriends,
     }
 }
