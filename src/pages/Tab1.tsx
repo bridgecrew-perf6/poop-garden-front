@@ -1,43 +1,31 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
-// import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
 import Cards from '../components/Cards'
-//connecting to 'state store
-// import { MyStore } from '../store'
+import { Person } from '../components/Person/person.js'
+
 import useResourceFriends from '../hooks/useResourceFriends';
 import { UserStore } from '../store';
 import { PoopStore } from '../store';
 import { FriendStore } from '../store';
+import { useStoreState } from 'pullstate';
+import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 
-
+//This is the page that the user is (currently) sent to right after they sign in. Its main purpose is to show a list of the user's friends
 
 const Tab1: React.FC = () => {
 
-  //grabbing userInfo variable from store to be used as state
-  // const userFriends = MyStore.useState(s => s.userFriends);
-
-  // const { resourcesFriends } = useResourceFriends();
-  const userInfo = UserStore.useState(s => s.userInfo);
-  const poopProfiles = PoopStore.useState(s => s.poopProfiles)
-  const friends = FriendStore.useState(s => s.friends)
-  
-  
-  // useEffect(() => {
-
-  //   const fetchFriends = async () => {
-  //     FriendStore.update(s => {
-  //       s.friends = resourcesFriends;
-  //     })
-  //   }
-      
-  //   fetchFriends()
-  //   .catch(console.error)    
-  // },[resourcesFriends]);
+  //useStoreState hook for pulling out the data or a subset of the data from state
+  const userInfo = useStoreState(UserStore, getUserInfo)
+  const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
+  const friends = useStoreState(FriendStore, getFriends)
+ 
 
   console.log(userInfo)
   console.log(friends)
   console.log(poopProfiles);
+
+  // I need to iterate over this list of friends and show the list
 
   return (
     
@@ -55,6 +43,8 @@ const Tab1: React.FC = () => {
         </IonHeader>
         {/* {user ? <Cards />: 'Loading...'} */}
         {friends ? `Hello ${userInfo.username}!!`: 'Loading...'}
+
+
       </IonContent>
     </IonPage>
   );

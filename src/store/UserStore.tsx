@@ -1,8 +1,5 @@
 import { Store } from 'pullstate';
-// import { useAuth } from '../contexts/auth.js';
-
-
-// const { user, login, logout } = useAuth();
+// This is the store that keeps track of the current user
 
 interface userStoreInt {
   userInfo: any;

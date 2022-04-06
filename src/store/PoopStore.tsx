@@ -1,13 +1,9 @@
 import { Store } from 'pullstate';
-// import useResourcePoop from '../hooks/useResourcePoop'
+// This is the store that keeps track of all available poop profiles
 
-
-// const { resourcesPoop } = useResourcePoop();
 interface poopStoreInt {
   poopProfiles: any[];
 }
-
-
 
 const PoopStore = new Store<poopStoreInt>({
   poopProfiles: [],
