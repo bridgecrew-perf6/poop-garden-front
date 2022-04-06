@@ -1,9 +1,8 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
 import Cards from '../components/Cards'
-import { Person } from '../components/Person/person.js'
-
+import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 import useResourceFriends from '../hooks/useResourceFriends';
 import { UserStore } from '../store';
 import { PoopStore } from '../store';
@@ -32,19 +31,30 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Friends</IonTitle>
+          <IonTitle>Your Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
       <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size='large'>Friends</IonTitle>
+            <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* {user ? <Cards />: 'Loading...'} */}
-        {friends ? `Hello ${userInfo.username}!!`: 'Loading...'}
-
-
+        {friends ?
+        <IonList>
+          {
+            friends.map((friend: any, index: React.Key | null | undefined) => {
+              return <IonItem key={index}>
+                <IonLabel>
+                  <h1>{friend.username}</h1>
+                  <h3>{friend.email}</h3>
+                  <p>{friend.poopInfo}</p>
+                </IonLabel>
+              </IonItem>
+            })
+          }
+        </IonList>:
+         <SkeletonFriends />}
       </IonContent>
     </IonPage>
   );
