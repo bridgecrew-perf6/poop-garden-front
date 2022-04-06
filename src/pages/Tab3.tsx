@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
 import './Tab3.scss';
-import { MyStore } from '../store'
+// import { MyStore } from '../store'
 
 import React, { useState } from "react";
 import axios from 'axios';
@@ -10,40 +10,40 @@ import axios from 'axios';
 const Tab3: React.FC = () => {
   // Right now you absolutely have to start on tab 2 on every refresh. will haveto see how i feel about that in the long run
 
-  const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);
-  const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
-  const [text, setText] = useState<any>();
-  const dbId = PoopProfileInfo[0].id
-  console.log(userPoopInfo)
-  console.log(PoopProfileInfo)
+  // const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);
+  // const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
+  // const [text, setText] = useState<any>();
+  // const dbId = PoopProfileInfo[0].id
+  // console.log(userPoopInfo)
+  // console.log(PoopProfileInfo)
 
-  const printText = (e: any) => {
-    e.preventDefault();
-    console.log(text);
-    MyStore.update(s => {
-      s.userPoopInfo = parseInt(text);
-    })
-    console.log(text);
-    // let url = `http://127.0.0.1:8000/api/v1/pooper/${dbId}/`
-    let url = `https://poop-garden-back.herokuapp.com/api/v1/pooper/${dbId}/`
-    let data = {
-      name: PoopProfileInfo[0].name,
-      email: PoopProfileInfo[0].email,
-      poopInfo: text,
-    }
-    axios.put(url, data, {headers: {'Content-Type': 'application/json'}})
-    .then((response) => {
-    console.log(response.data);
-    // return response.data;
-    })
+  // const printText = (e: any) => {
+  //   e.preventDefault();
+  //   console.log(text);
+  //   MyStore.update(s => {
+  //     s.userPoopInfo = parseInt(text);
+  //   })
+  //   console.log(text);
+  //   // let url = `http://127.0.0.1:8000/api/v1/pooper/${dbId}/`
+  //   let url = `https://poop-garden-back.herokuapp.com/api/v1/pooper/${dbId}/`
+  //   let data = {
+  //     name: PoopProfileInfo[0].name,
+  //     email: PoopProfileInfo[0].email,
+  //     poopInfo: text,
+  //   }
+  //   axios.put(url, data, {headers: {'Content-Type': 'application/json'}})
+  //   .then((response) => {
+  //   console.log(response.data);
+  //   // return response.data;
+  //   })
     
-  }
+  // }
 
   return (
     <div>
       
     
-      <IonPage>
+      {/* <IonPage>
         <IonHeader>
           <IonToolbar>
             <IonTitle>Tab 3</IonTitle>
@@ -73,7 +73,7 @@ const Tab3: React.FC = () => {
           </IonItem>
         </IonList>
         </IonContent>
-      </IonPage>
+      </IonPage> */}
     </div>
   );
 };

@@ -49,3 +49,7 @@ switched from auth0 to my own custom auth to work in tandem with my django autho
 ## day 14 april 3
 
 1 small thing that i did was figure out routers. they give me the ability to send the user to any particular route or tab. Mostly added the ability to actually get information while signed in to the api. did this by adding a useResource hook that grabs and stores the api information for me to retrieve on later renders. Right now there is only 1 use resource hook, but tomorrow i am going to change that to be specifically a poop profile hook and then make seperate hooks for the friends list and any other models that i end up bringing in like farts. right now i have the ability to sign in on my sign in page and as soon as the user is signed in, they are routed to the second tab which right now shows their name and poop info from the api
+
+## days 15-16 april 4-5
+
+a loooong couple of days. Ihave really been struggling with different api calls and how to mich multiple together. today i refactored my entire pullstate store into seperate stores for each of the api pulls i need(user info, friends info, and poop profiles) as well as connecting to reselect. These 2 together allow me to just pull in what i need from the api when the user first logs in, and then it will be saved there for me to grab what i need from it whenever
