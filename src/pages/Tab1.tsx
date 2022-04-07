@@ -14,13 +14,15 @@ import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 
 const Tab1: React.FC = () => {
 
-  //useStoreState hook for pulling out the data or a subset of the data from state
-  const userInfo = useStoreState(UserStore, getUserInfo)
+  const [tempFriends, setTempFriends] = useState<any>([])
+
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
   const friends = useStoreState(FriendStore, getFriends)
  
-
-  console.log(userInfo)
+  useEffect(() => {
+    setTempFriends(friends)
+  },[friends])
+  // console.log(userInfo)
   console.log(friends)
   console.log(poopProfiles);
 
@@ -40,10 +42,10 @@ const Tab1: React.FC = () => {
             <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {friends ?
+        {friends && poopProfiles && tempFriends ?
         <IonList>
           {
-            friends.map((friend: any, index: React.Key | null | undefined) => {
+            tempFriends.map((friend: any, index: React.Key | null | undefined) => {
               return <IonItem key={index}>
                 <IonLabel>
                   <h1>{friend.username}</h1>

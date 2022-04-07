@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2'
 import { Chart, registerables } from 'chart.js';
 //connecting to state store
-// import { MyStore } from '../../store'
-import axios from 'axios';
-import CreateUser from '../Login/CreateUser'
+import { FriendStore } from '../../store';
+import { getFriends } from '../../store/Selectors';
+import { useStoreState } from 'pullstate';
 
 Chart.register(...registerables);
 
@@ -13,14 +13,17 @@ Chart.register(...registerables);
   //   height: string;
 // }
 
-const Charty: React.FC = () => {
+
+const FriendsBarChart: React.FC = () => {
 
   // variables retrieved from global state
-  // const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);
-  // const userEmail = MyStore.useState(s => s.userEmail);
-  // const userPoopInfo = MyStore.useState(s => s.userPoopInfo);
+  const friends = useStoreState(FriendStore, getFriends);
+  
+  const [tempNames, setTempNames] = useState<any>()
+  const [tempPoop, setTempPoop] = useState<any>()
 
   // console.log(userPoopInfo)
+  console.log(friends);
   
   //function to call api for user's information
   // const getUserRequest = () => {
@@ -57,7 +60,7 @@ const Charty: React.FC = () => {
   const getNames = (array: any[]) => {
     let namesArray = []
     for (let i = 0; i < array.length; i++) {
-      let name = array[i].name
+      let name = array[i].username
       namesArray.push(name)
     }
     return namesArray
@@ -72,9 +75,21 @@ const Charty: React.FC = () => {
     return poopArray
   }
 
+
+  useEffect(() => {
+    console.log(tempNames)
+    console.log(tempPoop)
+  }, [friends])
+
+  setTempNames(getNames(friends))
+  setTempPoop(getPoop(friends))
+
+
   // let namesArray = getNames(PoopProfileInfo);
   // let poopArray = getPoop(PoopProfileInfo);
-  // let poopArray = [userPoopInfo]
+  
+  // console.log(tempNames)
+  // console.log(tempPoop)
 
   // console.log(namesArray2,heightArray2);
 
@@ -122,4 +137,4 @@ const Charty: React.FC = () => {
   );
 };
 
-export default Charty;
+export default FriendsBarChart;

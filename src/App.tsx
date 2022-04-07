@@ -44,7 +44,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           {pages.map((page, index) => {
-            return <Route path={page.path} component={page.component} />
+            return <Route key={index} path={page.path} component={page.component} />
           })}
 
           <Route exact path="/">
@@ -61,7 +61,7 @@ const App: React.FC = () => (
 
               return (
                 // tab= could also be label
-                <IonTabButton tab={label} href={path}>
+                <IonTabButton key={index} tab={label} href={path}>
                   <IonIcon icon={icon} />
                   <IonLabel>{label}</IonLabel>
                 </IonTabButton>

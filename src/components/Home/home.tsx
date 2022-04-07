@@ -2,7 +2,7 @@
 import React from "react";
 // import LoginButton from '../Login/LoginButton'
 import LogoutButton from '../Login/LogoutButton'
-import Charty from '../Charty/charty'
+import Charty from '../Charts/friendsBarChart'
 // import { useAuth0 } from "@auth0/auth0-react";
 // import { MyStore } from '../../store'
 

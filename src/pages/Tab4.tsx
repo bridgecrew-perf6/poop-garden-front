@@ -5,7 +5,7 @@ import './Tab1.scss';
 import { UserStore } from '../store';
 import { PoopStore } from '../store';
 import { FriendStore } from '../store';
-import { addPoopInfo } from '../store/FriendStore'
+// import { addPoopInfo } from '../store/FriendStore'
 //useAuth hook
 import { useAuth } from '../contexts/auth.js';
 //useResource hooks
@@ -34,21 +34,30 @@ const Tab4: React.FC = () => {
   }
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
-    UserStore.update(s => {
-      s.userInfo = user
-    })
-    PoopStore.update(s => {
-      s.poopProfiles = resourcesPoop
-    })
     FriendStore.update(s => {
       s.friends = resourcesFriends;
       // for loop that checks every poop profile and uses a function in the friends store on it. (to check if they are friends)
       if (resourcesPoop){
         for (let i = 0; i < resourcesPoop.length; i++) {
           let profile = resourcesPoop[i];
-          addPoopInfo(profile);
+          // addPoopInfo(profile);
+          if (s.friends){
+            for (let i=0; i<s.friends.length; i++){
+              let friend = s.friends[i];
+              if(friend.id === profile.user){
+                friend.poopInfo = profile.poopInfo
+              }
+            }
+          }
+          
         }
       }
+    })
+    UserStore.update(s => {
+      s.userInfo = user
+    })
+    PoopStore.update(s => {
+      s.poopProfiles = resourcesPoop
     })
   },[resourcesFriends, resourcesPoop, user])
 
