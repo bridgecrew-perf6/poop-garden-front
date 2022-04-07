@@ -18,6 +18,7 @@ const Tab1: React.FC = () => {
 
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
   const friends = useStoreState(FriendStore, getFriends)
+  const userInfo = useStoreState(UserStore, getUserInfo)
  
   useEffect(() => {
     setTempFriends(friends)
@@ -26,7 +27,6 @@ const Tab1: React.FC = () => {
   // console.log(friends)
   // console.log(poopProfiles);
 
-  // I need to iterate over this list of friends and show the list
 
   return (
     
@@ -46,13 +46,18 @@ const Tab1: React.FC = () => {
         <IonList>
           {
             tempFriends.map((friend: any, index: React.Key | null | undefined) => {
-              return <IonItem key={index}>
-                <IonLabel>
-                  <h1>{friend.username}</h1>
-                  <h3>{friend.email}</h3>
-                  <p>{friend.poopInfo}</p>
-                </IonLabel>
-              </IonItem>
+
+              // taking user out so that they are not on their own friendsList
+              if (friend.username !== userInfo.username) {
+
+                return <IonItem key={index}>
+                  <IonLabel>
+                    <h1>{friend.username}</h1>
+                    <h3>{friend.email}</h3>
+                    <p>{friend.poopInfo}</p>
+                  </IonLabel>
+                </IonItem>
+              }
             })
           }
         </IonList>:

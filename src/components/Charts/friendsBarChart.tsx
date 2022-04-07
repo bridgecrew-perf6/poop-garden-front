@@ -8,11 +8,6 @@ import { useStoreState } from 'pullstate';
 
 Chart.register(...registerables);
 
-// type BarChart = {
-  //   name: string;
-  //   height: string;
-// }
-
 
 const FriendsBarChart: React.FC = () => {
 
@@ -30,7 +25,7 @@ const FriendsBarChart: React.FC = () => {
   const getNames = (array: any[]) => {
     let namesArray = []
     for (let i = 0; i < array.length; i++) {
-      let name = array[i].username
+      let name = array[i].username || array[i].nickname
       namesArray.push(name)
     }
     return namesArray

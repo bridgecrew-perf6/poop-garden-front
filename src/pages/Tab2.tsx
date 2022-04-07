@@ -15,9 +15,9 @@ import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 
 const Tab2: React.FC = () => {
   
-  const userInfo = useStoreState(UserStore, getUserInfo);
-  const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
-  const friends = useStoreState(FriendStore, getFriends);
+  // const userInfo = useStoreState(UserStore, getUserInfo);
+  // const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
+  // const friends = useStoreState(FriendStore, getFriends);
  
 
   // console.log(userInfo);

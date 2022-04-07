@@ -5,6 +5,9 @@ import './Tab1.scss';
 import { UserStore } from '../store';
 import { PoopStore } from '../store';
 import { FriendStore } from '../store';
+import { useStoreState } from 'pullstate';
+import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
+
 // import { addPoopInfo } from '../store/FriendStore'
 //useAuth hook
 import { useAuth } from '../contexts/auth.js';
@@ -20,6 +23,8 @@ const Tab4: React.FC = () => {
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
+
+  const userInfo = useStoreState(UserStore, getUserInfo)
   
   // local state variables
   const [tempName, setTempName] = useState<string>()
@@ -34,14 +39,26 @@ const Tab4: React.FC = () => {
   }
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
+
+    UserStore.update(s => {
+      s.userInfo = user
+    })
     FriendStore.update(s => {
       s.friends = resourcesFriends;
       // for loop that checks every poop profile and  checks if they are friends. if they are, we take the information we want from their poop profile and add it to their user information
       if (resourcesPoop){
-        for (let i = 0; i < resourcesPoop.length; i++) {
+        for (var i = 0; i < resourcesPoop.length; i++) {
           let profile = resourcesPoop[i];
           // addPoopInfo(profile);
-          if (s.friends){
+
+          
+          if (s.friends && userInfo){
+
+            if (profile.user === userInfo.id) {
+              let stringUserInfo = JSON.parse(JSON.stringify(userInfo));
+              s.friends.push(stringUserInfo)
+            }
+
             for (let i=0; i<s.friends.length; i++){
               let friend = s.friends[i];
               if(friend.id === profile.user){
@@ -53,14 +70,13 @@ const Tab4: React.FC = () => {
         }
       }
     })
-    UserStore.update(s => {
-      s.userInfo = user
-    })
+    
     PoopStore.update(s => {
       s.poopProfiles = resourcesPoop
     })
   },[resourcesFriends, resourcesPoop, user])
 
+  console.log(user)
   return (
     <IonPage>
       <IonHeader>
