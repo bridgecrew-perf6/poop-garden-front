@@ -1,49 +1,31 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
-// import ExploreContainer from '../components/ExploreContainer';
-import React from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/react';
+import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
-import Card from '../components/Card'
-//connecting to 'state store
-import { MyStore } from '../store'
-import axios from 'axios';
+// import Cards from '../components/Cards'
+import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
+// import useResourceFriends from '../hooks/useResourceFriends';
+import { UserStore } from '../store';
+import { PoopStore } from '../store';
+import { FriendStore } from '../store';
+import { useStoreState } from 'pullstate';
+import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 
-type Friend = {
-  name: string;
-  email: string;
-  poopInfo: number;
-}
+//This is the page that the user is (currently) sent to right after they sign in. Its main purpose is to show a list of the user's friends
 
 const Tab1: React.FC = () => {
 
-  //grabbing userInfo variable from store to be used as state
-  // const userInfo = MyStore.useState(s => s.userInfo);
-  const userFriends = MyStore.useState(s => s.userFriends);
+  const [tempFriends, setTempFriends] = useState<any>([])
 
-
-  const getFriendsRequest = () => {
-    return axios
-      .get('https://poop-garden-back.herokuapp.com/api/v1/pooper/',{
-      // .get('http://127.0.0.1:8000/api/v1/pooper/',{
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      })
-      .then((response) => {
-        // console.log(response.data);
-      return response.data;
-      })
-  };
-  
-
-  // Use effect to run function on load. will reload whenever the variable in the array at the end changes(currently userInfo)
-  React.useEffect(() => {
-    getFriendsRequest().then(data => {
-      MyStore.update(s => {
-        s.userFriends = data;
-      })
-    });
-  },);
-
+  const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
+  const friends = useStoreState(FriendStore, getFriends)
+  const userInfo = useStoreState(UserStore, getUserInfo)
+ 
+  useEffect(() => {
+    setTempFriends(friends)
+  },[friends])
+  // console.log(userInfo)
+  // console.log(friends)
+  // console.log(poopProfiles);
 
 
   return (
@@ -51,23 +33,36 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Friends</IonTitle>
+          <IonTitle>Your Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
       <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size='large'>Friends</IonTitle>
+            <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {userFriends.map((Friend: Friend, index: number) => (
-          <Card
-            key={index}
-            title={Friend.name}
-            content={Friend.poopInfo}
-            subtitle={Friend.email}
-          />
-        ))}
+        {friends && poopProfiles && tempFriends ?
+        <IonList>
+          {
+            // eslint-disable-next-line array-callback-return
+            tempFriends.map((friend: any, index: React.Key | null | undefined) => {
+
+              // taking user out so that they are not on their own friendsList
+              if (friend.username !== userInfo.username) {
+
+                return <IonItem key={index}>
+                  <IonLabel>
+                    <h1>{friend.username}</h1>
+                    <h3>{friend.email}</h3>
+                    <p>{friend.poopInfo}</p>
+                  </IonLabel>
+                </IonItem>
+              }
+            })
+          }
+        </IonList>:
+         <SkeletonFriends />}
       </IonContent>
     </IonPage>
   );

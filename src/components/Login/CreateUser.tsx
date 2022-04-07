@@ -4,27 +4,27 @@ import React, { useState } from "react";
 // import LogoutButton from '../Login/LogoutButton'
 // import Charty from '../Charty/charty'
 // import { useAuth0 } from "@auth0/auth0-react";
-import { MyStore } from '../../store'
+// import { MyStore } from '../../store'
 import axios from 'axios';
 
 
 const CreateUser: React.FC = () => {
   //variables brought in from global state
-  const userEmail = MyStore.useState(s => s.userEmail);
+  // const userEmail = MyStore.useState(s => s.userEmail);
   //temporary varibale to store form contents
   const [tempName, setTempName] = useState<string>(); 
   //function that sends the user inputed name to global state as the userName and adds the entire user profile to the database
   const setName = () => {
     console.log(tempName);
-    MyStore.update(s => {
-      s.userName = tempName;
-    })
+    // MyStore.update(s => {
+    //   s.userName = tempName;
+    // })
 
     let url = 'https://poop-garden-back.herokuapp.com/api/v1/pooper/';
     // let url = `http://127.0.0.1:8000/api/v1/pooper/`
     let data = {
       name: tempName,
-      email: userEmail,
+      // email: userEmail,
       poopInfo: 0,
     }
     axios.post(url, data, {headers: {'Content-Type': 'application/json'}})

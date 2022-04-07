@@ -15,15 +15,21 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
     "@types/jest": "^26.0.20",
+    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^12.19.15",
     "@types/react": "^16.14.3",
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.26.1",
+    "buffer": "^6.0.3",
     "chart.js": "^3.7.1",
+    "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",
     "ionicons": "^5.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
     "pullstate": "^1.23.0",
     "react": "^17.0.1",
     "react-chartjs-2": "^4.0.1",
@@ -31,8 +37,12 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
+    "reselect": "^4.1.5",
     "sass": "^1.49.9",
+    "stream": "^0.0.2",
+    "swr": "^1.2.2",
     "typescript": "^4.1.3",
+    "util": "^0.12.4",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -73,6 +83,9 @@
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3"
+  },
+  "browser": {
+    "crypto": false
   },
   "description": "An Ionic project"
 }

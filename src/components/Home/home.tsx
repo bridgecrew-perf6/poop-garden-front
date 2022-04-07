@@ -2,15 +2,15 @@
 import React from "react";
 // import LoginButton from '../Login/LoginButton'
 import LogoutButton from '../Login/LogoutButton'
-import Charty from '../Charty/charty'
+import Charty from '../Charts/friendsBarChart'
 // import { useAuth0 } from "@auth0/auth0-react";
-import { MyStore } from '../../store'
+// import { MyStore } from '../../store'
 
 
 
 const Home: React.FC = () => {
   // variable retrieved from global state
-  const userEmail = MyStore.useState(s => s.userEmail);
+  // const userEmail = MyStore.useState(s => s.userEmail);
   // const userName = MyStore.useState(s => s.userName);
 
   // const { user, isAuthenticated, isLoading } = useAuth0();
@@ -19,7 +19,6 @@ const Home: React.FC = () => {
   //   s.userEmail = user?.email;
   // })
   
-  console.log(userEmail);
   // console.log(userName);
 
   return (
