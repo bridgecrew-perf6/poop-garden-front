@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 // const baseUrl = 'http://127.0.0.1:8000';
-const baseUrl = 'http://poop-garden-api.herokuapp.com'
+const baseUrl = process.env.REACT_APP_BACKEND;
 const tokenUrl = baseUrl + '/api/token/';
 
 const AuthContext = createContext();

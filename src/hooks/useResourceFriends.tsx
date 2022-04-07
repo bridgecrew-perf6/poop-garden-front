@@ -3,7 +3,8 @@ import useSWR from 'swr'
 
 import { useAuth } from '../contexts/auth'
 // export const apiUrl = 'http://127.0.0.1:8000/api/friends/';
-export const apiUrl = 'http://poop-garden-api.herokuapp.com/api/friends'
+const baseUrl = process.env.REACT_APP_BACKEND;
+export const apiUrl = baseUrl + '/api/friends'
 
 export default function useResourceFriends() {
 

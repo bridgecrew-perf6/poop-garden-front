@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillLeave, IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import './Tab1.scss';
 // stores and sstore functions
@@ -6,7 +6,7 @@ import { UserStore } from '../store';
 import { PoopStore } from '../store';
 import { FriendStore } from '../store';
 import { useStoreState } from 'pullstate';
-import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
+import { getUserInfo } from '../store/Selectors';
 
 // import { addPoopInfo } from '../store/FriendStore'
 //useAuth hook
@@ -19,7 +19,7 @@ import useResourceFriends from '../hooks/useResourceFriends';
 
 const Tab4: React.FC = () => {
   // Auth Variables
-  const { user, login, logout } = useAuth();
+  const { user, login } = useAuth();
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
@@ -74,7 +74,7 @@ const Tab4: React.FC = () => {
     PoopStore.update(s => {
       s.poopProfiles = resourcesPoop
     })
-  },[resourcesFriends, resourcesPoop, user])
+  },[resourcesFriends, resourcesPoop, user, userInfo])
 
   console.log(user)
   return (

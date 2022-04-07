@@ -1,9 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
-import Cards from '../components/Cards'
+// import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
-import useResourceFriends from '../hooks/useResourceFriends';
+// import useResourceFriends from '../hooks/useResourceFriends';
 import { UserStore } from '../store';
 import { PoopStore } from '../store';
 import { FriendStore } from '../store';
@@ -45,6 +45,7 @@ const Tab1: React.FC = () => {
         {friends && poopProfiles && tempFriends ?
         <IonList>
           {
+            // eslint-disable-next-line array-callback-return
             tempFriends.map((friend: any, index: React.Key | null | undefined) => {
 
               // taking user out so that they are not on their own friendsList

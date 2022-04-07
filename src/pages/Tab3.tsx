@@ -1,9 +1,9 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
+// import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
 import './Tab3.scss';
 // import { MyStore } from '../store'
 
-import React, { useState } from "react";
-import axios from 'axios';
+import React from "react";
+// import axios from 'axios';
 // import { text } from 'ionicons/icons';
 
 
