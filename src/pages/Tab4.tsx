@@ -36,7 +36,7 @@ const Tab4: React.FC = () => {
   useEffect(() => {
     FriendStore.update(s => {
       s.friends = resourcesFriends;
-      // for loop that checks every poop profile and uses a function in the friends store on it. (to check if they are friends)
+      // for loop that checks every poop profile and  checks if they are friends. if they are, we take the information we want from their poop profile and add it to their user information
       if (resourcesPoop){
         for (let i = 0; i < resourcesPoop.length; i++) {
           let profile = resourcesPoop[i];

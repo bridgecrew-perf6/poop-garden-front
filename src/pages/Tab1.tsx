@@ -23,8 +23,8 @@ const Tab1: React.FC = () => {
     setTempFriends(friends)
   },[friends])
   // console.log(userInfo)
-  console.log(friends)
-  console.log(poopProfiles);
+  // console.log(friends)
+  // console.log(poopProfiles);
 
   // I need to iterate over this list of friends and show the list
 
