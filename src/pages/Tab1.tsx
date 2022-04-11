@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
 // import Cards from '../components/Cards'
@@ -58,6 +58,7 @@ const Tab1: React.FC = () => {
                     <h3>{friend.email}</h3>
                     <p>{friend.poopInfo}</p>
                   </IonLabel>
+                  <IonButton fill="outline" slot="end">View</IonButton>
                 </IonItem>
               }
             })

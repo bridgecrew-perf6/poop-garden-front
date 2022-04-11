@@ -3,7 +3,9 @@ import React, { useState }from 'react';
 import './Tab2.scss';
 import FriendsBarChart from '../components/Charts/friendsBarChart'
 import FriendsPieChart from '../components/Charts/friendsPieChart'
-import { useAuth } from '../contexts/auth.js';
+import PoopProfile from '../components/PoopProfile/poopProfile'
+import AllPoopProfile from '../components/AllPoopProfile/allPoopProfile'
+// import { useAuth } from '../contexts/auth.js';
 // import Card from '../components/Card'
 // import Charty from '../components/Charty/charty';
 
@@ -17,7 +19,7 @@ import { useAuth } from '../contexts/auth.js';
 
 const Tab2: React.FC = () => {
 
-  const { user, login } = useAuth();
+  // const { user, login } = useAuth();
 
   const [segment, setSegment] = useState<any>('friends');
   let chart1 = null;
@@ -30,11 +32,11 @@ const Tab2: React.FC = () => {
       break
     
     case 'user':
-      chart1 = 'user stats'
+      chart1 = <PoopProfile />
       break
 
     case 'all':
-      chart1 = 'all stats'
+      chart1 = <AllPoopProfile />
       break
   }
 

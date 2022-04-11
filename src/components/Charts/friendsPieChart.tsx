@@ -15,7 +15,7 @@ const FriendsPieChart: React.FC = () => {
   const [tempNames, setTempNames] = useState<any>()
   const [tempPoop, setTempPoop] = useState<any>()
 
-  console.log(friends);
+  // console.log(friends);
 
 
   const getNames = (array: any[]) => {
@@ -41,8 +41,8 @@ const FriendsPieChart: React.FC = () => {
     setTempPoop(getPoop(friends))
   }, [friends])
 
-  console.log(tempNames)
-  console.log(tempPoop)
+  // console.log(tempNames)
+  // console.log(tempPoop)
 
   const data = {
     labels: tempNames,

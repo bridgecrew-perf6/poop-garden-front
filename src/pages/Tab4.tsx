@@ -76,7 +76,7 @@ const Tab4: React.FC = () => {
     })
   },[resourcesFriends, resourcesPoop, user, userInfo])
 
-  console.log(user)
+  // console.log(user)
   return (
     <IonPage>
       <IonHeader>
