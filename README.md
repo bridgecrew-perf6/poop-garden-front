@@ -54,6 +54,14 @@ switched from auth0 to my own custom auth to work in tandem with my django autho
 
 a loooong couple of days. Ihave really been struggling with different api calls and how to mich multiple together. today i refactored my entire pullstate store into seperate stores for each of the api pulls i need(user info, friends info, and poop profiles) as well as connecting to reselect. These 2 together allow me to just pull in what i need from the api when the user first logs in, and then it will be saved there for me to grab what i need from it whenever. I was also able to write a function directly in my friends store(took it out later) that grabs the poop information of every friend from their poop profile and saves it their friend profile. tomorrow i think i should finally be able to actually render a friends list
 
-## days 17-18 aprile 6-7
+## days 17-18 april 6-7
 
 I have been working a lot with the passing around of my state the last couple of days. i took a function out of my store and put it directly in my component which solved alot of problems. I am now doing all of my loading from my sign in page. I am also adding the user to their own friends list. once the user signs in, i am rendering a friends list, and i can now navgate to the poop statistics tab and see a bar chart of friends including the user. next up is adding a pie chart and then starting to tackle the segments.
+
+## april 8-10
+
+Rest days, and boy did i need them. need to remember to take days off
+
+## day 19 april 11
+
+was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I
