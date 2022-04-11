@@ -31,6 +31,7 @@ const Tab1: React.FC = () => {
   return (
     
     <IonPage>
+      
       <IonHeader>
         <IonToolbar>
           <IonTitle>Your Friends</IonTitle>

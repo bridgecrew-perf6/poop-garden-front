@@ -12,13 +12,10 @@ import useResourcePoop from '../../hooks/useResourcePoop';
 
 
 
-const Cards: React.FC = () => {
+const PoopProfile: React.FC = () => {
 
-  const { resourcesPoop } = useResourcePoop();
-  // const userFriends:any = MyStore.useState(s => s.userFriends);
-  // const friendsPoop:any = MyStore.useState(s => s.friendsPoop);
 
-  console.log(resourcesPoop)
+  // console.log(resourcesPoop)
   // console.log(userFriends)
   
   return (
@@ -38,4 +35,4 @@ const Cards: React.FC = () => {
   );
 };
 
-export default Cards;
+export default PoopProfile;
