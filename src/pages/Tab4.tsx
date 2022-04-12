@@ -19,7 +19,7 @@ import useResourceFriends from '../hooks/useResourceFriends';
 
 const Tab4: React.FC = () => {
   // Auth Variables
-  const { user, login } = useAuth();
+  const { user, login, logout } = useAuth();
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
@@ -90,6 +90,11 @@ const Tab4: React.FC = () => {
             <IonTitle size='large'>Sign in Page</IonTitle>
           </IonToolbar>
         </IonHeader>
+        {user?
+
+        <IonButton className="ion-margin-top" type="button" strong={true} expand="block" onClick={() => logout()}>
+        Log Out
+      </IonButton>:
 
         <form onSubmit={(e) => {handleSubmit(e)}
         }>
@@ -105,6 +110,8 @@ const Tab4: React.FC = () => {
             Log In
           </IonButton>
         </form>
+        }
+        <h1 className="ion-text-center">💩Welcome to the Poop Garden!💩</h1>
 
       </IonContent>
     </IonPage>

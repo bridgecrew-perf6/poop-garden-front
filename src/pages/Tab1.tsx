@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton, IonAvatar, IonBadge } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
+import { useAuth } from '../contexts/auth.js';
 // import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 // import useResourceFriends from '../hooks/useResourceFriends';
@@ -15,7 +16,7 @@ import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 const Tab1: React.FC = () => {
 
   const [tempFriends, setTempFriends] = useState<any>([])
-
+  const { user } = useAuth();
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
   const friends = useStoreState(FriendStore, getFriends)
   const userInfo = useStoreState(UserStore, getUserInfo)
@@ -43,15 +44,15 @@ const Tab1: React.FC = () => {
       
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Your Friends</IonTitle>
+          <IonTitle className="ion-text-center">Your Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      <IonHeader collapse='condense'>
+      {/* <IonHeader collapse='condense'>
           <IonToolbar>
             <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
         {friends && poopProfiles && tempFriends ?
         <IonList>
           {

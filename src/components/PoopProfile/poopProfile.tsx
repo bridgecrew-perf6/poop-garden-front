@@ -14,6 +14,7 @@ import { useStoreState } from 'pullstate';
 import React, { useEffect, useState } from "react";
 
 import { useAuth } from '../../contexts/auth.js';
+import './poopProfile.scss';
 
 
 const AllPoopProfile: React.FC = () => {
@@ -45,12 +46,12 @@ const AllPoopProfile: React.FC = () => {
   return (
     <div>
       <IonCard>
-          <IonAvatar>
+          <IonAvatar className="image-center">
             <img src={`https://avatars.dicebear.com/api/bottts/${userId}${userPoop}.svg?colorful=true`} alt={'little robot avatar for each person'}/>
           </IonAvatar>
           <IonCardHeader>
             {/* <IonCardSubtitle>PoopProfile</IonCardSubtitle> */}
-            <IonCardTitle>{user.username}</IonCardTitle>
+            <IonCardTitle className="ion-text-center">{user.username}</IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
