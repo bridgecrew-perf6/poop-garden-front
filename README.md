@@ -64,4 +64,4 @@ Rest days, and boy did i need them. need to remember to take days off
 
 ## day 19 april 11
 
-was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I
+was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I also changed a bit of the color theme. lastly i used bottts via dicebear avatars to give each user a robot avatar.

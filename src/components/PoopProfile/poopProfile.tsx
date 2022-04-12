@@ -2,9 +2,10 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardSubtitle,
+  // IonCardSubtitle,
   IonCardTitle,
-  IonIcon
+  IonIcon,
+  IonAvatar,
 } from "@ionic/react";
 import { ribbonOutline } from 'ionicons/icons';
 import { FriendStore } from '../../store';
@@ -21,6 +22,7 @@ const AllPoopProfile: React.FC = () => {
   const friends = useStoreState(FriendStore, getFriends);
 
   const [userPoop, setUserPoop] = useState()
+  const [userId, setUserId] = useState()
 
   console.log(friends)
   console.log(user)
@@ -31,6 +33,7 @@ const AllPoopProfile: React.FC = () => {
       
       if(friend.id === user.id) {
         setUserPoop(friend.poopInfo)
+        setUserId(friend.id)
       }
     }
   }, [friends, user])
@@ -42,8 +45,11 @@ const AllPoopProfile: React.FC = () => {
   return (
     <div>
       <IonCard>
+          <IonAvatar>
+            <img src={`https://avatars.dicebear.com/api/bottts/${userId}${userPoop}.svg?colorful=true`} alt={'little robot avatar for each person'}/>
+          </IonAvatar>
           <IonCardHeader>
-            <IonCardSubtitle>PoopProfile</IonCardSubtitle>
+            {/* <IonCardSubtitle>PoopProfile</IonCardSubtitle> */}
             <IonCardTitle>{user.username}</IonCardTitle>
           </IonCardHeader>
 
