@@ -60,9 +60,11 @@ const FriendsBarChart: React.FC = () => {
           data: tempPoop,
           // you can set indiviual colors for each bar
           backgroundColor: [
-            'rgba(255, 255, 255, 0.6)',
-            'rgba(255, 255, 255, 0.6)',
-            'rgba(255, 255, 255, 0.6)'
+            '#402A2C',
+          '#D9B8C4',
+          '#957186',
+          '#703D57',
+          '#003049',
           ],
           borderWidth: 1,
         }

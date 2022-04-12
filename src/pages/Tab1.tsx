@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton, IonAvatar, IonBadge } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
 // import Cards from '../components/Cards'
@@ -27,6 +27,15 @@ const Tab1: React.FC = () => {
   // console.log(friends)
   // console.log(poopProfiles);
 
+  const hasPoopProfile = (poopInfo: any) => {
+    if (poopInfo){
+      return ['poop info', 'success']
+    } else {
+      return ['no poop info', 'warning']
+    }
+
+  }
+
 
   return (
     
@@ -53,10 +62,14 @@ const Tab1: React.FC = () => {
               if (friend.username !== userInfo.username) {
 
                 return <IonItem key={index}>
+                   <IonAvatar>
+                    <img src={`https://avatars.dicebear.com/api/bottts/${friend.id}${friend.poopInfo}.svg?colorful=true`} alt={'little robot avatar for each person'}/>
+                  </IonAvatar>
                   <IonLabel>
                     <h1>{friend.username}</h1>
                     <h3>{friend.email}</h3>
-                    <p>{friend.poopInfo}</p>
+                    {/* <p>{friend.poopInfo}</p> */}
+                    <IonBadge color={hasPoopProfile(friend.poopInfo)[1]}>{hasPoopProfile(friend.poopInfo)[0]}</IonBadge>
                   </IonLabel>
                   <IonButton fill="outline" slot="end">View</IonButton>
                 </IonItem>
