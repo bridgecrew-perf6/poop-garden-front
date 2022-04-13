@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import { IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
+import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth.js';
 
 
@@ -9,7 +9,7 @@ const LoginForm: React.FC = () => {
   const [tempName, setTempName] = useState<string>();
   const [tempPassword, setTempPassword] = useState<any>();
   const router = useIonRouter();
-  const { user, login, logout } = useAuth();
+  const { login } = useAuth();
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
