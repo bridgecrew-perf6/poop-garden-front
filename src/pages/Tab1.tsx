@@ -16,7 +16,7 @@ import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 const Tab1: React.FC = () => {
 
   const [tempFriends, setTempFriends] = useState<any>([])
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
   const friends = useStoreState(FriendStore, getFriends)
   const userInfo = useStoreState(UserStore, getUserInfo)
