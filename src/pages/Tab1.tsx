@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton, IonAvatar, IonBadge } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
-import { useAuth } from '../contexts/auth.js';
+// import { useAuth } from '../contexts/auth.js';
 // import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 // import useResourceFriends from '../hooks/useResourceFriends';
