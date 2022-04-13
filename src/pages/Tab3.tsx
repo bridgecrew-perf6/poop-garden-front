@@ -45,7 +45,7 @@ const Tab3: React.FC = () => {
     
       {/* <IonPage>
         <IonHeader>
-          <IonToolbar>
+          <IonToolbar color="secondary">
             <IonTitle>Tab 3</IonTitle>
           </IonToolbar>
         </IonHeader>

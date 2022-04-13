@@ -5,7 +5,7 @@ import FriendsBarChart from '../components/Charts/friendsBarChart'
 import FriendsPieChart from '../components/Charts/friendsPieChart'
 import PoopProfile from '../components/PoopProfile/poopProfile'
 import AllPoopProfile from '../components/AllPoopProfile/allPoopProfile'
-// import { useAuth } from '../contexts/auth.js';
+import { useAuth } from '../contexts/auth.js';
 // import Card from '../components/Card'
 // import Charty from '../components/Charty/charty';
 
@@ -19,7 +19,7 @@ import AllPoopProfile from '../components/AllPoopProfile/allPoopProfile'
 
 const Tab2: React.FC = () => {
 
-  // const { user, login } = useAuth();
+  const { user } = useAuth();
 
   const [segment, setSegment] = useState<any>('friends');
   let chart1 = null;
@@ -41,26 +41,15 @@ const Tab2: React.FC = () => {
   }
 
 
-  
-  // const userInfo = useStoreState(UserStore, getUserInfo);
-  // const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
-  // const friends = useStoreState(FriendStore, getFriends);
- 
-
-  // console.log(userInfo);
-  // console.log(friends);
-  // console.log(poopProfiles);
-  
-  
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Poop Statistics</IonTitle>
+        <IonToolbar color="secondary">
+          <IonTitle className="ion-text-center">Poop Statistics</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-      <IonSegment onIonChange={e => setSegment(e.detail.value)} color="secondary">
+      <IonSegment onIonChange={e => setSegment(e.detail.value)} color="warning">
           <IonSegmentButton value="user">
             <IonLabel>My Poop Profile</IonLabel>
           </IonSegmentButton>
@@ -71,8 +60,12 @@ const Tab2: React.FC = () => {
             <IonLabel>The whole pile</IonLabel>
           </IonSegmentButton>
       </IonSegment>
+      {user ?
+      <div>
       {chart1}
       {chart2}
+      </div>:
+      <h1 className="ion-text-center">💩Please Log in💩</h1>}
       </IonContent>
      </IonPage>
 

@@ -65,3 +65,7 @@ Rest days, and boy did i need them. need to remember to take days off
 ## day 19 april 11
 
 was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I also changed a bit of the color theme. lastly i used bottts via dicebear avatars to give each user a robot avatar.
+
+## days 20, 21 april 12, 13
+
+worked on the backend a bit to allow the ability to create a new user with a hashed password. Also have a functional sign in and out page. added the ability to create a user from the front end. once the user is created, they are signed in but have no information. next up will be creating a poop profile and/or friends list

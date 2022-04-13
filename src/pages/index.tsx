@@ -1,4 +1,4 @@
-import { barChart, people, paperPlaneOutline } from 'ionicons/icons';
+import { barChart, people, paperPlaneOutline,  idCardOutline } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
@@ -31,9 +31,9 @@ export const pages = [
     redirect: false,
   },
   {
-    label: 'Sign in Page',
+    label: 'Sign in/out Page',
     path: '/tab4',
-    icon: paperPlaneOutline,
+    icon: idCardOutline,
     component: Tab4,
     isTab: true,
     redirect: true,

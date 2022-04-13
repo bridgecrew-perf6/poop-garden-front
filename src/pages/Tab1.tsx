@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonButton, IonAvatar, IonBadge } from '@ionic/react';
 import React, { useState, useEffect }from 'react';
 import './Tab1.scss';
+import { useAuth } from '../contexts/auth.js';
 // import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 // import useResourceFriends from '../hooks/useResourceFriends';
@@ -15,7 +16,7 @@ import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 const Tab1: React.FC = () => {
 
   const [tempFriends, setTempFriends] = useState<any>([])
-
+  const { user } = useAuth();
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
   const friends = useStoreState(FriendStore, getFriends)
   const userInfo = useStoreState(UserStore, getUserInfo)
@@ -31,7 +32,7 @@ const Tab1: React.FC = () => {
     if (poopInfo){
       return ['poop info', 'success']
     } else {
-      return ['no poop info', 'warning']
+      return ['no poop info', 'danger']
     }
 
   }
@@ -42,16 +43,16 @@ const Tab1: React.FC = () => {
     <IonPage>
       
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Your Friends</IonTitle>
+        <IonToolbar color="secondary">
+          <IonTitle className="ion-text-center">Your Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-      <IonHeader collapse='condense'>
+      {/* <IonHeader collapse='condense'>
           <IonToolbar>
             <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
         {friends && poopProfiles && tempFriends ?
         <IonList>
           {
@@ -71,7 +72,7 @@ const Tab1: React.FC = () => {
                     {/* <p>{friend.poopInfo}</p> */}
                     <IonBadge color={hasPoopProfile(friend.poopInfo)[1]}>{hasPoopProfile(friend.poopInfo)[0]}</IonBadge>
                   </IonLabel>
-                  <IonButton fill="outline" slot="end">View</IonButton>
+                  <IonButton fill="outline" slot="end" color="medium">View</IonButton>
                 </IonItem>
               }
             })

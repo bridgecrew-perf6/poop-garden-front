@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonSegment, IonSegmentButton, IonLabel } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
 import './Tab1.scss';
 // stores and sstore functions
 import { UserStore } from '../store';
@@ -7,36 +7,24 @@ import { PoopStore } from '../store';
 import { FriendStore } from '../store';
 import { useStoreState } from 'pullstate';
 import { getUserInfo } from '../store/Selectors';
-
-// import { addPoopInfo } from '../store/FriendStore'
-//useAuth hook
 import { useAuth } from '../contexts/auth.js';
 //useResource hooks
 import useResourcePoop from '../hooks/useResourcePoop'
 import useResourceFriends from '../hooks/useResourceFriends';
+import LoginForm from '../components/Forms/loginForm'
+import SignupForm from '../components/Forms/signupForm'
 
 // This is basically a landing page where the user can sign in. It is also used to grab all of the information that we need from the backend and store it in state.
 
 const Tab4: React.FC = () => {
   // Auth Variables
-  const { user, login } = useAuth();
+  const { user, logout } = useAuth();
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
 
   const userInfo = useStoreState(UserStore, getUserInfo)
   
-  // local state variables
-  const [tempName, setTempName] = useState<string>()
-  const [tempPassword, setTempPassword] = useState<any>()
-  //declaring a variable for the Ion router
-  const router = useIonRouter()
-  // what happens when the button is pushed? log in to api and go to next page
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    login(tempName, tempPassword)
-    router.push('/tab1')
-  }
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
 
@@ -51,7 +39,6 @@ const Tab4: React.FC = () => {
           let profile = resourcesPoop[i];
           // addPoopInfo(profile);
 
-          
           if (s.friends && userInfo){
 
             if (profile.user === userInfo.id) {
@@ -66,7 +53,6 @@ const Tab4: React.FC = () => {
               }
             }
           }
-          
         }
       }
     })
@@ -76,12 +62,27 @@ const Tab4: React.FC = () => {
     })
   },[resourcesFriends, resourcesPoop, user, userInfo])
 
+  const [segment, setSegment] = useState<any>('signIn');
+  let component = null
+
+  switch(segment) {
+    case 'signIn':
+      component = <LoginForm />
+      break
+    
+    case 'newUser':
+      component = <SignupForm />
+      break
+
+    
+  }
+
   // console.log(user)
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Sign in Page</IonTitle>
+          <IonTitle className="ion-text-center">Sign in Page</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -90,21 +91,25 @@ const Tab4: React.FC = () => {
             <IonTitle size='large'>Sign in Page</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <form onSubmit={(e) => {handleSubmit(e)}
-        }>
-          <IonItem>
-            <IonInput  placeholder="Enter Name" onIonChange={e => setTempName(e.detail.value!)}></IonInput>
-          </IonItem>
-
-          <IonItem>
-            <IonInput  placeholder="Enter Password" onIonChange={e => setTempPassword(e.detail.value!)}></IonInput>
-          </IonItem>
-
-          <IonButton className="ion-margin-top" type="submit" expand="block">
-            Log In
-          </IonButton>
-        </form>
+        {user ?
+        // user is logged in- shows log in button
+        <IonButton className="ion-margin-top" type="button" strong={true} expand="block" onClick={() => logout()}>
+        Log Out
+        </IonButton> :
+        // user is not logged in
+        <div>
+        <IonSegment onIonChange={e => setSegment(e.detail.value)} color="warning">
+          <IonSegmentButton value="signIn">
+            <IonLabel>Sign In</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="newUser">
+            <IonLabel>New User</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+        {component}
+        </div>
+        }
+        <h1 className="ion-text-center">💩Welcome to the Poop Garden!💩</h1>
 
       </IonContent>
     </IonPage>
