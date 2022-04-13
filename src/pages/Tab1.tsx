@@ -32,7 +32,7 @@ const Tab1: React.FC = () => {
     if (poopInfo){
       return ['poop info', 'success']
     } else {
-      return ['no poop info', 'warning']
+      return ['no poop info', 'danger']
     }
 
   }
@@ -43,7 +43,7 @@ const Tab1: React.FC = () => {
     <IonPage>
       
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="secondary">
           <IonTitle className="ion-text-center">Your Friends</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -72,7 +72,7 @@ const Tab1: React.FC = () => {
                     {/* <p>{friend.poopInfo}</p> */}
                     <IonBadge color={hasPoopProfile(friend.poopInfo)[1]}>{hasPoopProfile(friend.poopInfo)[0]}</IonBadge>
                   </IonLabel>
-                  <IonButton fill="outline" slot="end">View</IonButton>
+                  <IonButton fill="outline" slot="end" color="medium">View</IonButton>
                 </IonItem>
               }
             })

@@ -41,26 +41,15 @@ const Tab2: React.FC = () => {
   }
 
 
-  
-  // const userInfo = useStoreState(UserStore, getUserInfo);
-  // const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
-  // const friends = useStoreState(FriendStore, getFriends);
- 
-
-  // console.log(userInfo);
-  // console.log(friends);
-  // console.log(poopProfiles);
-  
-  
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="secondary">
           <IonTitle className="ion-text-center">Poop Statistics</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-      <IonSegment onIonChange={e => setSegment(e.detail.value)} color="secondary">
+      <IonSegment onIonChange={e => setSegment(e.detail.value)} color="warning">
           <IonSegmentButton value="user">
             <IonLabel>My Poop Profile</IonLabel>
           </IonSegmentButton>
