@@ -1,10 +1,11 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel } from '@ionic/react';
-import React, { useState, useEffect }from 'react';
+import React, { useState }from 'react';
 import './Tab1.scss';
 // import { useAuth } from '../contexts/auth.js';
 // import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 import FriendsList from '../components/Friends/friendsList'
+import AddFriends from '../components/Friends/addFriends'
 // import useResourceFriends from '../hooks/useResourceFriends';
 // import { UserStore } from '../store';
 import { PoopStore } from '../store';
@@ -30,7 +31,7 @@ const Tab1: React.FC = () => {
       break
     
     case 'addFriends':
-      component = 'new friend stuff'
+      component = <AddFriends />
       break
   }
 
@@ -56,7 +57,7 @@ const Tab1: React.FC = () => {
             <IonLabel>Bathroom Buddies</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="addFriends">
-            <IonLabel>Add Friends</IonLabel>
+            <IonLabel>Add Buddies</IonLabel>
           </IonSegmentButton>
         </IonSegment>
         {component}
