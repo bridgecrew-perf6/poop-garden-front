@@ -68,4 +68,4 @@ was able to tackle the Ionic segments. those plus a switch has given me some coo
 
 ## days 20, 21 april 12, 13
 
-worked on the backend a bit to allow the ability to create a new user with a hashed password. Also have a functional sign in and out page. added the ability to create a user from the front end. once the user is created, they are signed in but have no information. next up will be creating a poop profile and/or friends list
+worked on the backend a bit to allow the ability to create a new user with a hashed password. Also have a functional sign in and out page. added the ability to create a user from the front end. once the user is created, they are signed in but have no information. once the user is signed in they are taken to their friends list which just shows a string until they have friends. i created an input to search for friends, and right now it just console logs the search result.

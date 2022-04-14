@@ -1,7 +1,6 @@
-import { IonItem, IonButton, IonInput, useIonRouter } from '@ionic/react';
+import { IonItem, IonButton, IonInput, useIonRouter, IonLabel } from '@ionic/react';
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth.js';
-
 
 
 const LoginForm: React.FC = () => {
@@ -21,11 +20,13 @@ const LoginForm: React.FC = () => {
     <form onSubmit={(e) => {handleSubmit(e)}
         }>
           <IonItem>
-            <IonInput  placeholder="Enter Name" onIonChange={e => setTempName(e.detail.value!)}></IonInput>
+            <IonLabel position="floating">Name</IonLabel>
+            <IonInput onIonChange={e => setTempName(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonItem>
-            <IonInput  placeholder="Enter Password" onIonChange={e => setTempPassword(e.detail.value!)}></IonInput>
+            <IonLabel position="floating">Password</IonLabel>
+            <IonInput type="password" onIonChange={e => setTempPassword(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonButton className="ion-margin-top" type="submit" expand="block">
@@ -33,9 +34,6 @@ const LoginForm: React.FC = () => {
           </IonButton>
         </form>
   )
-
-
-  
 }
 
 export default LoginForm;
