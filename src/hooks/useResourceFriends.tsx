@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/auth'
 // export const apiUrl = 'http://127.0.0.1:8000/api/friends/';
 const baseUrl = process.env.REACT_APP_BACKEND;
 export const apiUrl = baseUrl + '/api/friends'
+export const sendRequestUrl = baseUrl + '/api/friends/add_friend/'
 
 export default function useResourceFriends() {
 
@@ -33,6 +34,15 @@ export default function useResourceFriends() {
         try {
             await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
+        } catch (error) {
+            handleError(error);
+        }
+    }
+
+    async function sendFriendRequest(info: any) {
+        try {
+            await axios.post(sendRequestUrl, info, config());
+            mutate();
         } catch (error) {
             handleError(error);
         }
@@ -80,5 +90,6 @@ export default function useResourceFriends() {
         createResourceFriends,
         deleteResourceFriends,
         updateResourceFriends,
+        sendFriendRequest
     }
 }

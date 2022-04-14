@@ -5,6 +5,7 @@ import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
 import React, { useState, useEffect } from 'react';
 import useResourceUsers from '../../hooks/useResourceUsers'
+import useResourceFriends from '../../hooks/useResourceFriends';
 import PendingRequests from './pendingRequests'
 
 const AddFriends: React.FC = () => {
@@ -13,8 +14,12 @@ const AddFriends: React.FC = () => {
   const [possibleFriend, setPossibleFriend] = useState<any>();
   //original list of users
   const { resourcesUsers } = useResourceUsers();
+
+  const { sendFriendRequest } = useResourceFriends();
   //list of users minus friends and self
   const [potentialFriends, setPotentialFriends] = useState<any>([])
+
+  const [hopefullFriend, setHopefullFriend] = useState<any>()
   //list of friends
   const friends = useStoreState(FriendStore, getFriends);
 
@@ -22,7 +27,13 @@ const AddFriends: React.FC = () => {
  
   // console.log(friends);
   console.log(potentialFriends);
+  console.log(hopefullFriend)
 
+
+  const handleRequest = (user: any) => {
+    setHopefullFriend(user)
+    sendFriendRequest({to_user: user.username})
+  }
 
   useEffect(() => {
     // filtering through users
@@ -38,20 +49,6 @@ const AddFriends: React.FC = () => {
     }
   },[resourcesUsers, friends])
 
-  // const handleSubmit = (e: { preventDefault: () => void; }) => {
-  //   e.preventDefault();
-    
-  //   for (let i = 0; i < resourcesUsers.length; i++) {
-  //     let user = resourcesUsers[i];
-  //     let userName = user.username;
-  //     if (userName === possibleFriend){
-  //       setFriendMatch(resourcesUsers[i])
-  //     }
-  //   }
-  //   // login(tempName, tempPassword)
-  //   // router.push('/tab1')
-  // }
-  // console.log(friends);
   
 
   return (
@@ -85,7 +82,7 @@ const AddFriends: React.FC = () => {
                   <h3>{user.email}</h3>
                   {/* <p>{friend.poopInfo}</p> */}    
               </IonLabel>
-              <IonButton fill="outline" slot="end" color="primary">send request</IonButton>
+              <IonButton fill="outline" slot="end" color="primary" onClick={() => handleRequest(user)}>send request</IonButton>
             </IonItem>
           }
 
