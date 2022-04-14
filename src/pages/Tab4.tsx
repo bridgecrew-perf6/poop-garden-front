@@ -73,8 +73,6 @@ const Tab4: React.FC = () => {
     case 'newUser':
       component = <SignupForm />
       break
-
-    
   }
 
   // console.log(user)

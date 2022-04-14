@@ -25,8 +25,11 @@ const FriendsBarChart: React.FC = () => {
   const getNames = (array: any[]) => {
     let namesArray = []
     for (let i = 0; i < array.length; i++) {
-      let name = array[i].username || array[i].nickname
-      namesArray.push(name)
+      if (array[i].poopInfo) {
+        let name = array[i].username || array[i].nickname
+        namesArray.push(name)
+
+      }
     }
     return namesArray
   }
@@ -34,12 +37,13 @@ const FriendsBarChart: React.FC = () => {
   const getPoop = (array: any[]) => {
     let poopArray = []
     for (let i = 0; i < array.length; i++) {
-      let poop = array[i].poopInfo
-      poopArray.push(poop)
+      if (array[i].poopInfo) {
+        let poop = array[i].poopInfo
+        poopArray.push(poop)
+      }
     }
     return poopArray
   }
-
 
   useEffect(() => {
     setTempNames(getNames(friends))
@@ -48,8 +52,6 @@ const FriendsBarChart: React.FC = () => {
 
   // console.log(tempNames)
   // console.log(tempPoop)
-
-
 
   // setting data for the chart
   const data = {
