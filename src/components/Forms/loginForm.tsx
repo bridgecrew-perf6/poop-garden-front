@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth.js';
 
 
-
 const LoginForm: React.FC = () => {
 
   const [tempName, setTempName] = useState<string>();
@@ -35,9 +34,6 @@ const LoginForm: React.FC = () => {
           </IonButton>
         </form>
   )
-
-
-  
 }
 
 export default LoginForm;

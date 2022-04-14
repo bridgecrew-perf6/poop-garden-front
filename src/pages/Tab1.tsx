@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSegment, IonSe
 import React, { useState }from 'react';
 import './Tab1.scss';
 // import { useAuth } from '../contexts/auth.js';
-// import Cards from '../components/Cards'
 import SkeletonFriends from '../components/SkeletonFriends/skeletonfriends'
 import FriendsList from '../components/Friends/friendsList'
 import AddFriends from '../components/Friends/addFriends'
@@ -16,7 +15,6 @@ import { getFriends, getPoopProfiles } from '../store/Selectors';
 //This is the page that the user is (currently) sent to right after they sign in. Its main purpose is to show a list of the user's friends
 
 const Tab1: React.FC = () => {
-
 
   // const { user } = useAuth();
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)

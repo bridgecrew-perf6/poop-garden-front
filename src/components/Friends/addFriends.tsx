@@ -1,4 +1,4 @@
-import { IonItem, IonButton, IonInput, useIonRouter, IonLabel } from '@ionic/react';
+import { IonItem, IonButton, IonSearchbar } from '@ionic/react';
 import { FriendStore } from '../../store';
 import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
@@ -44,12 +44,13 @@ const AddFriends: React.FC = () => {
   return (
     <>
     <h3 className="ion-text-center">You cant just go snooping around people's crap!</h3> 
-    <p className="ion-text-center">enter the username of a friend and we'll ask them how they feel about becoming buddies</p>
+    <p className="ion-text-center">Enter the username of a friend and we'll ask them how they feel about becoming buddies</p>
     <form onSubmit={(e) => {handleSubmit(e)}
         }>
           <IonItem>
-            <IonLabel position="floating">user name</IonLabel>
-            <IonInput onIonChange={e => setPossibleFriend(e.detail.value!)}></IonInput>
+            
+            <IonSearchbar value={possibleFriend} onIonChange={e => setPossibleFriend(e.detail.value!)} showCancelButton="never"></IonSearchbar>
+
           </IonItem>
 
           <IonButton className="ion-margin-top" type="submit" expand="block">

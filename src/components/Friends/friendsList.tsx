@@ -14,7 +14,6 @@ const FriendsList: React.FC = () => {
     } else {
       return ['no poop info', 'danger']
     }
-
   }
 
   return (

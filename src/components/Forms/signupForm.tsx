@@ -7,7 +7,6 @@ import useResourceUsers from '../../hooks/useResourceUsers'
 // import { getUserInfo } from '../../store/Selectors';
 
 
-
 const SignupForm: React.FC = () => {
 
   const [tempName, setTempName] = useState<string>();
@@ -48,15 +47,11 @@ const SignupForm: React.FC = () => {
             <IonInput onIonChange={e => setTempEmail(e.detail.value!)}></IonInput>
           </IonItem>
 
-
           <IonButton className="ion-margin-top" type="submit" expand="block">
             Sign Up
           </IonButton>
         </form>
   )
-
-
-  
 }
 
 export default SignupForm;

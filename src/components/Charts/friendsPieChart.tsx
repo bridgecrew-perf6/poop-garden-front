@@ -44,9 +44,6 @@ const FriendsPieChart: React.FC = () => {
     setTempPoop(getPoop(friends))
   }, [friends])
 
-  // console.log(tempNames)
-  // console.log(tempPoop)
-
   const data = {
     labels: tempNames,
     datasets: [{
@@ -75,7 +72,6 @@ const FriendsPieChart: React.FC = () => {
       />
     </div>
   )
-
 }
 
 export default FriendsPieChart;
