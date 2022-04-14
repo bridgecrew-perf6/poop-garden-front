@@ -1,9 +1,11 @@
-import { IonItem, IonButton, IonSearchbar, IonList, IonAvatar, IonLabel } from '@ionic/react';
+import { IonItem, IonButton, IonSearchbar, IonList, IonAvatar, IonLabel, IonFab, IonFabButton, IonIcon } from '@ionic/react';
+import { personAddOutline } from 'ionicons/icons';
 import { FriendStore } from '../../store';
 import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
 import React, { useState, useEffect } from 'react';
 import useResourceUsers from '../../hooks/useResourceUsers'
+import PendingRequests from './pendingRequests'
 
 const AddFriends: React.FC = () => {
 
@@ -15,6 +17,8 @@ const AddFriends: React.FC = () => {
   const [potentialFriends, setPotentialFriends] = useState<any>([])
   //list of friends
   const friends = useStoreState(FriendStore, getFriends);
+
+  const [showRequests, setShowRequests] = useState<boolean>(false);
  
   // console.log(friends);
   console.log(potentialFriends);
@@ -90,6 +94,16 @@ const AddFriends: React.FC = () => {
       :
       'search for a friend'
       }
+      {showRequests ?
+      <PendingRequests />
+      :
+      ''
+      }
+      <IonFab vertical="center" horizontal="end" >
+          <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
+            <IonIcon icon={personAddOutline}/>
+          </IonFabButton>
+      </IonFab>
     </>
   )
 }
