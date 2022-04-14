@@ -62,9 +62,6 @@ const AddFriends: React.FC = () => {
         </IonItem>
         <h4 className="ion-text-center">Possible Friends</h4>
 
-          {/* <IonButton className="ion-margin-top" type="submit" expand="block">
-            find {possibleFriend}
-          </IonButton> */}
       
       {potentialFriends ?
 
@@ -84,6 +81,7 @@ const AddFriends: React.FC = () => {
                   <h3>{user.email}</h3>
                   {/* <p>{friend.poopInfo}</p> */}    
               </IonLabel>
+              <IonButton fill="outline" slot="end" color="primary">send request</IonButton>
             </IonItem>
           }
 
