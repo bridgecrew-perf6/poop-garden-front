@@ -13,27 +13,27 @@ const AddFriends: React.FC = () => {
 
   // what the user is typing in
   const [possibleFriend, setPossibleFriend] = useState<any>();
-  //original list of users
+  //original list of users from hook
   const { resourcesUsers } = useResourceUsers();
-
+  // original list of sent requests from hook
   const { resourcesSentRequests, createResourceSentRequests } = useResourceSentRequests();
+
+  //local version of sent requests
   const [sentRequests, setSentRequests] = useState<any>();
 
-
-  // const { sendFriendRequest } = useResourceFriends();
   //list of users minus friends and self
   const [potentialFriends, setPotentialFriends] = useState<any>([])
 
+  //friend we are trying to add
   const [hopefullFriend, setHopefullFriend] = useState<any>()
+
   //list of friends
   const friends = useStoreState(FriendStore, getFriends);
 
+  //state that shows incoming friend requests
   const [showRequests, setShowRequests] = useState<boolean>(false);
 
-  // const [justSent, setJustSent] = useState<any>();
 
-
- 
   // console.log(friends);
   console.log(resourcesSentRequests);
   console.log(hopefullFriend)
