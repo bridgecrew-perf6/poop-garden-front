@@ -2,18 +2,17 @@ import axios from 'axios'
 import useSWR from 'swr'
 
 import { useAuth } from '../contexts/auth'
-// export const apiUrl = 'http://127.0.0.1:8000/api/friends/';
 const baseUrl = process.env.REACT_APP_BACKEND;
-export const apiUrl = baseUrl + '/api/friends'
-// export const sendRequestUrl = baseUrl + '/api/friends/add_friend/'
+export const apiUrl = baseUrl + '/api/friends/sent_requests/'
+export const createUrl = baseUrl + '/api/friends/add_friend/'
 
-export default function useResourceFriends() {
+export default function useResourceSentRequests() {
 
     const { tokens, logout } = useAuth()
 
-    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResourceFriends);
+    const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResourceSentRequests);
 
-    async function fetchResourceFriends(url: string) {
+    async function fetchResourceSentRequests(url: string) {
 
         if (!tokens) {
             return;
@@ -29,17 +28,19 @@ export default function useResourceFriends() {
         }
     }
 
-    async function createResourceFriends(info: any) {
+
+    async function createResourceSentRequests(info: any) {
 
         try {
-            await axios.post(apiUrl, info, config());
+            let response = await axios.post(createUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
+            return response.data;
         } catch (error) {
             handleError(error);
         }
     }
 
-    async function deleteResourceFriends(id: string) {
+    async function deleteResourceSentRequests(id: string) {
 
         try {
             const url = apiUrl + id;
@@ -50,7 +51,7 @@ export default function useResourceFriends() {
         }
     }
 
-    async function updateResourceFriends(resource: any) {
+    async function updateResourceSentRequests(resource: any) {
         // STRETCH
         // Add ability for user to update an existing resource
     }
@@ -75,12 +76,11 @@ export default function useResourceFriends() {
     }
 
     return {
-        resourcesFriends: data,
+        resourcesSentRequests: data,
         error,
-        loadingFriends: tokens && !error && !data,
-        createResourceFriends,
-        deleteResourceFriends,
-        updateResourceFriends
-        // sendFriendRequest
+        loadingSentRequests: tokens && !error && !data,
+        createResourceSentRequests,
+        deleteResourceSentRequests,
+        updateResourceSentRequests,
     }
 }

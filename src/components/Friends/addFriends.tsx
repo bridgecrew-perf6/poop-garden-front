@@ -5,6 +5,8 @@ import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
 import React, { useState, useEffect } from 'react';
 import useResourceUsers from '../../hooks/useResourceUsers'
+// import useResourceFriends from '../../hooks/useResourceFriends';
+import useResourceSentRequests from '../../hooks/useResourceSentRequests';
 import PendingRequests from './pendingRequests'
 
 const AddFriends: React.FC = () => {
@@ -13,20 +15,82 @@ const AddFriends: React.FC = () => {
   const [possibleFriend, setPossibleFriend] = useState<any>();
   //original list of users
   const { resourcesUsers } = useResourceUsers();
+
+  const { resourcesSentRequests, createResourceSentRequests } = useResourceSentRequests();
+  const [sentRequests, setSentRequests] = useState<any>();
+
+
+  // const { sendFriendRequest } = useResourceFriends();
   //list of users minus friends and self
   const [potentialFriends, setPotentialFriends] = useState<any>([])
+
+  const [hopefullFriend, setHopefullFriend] = useState<any>()
   //list of friends
   const friends = useStoreState(FriendStore, getFriends);
 
   const [showRequests, setShowRequests] = useState<boolean>(false);
+
+  // const [justSent, setJustSent] = useState<any>();
+
+
  
   // console.log(friends);
-  console.log(potentialFriends);
+  console.log(resourcesSentRequests);
+  console.log(hopefullFriend)
 
+  const checkIfPendingDisabled = (user: any) => {
+    let disabled: boolean | undefined = undefined;
+    for (let i = 0; i < sentRequests.length; i++) {
+      let request = sentRequests[i];
+      if (request.to_user === user.username) {
+        disabled = true
+        return disabled
+      } else {
+        disabled = false;
+      }
+    }
+    return disabled;
+  }
+
+  const checkIfPendingColor = (user: any) => {
+    let color: string | undefined = undefined;
+    for (let i = 0; i < sentRequests.length; i++) {
+      let request = sentRequests[i];
+      if (request.to_user === user.username) {
+        color = 'medium';
+        return color
+      } else {
+        color = 'primary';
+      }
+    }
+    return color;
+  }
+
+  const checkIfPendingString = (user: any) => {
+    let string: string | undefined = undefined;
+    for (let i = 0; i < sentRequests.length; i++) {
+      let request = sentRequests[i];
+      if (request.to_user === user.username) {
+        string = 'pending';
+        return string
+      } else {
+        string = 'send request';
+      }
+    }
+    return string;
+  }
+
+
+  const handleRequest = async (user: any) => {
+    setHopefullFriend(user)
+    let newRequest = await createResourceSentRequests({to_user: user.username})
+    setSentRequests([...sentRequests, newRequest])
+  }
 
   useEffect(() => {
+
     // filtering through users
-    if (resourcesUsers && friends) {
+    if (resourcesUsers && friends && resourcesSentRequests) {
       let friendIds: any[] = []
 
       for (let i = 0; i < friends.length; i++) {
@@ -34,24 +98,11 @@ const AddFriends: React.FC = () => {
         let id = friend.id;
         friendIds.push(id)
       }
-      setPotentialFriends(resourcesUsers.filter((user: any) => !friendIds.includes(user.id))); 
+      setPotentialFriends(resourcesUsers.filter((user: any) => !friendIds.includes(user.id)));
+      setSentRequests(resourcesSentRequests)
     }
-  },[resourcesUsers, friends])
+  },[resourcesUsers, friends, resourcesSentRequests]);
 
-  // const handleSubmit = (e: { preventDefault: () => void; }) => {
-  //   e.preventDefault();
-    
-  //   for (let i = 0; i < resourcesUsers.length; i++) {
-  //     let user = resourcesUsers[i];
-  //     let userName = user.username;
-  //     if (userName === possibleFriend){
-  //       setFriendMatch(resourcesUsers[i])
-  //     }
-  //   }
-  //   // login(tempName, tempPassword)
-  //   // router.push('/tab1')
-  // }
-  // console.log(friends);
   
 
   return (
@@ -67,13 +118,12 @@ const AddFriends: React.FC = () => {
         <h4 className="ion-text-center">Possible Friends</h4>
 
       
-      {potentialFriends ?
+      {potentialFriends && sentRequests ?
 
       <IonList>
         {// eslint-disable-next-line array-callback-return
         potentialFriends.map((user: any, index: React.Key | null | undefined) => {
 
-          // if (`${possibleFriend}` === user.username) {
           if (possibleFriend && user.username.includes(`${possibleFriend}`)) {
 
             return <IonItem key={index}>
@@ -85,7 +135,7 @@ const AddFriends: React.FC = () => {
                   <h3>{user.email}</h3>
                   {/* <p>{friend.poopInfo}</p> */}    
               </IonLabel>
-              <IonButton fill="outline" slot="end" color="primary">send request</IonButton>
+              <IonButton fill="outline" slot="end" color={checkIfPendingColor(user)} disabled={checkIfPendingDisabled(user)} onClick={() => handleRequest(user)}>{checkIfPendingString(user)|| 'send request'}</IonButton>
             </IonItem>
           }
 
@@ -99,7 +149,7 @@ const AddFriends: React.FC = () => {
       :
       ''
       }
-      <IonFab vertical="center" horizontal="end" >
+      <IonFab vertical="bottom" horizontal="end" >
           <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
             <IonIcon icon={personAddOutline}/>
           </IonFabButton>
