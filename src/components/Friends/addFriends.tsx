@@ -28,7 +28,7 @@ const AddFriends: React.FC = () => {
   //list of users minus friends and self
   const [potentialFriends, setPotentialFriends] = useState<any>([])
   //friend we are trying to add
-  const [hopefullFriend, setHopefullFriend] = useState<any>()
+  // const [hopefullFriend, setHopefullFriend] = useState<any>()
   //state that shows incoming friend requests
   const [showRequests, setShowRequests] = useState<boolean>(false);  
 
@@ -82,7 +82,7 @@ const AddFriends: React.FC = () => {
 
 
   const handleRequest = async (user: any) => {
-    setHopefullFriend(user)
+    // setHopefullFriend(user)
     let newRequest = await createResourceSentRequests({to_user: user.username})
     setSentRequests([...sentRequests, newRequest])
   }
@@ -153,7 +153,7 @@ const AddFriends: React.FC = () => {
       ''
       }
       <IonFab vertical="center" horizontal="end" >
-          {resourcesRequests ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
+          {resourcesRequests && resourcesRequests.length > 0 ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
           <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
             <IonIcon icon={personAddOutline}/>
           </IonFabButton>
