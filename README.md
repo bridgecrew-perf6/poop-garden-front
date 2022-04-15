@@ -72,4 +72,8 @@ worked on the backend a bit to allow the ability to create a new user with a has
 
 ## days 22 april 14
 
-got the search feature much more functional. now searches through and renders possible users as the user types, excluding current friends and user.
+got the search feature much more functional. now searches through and renders possible users as the user types, excluding current friends and user. Also have the ability to send friend request. once the request is sent, that user's button us deactivated and marked as pending
+
+## days 23 april 15
+
+DEAL WITH INCOMING FRIEND REQUESTS!
