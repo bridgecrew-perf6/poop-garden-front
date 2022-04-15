@@ -5,7 +5,7 @@ import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
 import React, { useState, useEffect } from 'react';
 import useResourceUsers from '../../hooks/useResourceUsers'
-import useResourceFriends from '../../hooks/useResourceFriends';
+// import useResourceFriends from '../../hooks/useResourceFriends';
 import useResourceSentRequests from '../../hooks/useResourceSentRequests';
 import PendingRequests from './pendingRequests'
 

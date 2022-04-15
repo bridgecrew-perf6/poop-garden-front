@@ -39,15 +39,6 @@ export default function useResourceFriends() {
         }
     }
 
-    // async function sendFriendRequest(info: any) {
-    //     try {
-    //         await axios.post(sendRequestUrl, info, config());
-    //         mutate();
-    //     } catch (error) {
-    //         handleError(error);
-    //     }
-    // }
-
     async function deleteResourceFriends(id: string) {
 
         try {

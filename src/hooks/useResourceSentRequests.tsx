@@ -28,14 +28,6 @@ export default function useResourceSentRequests() {
         }
     }
 
-    // async function sendFriendRequest(info: any) {
-    //     try {
-    //         await axios.post(sendRequestUrl, info, config());
-    //         mutate();
-    //     } catch (error) {
-    //         handleError(error);
-    //     }
-    // }
 
     async function createResourceSentRequests(info: any) {
 
