@@ -1,12 +1,35 @@
-
+import useResourceRequests from '../../hooks/useResourceRequests';
+import { IonList, IonItem, IonLabel, IonButton, IonText } from '@ionic/react';
 
 
 const PendingRequests: React.FC = () => {
 
+  const { resourcesRequests } = useResourceRequests();
+
+  console.log(resourcesRequests)
+
   return (
-    <p className="ion-text-center">
-      You have no friends requests currently waiting
-    </p>
+    <>
+    {resourcesRequests && resourcesRequests.length > 0? 
+    
+    <IonList>
+      { resourcesRequests.map((request: any, index: React.Key | null | undefined) => {
+        return <IonItem key={index}>
+
+          <IonLabel>
+            <IonText>
+              {request.from_user} would like to be your friend!
+            </IonText>
+          </IonLabel>
+          <IonButton fill="outline" slot="end" color="tertiary">accept</IonButton>
+          <IonButton fill="outline" slot="end" color="medium">decline</IonButton>
+        </IonItem>
+      })}
+    </IonList>
+    
+    : <p className="ion-text-center">You have no pending requests</p>}
+    </>
+    
   )
 }
 

@@ -1,42 +1,42 @@
-import { IonItem, IonButton, IonSearchbar, IonList, IonAvatar, IonLabel, IonFab, IonFabButton, IonIcon } from '@ionic/react';
+import { IonItem, IonButton, IonSearchbar, IonList, IonAvatar, IonLabel, IonFab, IonFabButton, IonIcon, IonBadge, IonText } from '@ionic/react';
 import { personAddOutline } from 'ionicons/icons';
 import { FriendStore } from '../../store';
 import { useStoreState } from 'pullstate';
 import { getFriends } from '../../store/Selectors';
 import React, { useState, useEffect } from 'react';
-import useResourceUsers from '../../hooks/useResourceUsers'
-// import useResourceFriends from '../../hooks/useResourceFriends';
+import useResourceUsers from '../../hooks/useResourceUsers';
+import useResourceRequests from '../../hooks/useResourceRequests';
 import useResourceSentRequests from '../../hooks/useResourceSentRequests';
-import PendingRequests from './pendingRequests'
+import PendingRequests from './pendingRequests';
 
 const AddFriends: React.FC = () => {
 
-  // what the user is typing in
-  const [possibleFriend, setPossibleFriend] = useState<any>();
-  //original list of users
+  //useResouce hooks to connect to api
   const { resourcesUsers } = useResourceUsers();
-
   const { resourcesSentRequests, createResourceSentRequests } = useResourceSentRequests();
-  const [sentRequests, setSentRequests] = useState<any>();
+  const { resourcesRequests } = useResourceRequests();
 
 
-  // const { sendFriendRequest } = useResourceFriends();
-  //list of users minus friends and self
-  const [potentialFriends, setPotentialFriends] = useState<any>([])
-
-  const [hopefullFriend, setHopefullFriend] = useState<any>()
-  //list of friends
+  // Global state variables
   const friends = useStoreState(FriendStore, getFriends);
 
-  const [showRequests, setShowRequests] = useState<boolean>(false);
 
-  // const [justSent, setJustSent] = useState<any>();
+  //local state variables
+  const [possibleFriend, setPossibleFriend] = useState<any>();
+  //local version of sent requests
+  const [sentRequests, setSentRequests] = useState<any>();
+  //list of users minus friends and self
+  const [potentialFriends, setPotentialFriends] = useState<any>([])
+  //friend we are trying to add
+  // const [hopefullFriend, setHopefullFriend] = useState<any>()
+  //state that shows incoming friend requests
+  const [showRequests, setShowRequests] = useState<boolean>(false);  
 
 
- 
   // console.log(friends);
-  console.log(resourcesSentRequests);
-  console.log(hopefullFriend)
+  // console.log(resourcesSentRequests);
+  // console.log(hopefullFriend);
+  console.log(resourcesRequests)
 
   const checkIfPendingDisabled = (user: any) => {
     let disabled: boolean | undefined = undefined;
@@ -82,7 +82,7 @@ const AddFriends: React.FC = () => {
 
 
   const handleRequest = async (user: any) => {
-    setHopefullFriend(user)
+    // setHopefullFriend(user)
     let newRequest = await createResourceSentRequests({to_user: user.username})
     setSentRequests([...sentRequests, newRequest])
   }
@@ -107,13 +107,16 @@ const AddFriends: React.FC = () => {
 
   return (
     <>
-      <h3 className="ion-text-center">You cant just go snooping around people's crap!</h3> 
-      <p className="ion-text-center">Enter the username of a friend and we'll ask them how they feel about becoming buddies</p>
+      {possibleFriend ? '' 
+      : 
+      <IonText >
+        <h2 className="ion-text-center">You cant just go snooping around people's crap!</h2> 
+        <p className="ion-text-center">Enter the username of a friend and we'll ask them how they feel about becoming buddies</p>
+      </IonText>
+      }
       
         <IonItem>
-          
           <IonSearchbar value={possibleFriend} onIonChange={e => setPossibleFriend(e.detail.value!)} showCancelButton="never"></IonSearchbar>
-
         </IonItem>
         <h4 className="ion-text-center">Possible Friends</h4>
 
@@ -149,7 +152,8 @@ const AddFriends: React.FC = () => {
       :
       ''
       }
-      <IonFab vertical="bottom" horizontal="end" >
+      <IonFab vertical="center" horizontal="end" >
+          {resourcesRequests && resourcesRequests.length > 0 ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
           <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
             <IonIcon icon={personAddOutline}/>
           </IonFabButton>
