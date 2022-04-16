@@ -108,11 +108,20 @@ const AddFriends: React.FC = () => {
   return (
     <>
       {possibleFriend ? '' 
-      : 
+      :
+      <>
       <IonText >
         <h2 className="ion-text-center">You cant just go snooping around people's crap!</h2> 
         <p className="ion-text-center">Enter the username of a friend and we'll ask them how they feel about becoming buddies</p>
       </IonText>
+
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
+      {resourcesRequests && resourcesRequests.length > 0 ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
+      <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
+        <IonIcon icon={personAddOutline}/>
+      </IonFabButton>
+      </IonFab>
+      </>
       }
       
         <IonItem>
@@ -154,12 +163,7 @@ const AddFriends: React.FC = () => {
       :
       ''
       }
-      <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          {resourcesRequests && resourcesRequests.length > 0 ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
-          <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
-            <IonIcon icon={personAddOutline}/>
-          </IonFabButton>
-      </IonFab>
+      
     </>
   )
 }
