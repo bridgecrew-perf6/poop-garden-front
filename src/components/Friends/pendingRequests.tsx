@@ -18,7 +18,7 @@ const PendingRequests: React.FC = () => {
 
           <IonLabel>
             <IonText>
-              {request.from_user} would like to be your friend!
+              <p>{request.from_user} would like to be your friend!</p>
             </IonText>
           </IonLabel>
           <IonButton fill="outline" slot="end" color="tertiary">accept</IonButton>
