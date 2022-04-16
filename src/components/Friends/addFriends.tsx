@@ -118,6 +118,8 @@ const AddFriends: React.FC = () => {
         <IonItem>
           <IonSearchbar value={possibleFriend} onIonChange={e => setPossibleFriend(e.detail.value!)} showCancelButton="never"></IonSearchbar>
         </IonItem>
+
+
         <h4 className="ion-text-center">Possible Friends</h4>
 
       
@@ -152,7 +154,7 @@ const AddFriends: React.FC = () => {
       :
       ''
       }
-      <IonFab vertical="center" horizontal="end" >
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
           {resourcesRequests && resourcesRequests.length > 0 ? <IonBadge color="danger">{resourcesRequests.length}</IonBadge> :''}
           <IonFabButton color="medium" activated={showRequests} onClick={() => setShowRequests(!showRequests)}>
             <IonIcon icon={personAddOutline}/>
