@@ -1,11 +1,10 @@
 // import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
-import './Tab3.scss';
+import "./Tab3.scss";
 // import { MyStore } from '../store'
 
 import React from "react";
 // import axios from 'axios';
 // import { text } from 'ionicons/icons';
-
 
 const Tab3: React.FC = () => {
   // Right now you absolutely have to start on tab 2 on every refresh. will haveto see how i feel about that in the long run
@@ -36,13 +35,11 @@ const Tab3: React.FC = () => {
   //   console.log(response.data);
   //   // return response.data;
   //   })
-    
+
   // }
 
   return (
     <div>
-      
-    
       {/* <IonPage>
         <IonHeader>
           <IonToolbar color="secondary">
