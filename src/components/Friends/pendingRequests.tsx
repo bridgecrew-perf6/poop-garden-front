@@ -1,8 +1,18 @@
 import useResourceRequests from "../../hooks/useResourceRequests";
 import { IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/react";
 
+
 const PendingRequests: React.FC = () => {
-  const { resourcesRequests } = useResourceRequests();
+  const { resourcesRequests, acceptRequest } = useResourceRequests();
+
+
+  const handleAccept = async (request:any) => {
+    let aceepted = await acceptRequest({
+      id: request.id,
+    });
+    
+    console.log(aceepted);
+  }
 
   console.log(resourcesRequests);
 
@@ -19,7 +29,7 @@ const PendingRequests: React.FC = () => {
                       <p>{request.from_user} would like to be your friend!</p>
                     </IonText>
                   </IonLabel>
-                  <IonButton fill="outline" slot="end" color="tertiary">
+                  <IonButton fill="outline" slot="end" color="tertiary" onClick={() => handleAccept(request)}>
                     accept
                   </IonButton>
                   <IonButton fill="outline" slot="end" color="medium">

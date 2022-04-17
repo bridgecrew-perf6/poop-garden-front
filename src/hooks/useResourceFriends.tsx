@@ -38,20 +38,20 @@ export default function useResourceFriends() {
     }
   }
 
-  async function deleteResourceFriends(id: string) {
-    try {
-      const url = apiUrl + id;
-      await axios.delete(url, config());
-      mutate(); // mutate causes complete collection to be refetched
-    } catch (error) {
-      handleError(error);
-    }
-  }
+  // async function deleteResourceFriends(id: string) {
+  //   try {
+  //     const url = apiUrl + id;
+  //     await axios.delete(url, config());
+  //     mutate(); // mutate causes complete collection to be refetched
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // }
 
-  async function updateResourceFriends(resource: any) {
-    // STRETCH
-    // Add ability for user to update an existing resource
-  }
+  // async function updateResourceFriends(resource: any) {
+  //   // STRETCH
+  //   // Add ability for user to update an existing resource
+  // }
 
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
@@ -75,8 +75,8 @@ export default function useResourceFriends() {
     error,
     loadingFriends: tokens && !error && !data,
     createResourceFriends,
-    deleteResourceFriends,
-    updateResourceFriends,
+    // deleteResourceFriends,
+    // updateResourceFriends,
     // sendFriendRequest
   };
 }

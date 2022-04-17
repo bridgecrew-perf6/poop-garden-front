@@ -36,20 +36,20 @@ export default function useResourceUsers() {
     }
   }
 
-  async function deleteResourceUsers(id: string) {
-    try {
-      const url = apiUrl + id;
-      await axios.delete(url, config());
-      mutate(); // mutate causes complete collection to be refetched
-    } catch (error) {
-      handleError(error);
-    }
-  }
+  // async function deleteResourceUsers(id: string) {
+  //   try {
+  //     const url = apiUrl + id;
+  //     await axios.delete(url, config());
+  //     mutate(); // mutate causes complete collection to be refetched
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // }
 
-  async function updateResourceUsers(resource: any) {
-    // STRETCH
-    // Add ability for user to update an existing resource
-  }
+  // async function updateResourceUsers(resource: any) {
+  //   // STRETCH
+  //   // Add ability for user to update an existing resource
+  // }
 
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
@@ -73,7 +73,7 @@ export default function useResourceUsers() {
     error,
     loadingUsers: tokens && !error && !data,
     createResourceUsers,
-    deleteResourceUsers,
-    updateResourceUsers,
+    // deleteResourceUsers,
+    // updateResourceUsers,
   };
 }

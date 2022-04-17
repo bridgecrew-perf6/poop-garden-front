@@ -11,9 +11,15 @@ import { UserStore } from "../../store";
 import { useStoreState } from "pullstate";
 import { getUserInfo, getFriends } from "../../store/Selectors";
 
+import useResourceFriends from "../../hooks/useResourceFriends";
+
 const FriendsList: React.FC = () => {
   const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
+
+  const { resourcesFriends } = useResourceFriends();
+
+  
 
   const hasPoopProfile = (poopInfo: any) => {
     if (poopInfo) {
@@ -25,7 +31,7 @@ const FriendsList: React.FC = () => {
 
   return (
     <>
-      {friends.length > 0 ? (
+      {resourcesFriends.length > 0 ? (
         <IonList>
           {
             // eslint-disable-next-line array-callback-return

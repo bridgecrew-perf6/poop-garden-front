@@ -77,3 +77,7 @@ got the search feature much more functional. now searches through and renders po
 ## days 23 april 15
 
 Am now showing friend requests and options to accept or decline. I also have a floating action button that shows how many friend requests there are waiting for them. next up is just making the buttons usable and the ability to accept or decline a friend request.
+
+## days 24, 25 april 16, 17
+
+I think I have the accept functionality working. needs some testing to make sure, but then i can move on to declining requests.

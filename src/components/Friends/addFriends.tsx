@@ -162,6 +162,7 @@ const AddFriends: React.FC = () => {
           {
             // eslint-disable-next-line array-callback-return
             potentialFriends.map(
+              // eslint-disable-next-line array-callback-return
               (user: any, index: React.Key | null | undefined) => {
                 if (
                   possibleFriend &&

@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { useAuth } from "../contexts/auth";
 const baseUrl = process.env.REACT_APP_BACKEND;
 export const apiUrl = baseUrl + "/api/friends/requests/";
+export const acceptUrl = baseUrl + "/api/friends/accept_request/"
 
 export default function useResourceRequests() {
   const { tokens, logout } = useAuth();
@@ -36,19 +37,25 @@ export default function useResourceRequests() {
     }
   }
 
-  async function deleteResourceRequests(id: string) {
+  // async function deleteResourceRequests(id: string) {
+  //   try {
+  //     const url = apiUrl + id;
+  //     await axios.delete(url, config());
+  //     mutate(); // mutate causes complete collection to be refetched
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // }
+
+  async function acceptRequest(info: any) {
     try {
-      const url = apiUrl + id;
-      await axios.delete(url, config());
-      mutate(); // mutate causes complete collection to be refetched
+      let response = await axios.post(acceptUrl, info, config());
+      mutate();
+      return response.data;
+
     } catch (error) {
       handleError(error);
     }
-  }
-
-  async function updateResourceRequests(resource: any) {
-    // STRETCH
-    // Add ability for user to update an existing resource
   }
 
   // helper function to handle getting Authorization headers EXACTLY right
@@ -73,7 +80,7 @@ export default function useResourceRequests() {
     error,
     loadingRequests: tokens && !error && !data,
     createResourceRequests,
-    deleteResourceRequests,
-    updateResourceRequests,
+    // deleteResourceRequests,
+    acceptRequest,
   };
 }
