@@ -24,14 +24,14 @@ export default function useResourcePoop() {
     }
   }
 
-  // async function createResourcePoop(info: any) {
-  //   try {
-  //     await axios.post(apiUrl, info, config());
-  //     mutate(); // mutate causes complete collection to be refetched
-  //   } catch (error) {
-  //     handleError(error);
-  //   }
-  // }
+  async function createResourcePoop(info: any) {
+    try {
+      await axios.post(apiUrl, info, config());
+      mutate(); // mutate causes complete collection to be refetched
+    } catch (error) {
+      handleError(error);
+    }
+  }
 
   // async function deleteResourcePoop(id: string) {
   //   try {
@@ -69,7 +69,7 @@ export default function useResourcePoop() {
     resourcesPoop: data,
     error,
     loadingPoop: tokens && !error && !data,
-    // createResourcePoop,
+    createResourcePoop,
     // deleteResourcePoop,
     // updateResourcePoop,
   };
