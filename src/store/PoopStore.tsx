@@ -1,4 +1,4 @@
-import { Store } from 'pullstate';
+import { Store } from "pullstate";
 // This is the store that keeps track of all available poop profiles
 
 interface poopStoreInt {

@@ -1,11 +1,20 @@
-import { IonPage, IonContent, IonLabel, IonSegment, IonSegmentButton, IonHeader, IonTitle, IonToolbar, } from '@ionic/react';// IonItem, IonAvatar, IonImg, IonLabel, IonList
-import React, { useState }from 'react';
-import './Tab2.scss';
-import FriendsBarChart from '../components/Charts/friendsBarChart'
-import FriendsPieChart from '../components/Charts/friendsPieChart'
-import PoopProfile from '../components/PoopProfile/poopProfile'
-import AllPoopProfile from '../components/AllPoopProfile/allPoopProfile'
-import { useAuth } from '../contexts/auth.js';
+import {
+  IonPage,
+  IonContent,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react"; // IonItem, IonAvatar, IonImg, IonLabel, IonList
+import React, { useState } from "react";
+import "./Tab2.scss";
+import FriendsBarChart from "../components/Charts/friendsBarChart";
+import FriendsPieChart from "../components/Charts/friendsPieChart";
+import PoopProfile from "../components/PoopProfile/poopProfile";
+import AllPoopProfile from "../components/AllPoopProfile/allPoopProfile";
+import { useAuth } from "../contexts/auth.js";
 // import Card from '../components/Card'
 // import Charty from '../components/Charty/charty';
 
@@ -15,31 +24,27 @@ import { useAuth } from '../contexts/auth.js';
 // import { useStoreState } from 'pullstate';
 // import { getUserInfo, getFriends, getPoopProfiles } from '../store/Selectors';
 
-
-
 const Tab2: React.FC = () => {
-
   const { user } = useAuth();
 
-  const [segment, setSegment] = useState<any>('friends');
+  const [segment, setSegment] = useState<any>("friends");
   let chart1 = null;
   let chart2 = null;
 
-  switch(segment) {
-    case 'friends':
-      chart1 = <FriendsBarChart />
-      chart2 = <FriendsPieChart />
-      break
-    
-    case 'user':
-      chart1 = <PoopProfile />
-      break
+  switch (segment) {
+    case "friends":
+      chart1 = <FriendsBarChart />;
+      chart2 = <FriendsPieChart />;
+      break;
 
-    case 'all':
-      chart1 = <AllPoopProfile />
-      break
+    case "user":
+      chart1 = <PoopProfile />;
+      break;
+
+    case "all":
+      chart1 = <AllPoopProfile />;
+      break;
   }
-
 
   return (
     <IonPage>
@@ -49,7 +54,10 @@ const Tab2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-      <IonSegment onIonChange={e => setSegment(e.detail.value)} color="warning">
+        <IonSegment
+          onIonChange={(e) => setSegment(e.detail.value)}
+          color="warning"
+        >
           <IonSegmentButton value="user">
             <IonLabel>My Poop Profile</IonLabel>
           </IonSegmentButton>
@@ -59,18 +67,18 @@ const Tab2: React.FC = () => {
           <IonSegmentButton value="all">
             <IonLabel>The whole pile</IonLabel>
           </IonSegmentButton>
-      </IonSegment>
-      {user ?
-      <div>
-      {chart1}
-      {chart2}
-      </div>:
-      <h1 className="ion-text-center">💩Please Log in💩</h1>}
+        </IonSegment>
+        {user ? (
+          <div>
+            {chart1}
+            {chart2}
+          </div>
+        ) : (
+          <h1 className="ion-text-center">💩Please Log in💩</h1>
+        )}
       </IonContent>
-     </IonPage>
-
+    </IonPage>
   );
 };
-
 
 export default Tab2;
