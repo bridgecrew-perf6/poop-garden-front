@@ -20,7 +20,6 @@ import useResourceUsers from "../../hooks/useResourceUsers";
 import useResourceRequests from "../../hooks/useResourceRequests";
 import useResourceSentRequests from "../../hooks/useResourceSentRequests";
 import PendingRequests from "./pendingRequests";
-import { present } from "@ionic/core/dist/types/utils/overlays";
 
 const AddFriends: React.FC = () => {
   //useResouce hooks to connect to api
