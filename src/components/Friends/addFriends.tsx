@@ -51,7 +51,7 @@ const AddFriends: React.FC = () => {
     let disabled: boolean | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if (request.to_user === user.username) {
+      if ((request.to_user === user.username) && (request.rejected === null)) {
         disabled = true;
         return disabled;
       } else {
@@ -65,7 +65,7 @@ const AddFriends: React.FC = () => {
     let color: string | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if (request.to_user === user.username) {
+      if ((request.to_user === user.username) && (request.rejected === null)) {
         color = "medium";
         return color;
       } else {
@@ -79,7 +79,7 @@ const AddFriends: React.FC = () => {
     let string: string | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if (request.to_user === user.username) {
+      if ((request.to_user === user.username) && (request.rejected === null)) {
         string = "pending";
         return string;
       } else {
@@ -95,6 +95,7 @@ const AddFriends: React.FC = () => {
       to_user: user.username,
     });
     setSentRequests([...sentRequests, newRequest]);
+    // setPossibleFriend(null)
   };
 
   useEffect(() => {

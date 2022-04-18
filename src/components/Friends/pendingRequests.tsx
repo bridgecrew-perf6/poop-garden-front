@@ -3,7 +3,7 @@ import { IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/react";
 
 
 const PendingRequests: React.FC = () => {
-  const { resourcesRequests, acceptRequest } = useResourceRequests();
+  const { resourcesRequests, acceptRequest, declineRequest } = useResourceRequests();
 
 
   const handleAccept = async (request:any) => {
@@ -12,6 +12,14 @@ const PendingRequests: React.FC = () => {
     });
     
     console.log(aceepted);
+  }
+
+  const handleDecline = async (request:any) => {
+    let declined = await declineRequest({
+      id: request.id,
+    });
+    
+    console.log(declined);
   }
 
   console.log(resourcesRequests);
@@ -32,7 +40,7 @@ const PendingRequests: React.FC = () => {
                   <IonButton fill="outline" slot="end" color="tertiary" onClick={() => handleAccept(request)}>
                     accept
                   </IonButton>
-                  <IonButton fill="outline" slot="end" color="medium">
+                  <IonButton fill="outline" slot="end" color="medium" onClick={() => handleDecline(request)}>
                     decline
                   </IonButton>
                 </IonItem>

@@ -5,6 +5,7 @@ import { useAuth } from "../contexts/auth";
 const baseUrl = process.env.REACT_APP_BACKEND;
 export const apiUrl = baseUrl + "/api/friends/requests/";
 export const acceptUrl = baseUrl + "/api/friends/accept_request/"
+export const declineUrl = baseUrl + "/api/friends/reject_request/"
 
 export default function useResourceRequests() {
   const { tokens, logout } = useAuth();
@@ -58,6 +59,19 @@ export default function useResourceRequests() {
     }
   }
 
+  async function declineRequest(info: any) {
+    try {
+      let response = await axios.post(declineUrl, info, config());
+      mutate();
+      return response.data;
+
+    } catch (error) {
+      handleError(error);
+    }
+  }
+
+  
+
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
     return {
@@ -82,5 +96,6 @@ export default function useResourceRequests() {
     createResourceRequests,
     // deleteResourceRequests,
     acceptRequest,
+    declineRequest,
   };
 }
