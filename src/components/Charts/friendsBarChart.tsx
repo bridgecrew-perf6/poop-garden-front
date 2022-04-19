@@ -42,8 +42,10 @@ const FriendsBarChart: React.FC = () => {
   };
 
   useEffect(() => {
-    setTempNames(getNames(friends));
-    setTempPoop(getPoop(friends));
+    if (friends){
+      setTempNames(getNames(friends));
+      setTempPoop(getPoop(friends));
+    }
   }, [friends]);
 
   // console.log(tempNames)

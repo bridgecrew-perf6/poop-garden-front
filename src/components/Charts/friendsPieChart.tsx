@@ -39,8 +39,10 @@ const FriendsPieChart: React.FC = () => {
   };
 
   useEffect(() => {
-    setTempNames(getNames(friends));
-    setTempPoop(getPoop(friends));
+    if (friends){
+      setTempNames(getNames(friends));
+      setTempPoop(getPoop(friends));
+    }
   }, [friends]);
 
   const data = {

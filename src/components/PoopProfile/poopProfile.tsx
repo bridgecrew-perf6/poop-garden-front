@@ -6,7 +6,8 @@ import {
   IonCardTitle,
   IonIcon,
   IonAvatar,
-  IonText
+  IonText,
+  IonButton
 } from "@ionic/react";
 import { ribbonOutline } from "ionicons/icons";
 import { FriendStore } from "../../store";
@@ -24,17 +25,20 @@ const AllPoopProfile: React.FC = () => {
 
   const [userPoop, setUserPoop] = useState();
   const [userId, setUserId] = useState();
+  const [showPoopSurvey, setShowPoopSurvey] = useState<boolean>(false);
 
   console.log(friends);
   console.log(user);
 
   useEffect(() => {
-    for (let i = 0; i < friends.length; i++) {
-      let friend = friends[i];
-
-      if (friend.id === user.id) {
-        setUserPoop(friend.poopInfo);
-        setUserId(friend.id);
+    if (friends){
+      for (let i = 0; i < friends.length; i++) {
+        let friend = friends[i];
+  
+        if (friend.id === user.id) {
+          setUserPoop(friend.poopInfo);
+          setUserId(friend.id);
+        }
       }
     }
   }, [friends, user]);
@@ -43,35 +47,43 @@ const AllPoopProfile: React.FC = () => {
 
   return (
     <>
-    <div>
-      <IonCard>
-        <IonAvatar className="image-center">
-          <img
-            src={`https://avatars.dicebear.com/api/bottts/${userId}${userPoop}.svg?colorful=true`}
-            alt={"little robot avatar for each person"}
-          />
-        </IonAvatar>
-        <IonCardHeader>
-          {/* <IonCardSubtitle>PoopProfile</IonCardSubtitle> */}
-          <IonCardTitle className="ion-text-center">
-            {user.username}
-          </IonCardTitle>
-        </IonCardHeader>
+    {showPoopSurvey ?
+    
+      <PoopSurvey /> :
 
-        <IonCardContent>
-          {userPoop ?
-            <>
-          <IonIcon icon={ribbonOutline} size="large" />
-          <IonText>You have expended about {userPoop} pounds of poop so far! What a
-          feeling that must be!</IonText>
-          </>
-          :
-          <h1 className="ion-text-center">Looks like you haven't filled out your poop profile yet!</h1>}
-          
-        </IonCardContent>
-      </IonCard>
-    </div>
-    <PoopSurvey />
+      <div>
+        <IonCard>
+          <IonAvatar className="image-center">
+            <img
+              src={`https://avatars.dicebear.com/api/bottts/${userId}${userPoop}.svg?colorful=true`}
+              alt={"little robot avatar for each person"}
+            />
+          </IonAvatar>
+          <IonCardHeader>
+            {/* <IonCardSubtitle>PoopProfile</IonCardSubtitle> */}
+            <IonCardTitle className="ion-text-center">
+              {user.username}
+            </IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            {userPoop ?
+              <>
+            <IonIcon icon={ribbonOutline} size="large" />
+            <IonText>You have expended about {userPoop} pounds of poop so far! What a
+            feeling that must be!</IonText>
+            </>
+            :
+            <div>
+              <h1 className="ion-text-center">Looks like you haven't filled out your poop profile yet!</h1>
+              <IonButton expand="block" onClick={() => setShowPoopSurvey(true)}>Calculate Poop</IonButton>
+            </div>
+            }
+            
+          </IonCardContent>
+        </IonCard>
+      </div>
+    }
     </>
   );
 };

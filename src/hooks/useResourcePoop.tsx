@@ -26,8 +26,9 @@ export default function useResourcePoop() {
 
   async function createResourcePoop(info: any) {
     try {
-      await axios.post(apiUrl, info, config());
+      let response = await axios.post(apiUrl, info, config());
       mutate(); // mutate causes complete collection to be refetched
+      return response.data;
     } catch (error) {
       handleError(error);
     }
