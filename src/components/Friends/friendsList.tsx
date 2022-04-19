@@ -31,7 +31,7 @@ const FriendsList: React.FC = () => {
 
   return (
     <>
-      {resourcesFriends.length > 0 ? (
+      {(resourcesFriends) && (resourcesFriends.length > 0) ? (
         <IonList>
           {
             // eslint-disable-next-line array-callback-return

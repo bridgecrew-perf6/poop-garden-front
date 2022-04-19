@@ -37,6 +37,7 @@ const Tab4: React.FC = () => {
 
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
+
     UserStore.update((s) => {
       s.userInfo = user;
     });

@@ -13,6 +13,7 @@ import {
   IonSlides,
   IonSlide,
   IonButton,
+  useIonRouter,
 } from "@ionic/react";
 import { thumbsDown, thumbsUp } from "ionicons/icons";
 import { differenceInDays } from 'date-fns';
@@ -20,9 +21,11 @@ import { differenceInDays } from 'date-fns';
 // import { getFriends } from "../../store/Selectors";
 // import { useStoreState } from "pullstate";
 import React, { useEffect, useRef, useState } from "react";
+import useResourcePoop from "../../hooks/useResourcePoop"
 // import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-// import { useAuth } from "../../contexts/auth.js";
+
+import { useAuth } from "../../contexts/auth.js";
 import "./getPoopSurvey.scss";
 
 const slideOpts = {
@@ -31,11 +34,14 @@ const slideOpts = {
 };
 
 const PoopSurvey: React.FC = () => {
-  // const { user } = useAuth();
+  const { user } = useAuth();
+  const { createResourcePoop } = useResourcePoop();
 
   const [q1selected, setq1Selected] = useState<string>('avg');
   const [selectedDate, setSelectedDate] = useState<any>("1987-12-03");
   const [fiberValue, setFiberValue] = useState<any>(5);
+
+  const router = useIonRouter();
 
   const getTotalPoop = (info:any) => {
     /// function that will use the 3 states above (mostly the birthday) and turn it into a single poop number that i can send to the back
@@ -45,12 +51,14 @@ const PoopSurvey: React.FC = () => {
     let totalDays = differenceInDays(currentDate, bornDate)
     let totalOunces = totalDays * 14
     let totalPounds = Math.round(totalOunces / 16)
-    console.log(`${totalPounds} pounds o poop`)
+    return totalPounds
+    
+    
 
     
   }
 
-  function sendDataToServer(e: React.FormEvent<HTMLFormElement>) {
+  async function sendDataToServer(e: React.FormEvent<HTMLFormElement>) {
     //send Ajax request to your web server
     e.preventDefault();
     let formInfo = {
@@ -58,7 +66,18 @@ const PoopSurvey: React.FC = () => {
       selectedDate: selectedDate,
       fiber: fiberValue,
     };
-    getTotalPoop(formInfo)
+    let poopInfo = getTotalPoop(formInfo)
+
+    let newPoopProfile = await createResourcePoop({
+      user: user.id,
+      nickname: user.username,
+      poopInfo: poopInfo,
+    })
+
+    console.log(newPoopProfile)
+    //should end up push ing to tab3
+    router.push("/tab1");
+
   }
 
   const mySlides = useRef<any>(null);
@@ -128,6 +147,7 @@ const PoopSurvey: React.FC = () => {
         </IonSlide>
         <IonSlide>
           <div className="slide-main">
+          <h3 className="ion-text-center">Birthday</h3>
             <div className="form-content">
             <IonLabel >don't worry, no one is gonna check</IonLabel>
           <IonItem>
@@ -149,6 +169,7 @@ const PoopSurvey: React.FC = () => {
         </IonSlide>
         <IonSlide>
           <div className="slide-main">
+          <h3 className="ion-text-center">How do you feel about fiber?</h3>
             <div className="form-content">
             <IonItem>
             <IonRange min={1} max={10} step={1} value={fiberValue} onIonChange={e => setFiberValue(e.detail.value!)} >
