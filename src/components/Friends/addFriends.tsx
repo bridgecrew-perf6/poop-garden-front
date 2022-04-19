@@ -199,7 +199,7 @@ const AddFriends: React.FC = () => {
           }
         </IonList>
       ) : (
-        "search for a friend"
+        ""
       )}
       {showRequests ? <PendingRequests /> : ""}
     </>

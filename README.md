@@ -81,3 +81,7 @@ Am now showing friend requests and options to accept or decline. I also have a f
 ## days 24, 25 april 16, 17
 
 I think I have the accept functionality working. needs some testing to make sure, but then i can move on to declining requests.
+
+## day 26 april 18
+
+Completed request declone ability. Also added 3 step form to allow user to input poop information. right now total pounds of poop is just being console logged. It needs to be send to the back end to create/edit a poop profile.
