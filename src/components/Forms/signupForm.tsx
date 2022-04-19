@@ -30,7 +30,7 @@ const SignupForm: React.FC = () => {
       password: tempPassword,
     });
     // login(tempName, tempPassword)
-    router.push("/tab1");
+    router.push("/tab2");
   };
 
   return (

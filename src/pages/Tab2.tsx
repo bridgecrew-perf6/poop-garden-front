@@ -27,7 +27,7 @@ import { useAuth } from "../contexts/auth.js";
 const Tab2: React.FC = () => {
   const { user } = useAuth();
 
-  const [segment, setSegment] = useState<any>("friends");
+  const [segment, setSegment] = useState<any>("user");
   let chart1 = null;
   let chart2 = null;
 
