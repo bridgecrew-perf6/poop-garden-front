@@ -13,8 +13,9 @@ import {
 } from "@ionic/react";
 import { personAddOutline } from "ionicons/icons";
 import { FriendStore } from "../../store";
+import { UserStore } from "../../store"
 import { useStoreState } from "pullstate";
-import { getFriends } from "../../store/Selectors";
+import { getFriends, getUserInfo } from "../../store/Selectors";
 import React, { useState, useEffect } from "react";
 import useResourceUsers from "../../hooks/useResourceUsers";
 import useResourceRequests from "../../hooks/useResourceRequests";
@@ -30,6 +31,7 @@ const AddFriends: React.FC = () => {
 
   // Global state variables
   const friends = useStoreState(FriendStore, getFriends);
+  const userInfo = useStoreState(UserStore, getUserInfo)
 
   //local state variables
   const [possibleFriend, setPossibleFriend] = useState<any>();
@@ -94,20 +96,24 @@ const AddFriends: React.FC = () => {
 
   useEffect(() => {
     // filtering through users
-    if (resourcesUsers && friends && resourcesSentRequests) {
+    if (resourcesUsers && friends && resourcesSentRequests && userInfo) {
       let friendIds: any[] = [];
 
       for (let i = 0; i < friends.length; i++) {
         let friend = friends[i];
         let id = friend.id;
         friendIds.push(id);
+        friendIds.push(userInfo.id)
       }
       setPotentialFriends(
         resourcesUsers.filter((user: any) => !friendIds.includes(user.id))
       );
       setSentRequests(resourcesSentRequests);
     }
-  }, [resourcesUsers, friends, resourcesSentRequests]);
+  }, [resourcesUsers, friends, resourcesSentRequests, userInfo]);
+
+  // console.log(userInfo)
+  // console.log(potentialFriends)
 
   return (
     <>
@@ -152,7 +158,7 @@ const AddFriends: React.FC = () => {
 
       <h4 className="ion-text-center">Possible Friends</h4>
 
-      {potentialFriends && sentRequests ? (
+      {potentialFriends && sentRequests && userInfo ? (
         <IonList>
           {
             // eslint-disable-next-line array-callback-return
@@ -161,6 +167,7 @@ const AddFriends: React.FC = () => {
               (user: any, index: React.Key | null | undefined) => {
                 if (
                   possibleFriend &&
+                  user.username !== userInfo.username &&
                   user.username.includes(`${possibleFriend}`)
                 ) {
                   return (

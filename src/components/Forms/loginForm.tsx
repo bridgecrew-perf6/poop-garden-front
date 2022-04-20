@@ -17,7 +17,7 @@ const LoginForm: React.FC = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     login(tempName, tempPassword);
-    router.push("/tab2");
+    router.push("/tab1");
   };
 
   return (

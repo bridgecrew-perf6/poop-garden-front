@@ -19,7 +19,7 @@ import {
   getPoopProfiles,
 } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PoopSurvey from "./getPoopSurvey";
 // import { useAuth } from "../../contexts/auth.js";
 import "./poopProfile.scss";
@@ -40,7 +40,7 @@ const AllPoopProfile: React.FC = () => {
       let user = poopProfiles[i].user;
       let poopInfo = poopProfiles[i].poopInfo;
       if (user === id) {
-        console.log(poopInfo);
+        // console.log(poopInfo);
         return poopInfo;
       }
     }
@@ -48,18 +48,9 @@ const AllPoopProfile: React.FC = () => {
     return null;
   };
 
-  // useEffect(() => {
-  //   if (friends){
-  //     for (let i = 0; i < friends.length; i++) {
-  //       let friend = friends[i];
-
-  //       if (friend.id === user.id) {
-  //         setUserPoop(friend.poopInfo);
-  //         setUserId(friend.id);
-  //       }
-  //     }
-  //   }
-  // }, [friends, user]);
+  useEffect(() => {
+    setShowPoopSurvey(false)
+  },[userInfo]);
 
   // console.log(userPoop);
 

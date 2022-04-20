@@ -17,9 +17,10 @@ import AddFriends from "../components/Friends/addFriends";
 // import useResourceFriends from '../hooks/useResourceFriends';
 // import { UserStore } from '../store';
 import { PoopStore } from "../store";
+import { UserStore } from "../store";
 import { FriendStore } from "../store";
 import { useStoreState } from "pullstate";
-import { getFriends, getPoopProfiles } from "../store/Selectors";
+import { getFriends, getPoopProfiles, getUserInfo } from "../store/Selectors";
 
 //This is the page that the user is (currently) sent to right after they sign in. Its main purpose is to show a list of the user's friends
 
@@ -27,6 +28,7 @@ const Tab1: React.FC = () => {
   // const { user } = useAuth();
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
   const friends = useStoreState(FriendStore, getFriends);
+  const userInfo = useStoreState(UserStore, getUserInfo)
 
   const [segment, setSegment] = useState<any>("friendsList");
   let component = null;
@@ -45,7 +47,11 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="secondary">
-          <IonTitle className="ion-text-center">Friends</IonTitle>
+          {userInfo ? 
+          <IonTitle className="ion-text-center">{`${userInfo.username}'s` || ""} friends</IonTitle>
+          :
+          ""
+          }
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -54,7 +60,7 @@ const Tab1: React.FC = () => {
             <IonTitle size='large'>Your Friends</IonTitle>
           </IonToolbar>
         </IonHeader> */}
-        {friends && poopProfiles ? (
+        {friends && poopProfiles && userInfo ? (
           <>
             <IonSegment
               onIonChange={(e) => setSegment(e.detail.value)}

@@ -1,4 +1,4 @@
-// import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonItem, IonInput, IonList } from '@ionic/react';
 import "./Tab3.scss";
 // import { MyStore } from '../store'
 
@@ -40,7 +40,7 @@ const Tab3: React.FC = () => {
 
   return (
     <div>
-      {/* <IonPage>
+      <IonPage>
         <IonHeader>
           <IonToolbar color="secondary">
             <IonTitle>Tab 3</IonTitle>
@@ -52,7 +52,8 @@ const Tab3: React.FC = () => {
               <IonTitle size="large">Tab 3</IonTitle>
             </IonToolbar>
           </IonHeader>
-          <IonList>
+          tab3 stuff
+          {/* <IonList>
           <IonItem>
             {userPoopInfo === 0 ?
             <form onSubmit={printText}>
@@ -68,9 +69,9 @@ const Tab3: React.FC = () => {
             'Thanks for adding your poop to the pile! you can now go back to the poop statistics page and see how you stack up'
             }
           </IonItem>
-        </IonList>
+        </IonList> */}
         </IonContent>
-      </IonPage> */}
+      </IonPage>
     </div>
   );
 };
