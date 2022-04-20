@@ -39,9 +39,9 @@ const FriendsList: React.FC = () => {
     }
   };
 
-  console.log(friends)
-  console.log(poopProfiles)
-  console.log(userInfo)
+  // console.log(friends)
+  // console.log(poopProfiles)
+  // console.log(userInfo)
 
   return (
     <>
