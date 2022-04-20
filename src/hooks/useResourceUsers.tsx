@@ -27,10 +27,11 @@ export default function useResourceUsers() {
 
   async function createResourceUsers(info: any) {
     try {
-      await axios.post(createUrl, info);
+      let response = await axios.post(createUrl, info);
       //logging in with the user just created
       await login(info.username, info.password);
       mutate(); // mutate causes complete collection to be refetched
+      return response.data;
     } catch (error) {
       handleError(error);
     }

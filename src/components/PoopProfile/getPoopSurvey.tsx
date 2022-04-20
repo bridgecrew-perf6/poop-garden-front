@@ -54,8 +54,6 @@ const PoopSurvey: React.FC = () => {
     return totalPounds
     
     
-
-    
   }
 
   async function sendDataToServer(e: React.FormEvent<HTMLFormElement>) {
@@ -76,7 +74,7 @@ const PoopSurvey: React.FC = () => {
 
     console.log(newPoopProfile)
     //should end up push ing to tab3
-    router.push("/tab1");
+    router.push("/tab3");
 
   }
 
@@ -137,7 +135,7 @@ const PoopSurvey: React.FC = () => {
                     <IonRadio slot="start" value="idk" />
                   </IonItem>
                 </IonRadioGroup>
-                <IonItem>{q1selected ?? "none selected"}</IonItem>
+                {/* <IonItem>{q1selected ?? "none selected"}</IonItem> */}
               </IonList>
             </div>
             <div className="form-footer">
@@ -179,7 +177,7 @@ const PoopSurvey: React.FC = () => {
             </IonRange>
           </IonItem>
 
-          <IonItem>{fiberValue ?? "none selected"}</IonItem>
+          {/* <IonItem>{fiberValue ?? "none selected"}</IonItem> */}
 
             </div>
             <div className="form-footer">
