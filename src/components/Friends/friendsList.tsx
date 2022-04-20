@@ -7,31 +7,45 @@ import {
   IonBadge,
 } from "@ionic/react";
 import { FriendStore } from "../../store";
+import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import { useStoreState } from "pullstate";
-import { getUserInfo, getFriends } from "../../store/Selectors";
+import { getUserInfo, getFriends, getPoopProfiles } from "../../store/Selectors";
 
-import useResourceFriends from "../../hooks/useResourceFriends";
+// import useResourceFriends from "../../hooks/useResourceFriends";
 
 const FriendsList: React.FC = () => {
   const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
+  const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
 
-  const { resourcesFriends } = useResourceFriends();
+  // const { resourcesFriends } = useResourceFriends();
 
-  
 
-  const hasPoopProfile = (poopInfo: any) => {
-    if (poopInfo) {
+
+  const hasPoopProfile = (friend: any) => {
+    let poopProfileUsers: any[] = []
+    let friendId: any = friend.id
+
+    for (let i = 0; i < poopProfiles.length; i++){
+      let user = poopProfiles[i].user;
+      poopProfileUsers.push(user)
+    }
+    
+    if (poopProfileUsers.includes(friendId)) {
       return ["poop info", "success"];
     } else {
       return ["no poop info", "danger"];
     }
   };
 
+  console.log(friends)
+  console.log(poopProfiles)
+  console.log(userInfo)
+
   return (
     <>
-      {(resourcesFriends) && (resourcesFriends.length > 0) ? (
+      {(friends) && (friends.length > 0) ? (
         <IonList>
           {
             // eslint-disable-next-line array-callback-return
@@ -50,8 +64,8 @@ const FriendsList: React.FC = () => {
                       <h1>{friend.username}</h1>
                       <h3>{friend.email}</h3>
                       {/* <p>{friend.poopInfo}</p> */}
-                      <IonBadge color={hasPoopProfile(friend.poopInfo)[1]}>
-                        {hasPoopProfile(friend.poopInfo)[0]}
+                      <IonBadge color={hasPoopProfile(friend)[1]}>
+                        {hasPoopProfile(friend)[0]}
                       </IonBadge>
                     </IonLabel>
                     <IonButton fill="outline" slot="end" color="medium">

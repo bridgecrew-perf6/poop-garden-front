@@ -38,14 +38,8 @@ const AddFriends: React.FC = () => {
   //list of users minus friends and self
   const [potentialFriends, setPotentialFriends] = useState<any>([]);
   //friend we are trying to add
-  // const [hopefullFriend, setHopefullFriend] = useState<any>()
   //state that shows incoming friend requests
   const [showRequests, setShowRequests] = useState<boolean>(false);
-
-  // console.log(friends);
-  // console.log(resourcesSentRequests);
-  // console.log(hopefullFriend);
-  console.log(resourcesRequests);
 
   const checkIfPendingDisabled = (user: any) => {
     let disabled: boolean | undefined = undefined;

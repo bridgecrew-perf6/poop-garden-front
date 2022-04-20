@@ -2,54 +2,58 @@ import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 //connecting to state store
-import { FriendStore } from "../../store";
-import { getFriends } from "../../store/Selectors";
+// import { FriendStore } from "../../store";
+import { UserStore } from "../../store"
+import { PoopStore } from "../../store";
+import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
 
 Chart.register(...registerables);
 
 const FriendsBarChart: React.FC = () => {
   // variables retrieved from global state
-  const friends = useStoreState(FriendStore, getFriends);
+  // const friends = useStoreState(FriendStore, getFriends);
+  const userInfo = useStoreState(UserStore, getUserInfo);
+  const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
 
-  const [tempNames, setTempNames] = useState<any>();
-  const [tempPoop, setTempPoop] = useState<any>();
+  const [tempNames, setTempNames] = useState<any>([]);
+  const [tempPoop, setTempPoop] = useState<any>([]);
 
-  // console.log(userPoopInfo)
-  // console.log(friends);
 
   // functions to get only the data we need for the chart
-  const getNames = (array: any[]) => {
-    let namesArray = [];
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].poopInfo) {
-        let name = array[i].username || array[i].nickname;
-        namesArray.push(name);
-      }
-    }
-    return namesArray;
-  };
+  // const getNames = (array: any[]) => {
+  //   let namesArray = [];
+  //   for (let i = 0; i < array.length; i++) {
+  //     if (array[i].poopInfo) {
+  //       let name = array[i].username || array[i].nickname;
+  //       namesArray.push(name);
+  //     }
+  //   }
+  //   namesArray.push(userInfo.username)
+  //   return namesArray;
+  // };
 
-  const getPoop = (array: any[]) => {
-    let poopArray = [];
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].poopInfo) {
-        let poop = array[i].poopInfo;
-        poopArray.push(poop);
-      }
-    }
-    return poopArray;
-  };
+  // const getPoop = (array: any[]) => {
+  //   let poopArray = [];
+  //   for (let i = 0; i < array.length; i++) {
+  //     if (array[i].poopInfo) {
+  //       let poop = array[i].poopInfo;
+  //       poopArray.push(poop);
+  //     }
+  //   }
+  //   return poopArray;
+  // };
 
   useEffect(() => {
-    if (friends){
-      setTempNames(getNames(friends));
-      setTempPoop(getPoop(friends));
+    if (userInfo && poopProfiles){
+      for (let i = 0; i < poopProfiles.length; i++){
+        let name = poopProfiles[i].nickname
+        let poopInfo = poopProfiles[i].poopInfo
+        setTempNames((tempNames: any) =>[...tempNames, name]);
+        setTempPoop((tempPoop: any) =>[...tempPoop, poopInfo]);
+      }
     }
-  }, [friends]);
-
-  // console.log(tempNames)
-  // console.log(tempPoop)
+  }, [userInfo, poopProfiles]);
 
   // setting data for the chart
   const data = {
