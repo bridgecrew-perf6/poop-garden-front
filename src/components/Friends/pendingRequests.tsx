@@ -1,9 +1,9 @@
 import useResourceRequests from "../../hooks/useResourceRequests";
-import useResourceUsers from "../../hooks/useResourceUsers";
+// import useResourceUsers from "../../hooks/useResourceUsers";
 import { IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/react";
-import { FriendStore } from "../../store";
-import { useStoreState } from "pullstate";
-import { getFriends } from "../../store/Selectors";
+// import { FriendStore } from "../../store";
+// import { useStoreState } from "pullstate";
+// import { getFriends } from "../../store/Selectors";
 
 
 const PendingRequests: React.FC = () => {
