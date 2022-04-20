@@ -1,9 +1,14 @@
 import useResourceRequests from "../../hooks/useResourceRequests";
 import { IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/react";
+import { FriendStore } from "../../store";
+import { useStoreState } from "pullstate";
+import { getFriends } from "../../store/Selectors";
 
 
 const PendingRequests: React.FC = () => {
   const { resourcesRequests, acceptRequest, declineRequest } = useResourceRequests();
+
+  const friends = useStoreState(FriendStore, getFriends);
 
 
   const handleAccept = async (request:any) => {
@@ -22,7 +27,7 @@ const PendingRequests: React.FC = () => {
     console.log(declined);
   }
 
-  console.log(resourcesRequests);
+  console.log(friends);
 
   return (
     <>
