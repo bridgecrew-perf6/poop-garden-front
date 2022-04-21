@@ -43,27 +43,7 @@ const Tab4: React.FC = () => {
     });
     FriendStore.update((s) => {
       s.friends = resourcesFriends;
-      // for loop that checks every poop profile and  checks if they are friends. if they are, we take the information we want from their poop profile and add it to their user information
-      // if (resourcesPoop) {
-      //   for (var i = 0; i < resourcesPoop.length; i++) {
-      //     let profile = resourcesPoop[i];
-      //     // addPoopInfo(profile);
 
-      //     if (s.friends && userInfo) {
-      //       if (profile.user === userInfo.id) {
-      //         let stringUserInfo = JSON.parse(JSON.stringify(userInfo));
-      //         s.friends.push(stringUserInfo);
-      //       }
-
-      //       for (let i = 0; i < s.friends.length; i++) {
-      //         let friend = s.friends[i];
-      //         if (friend.id === profile.user) {
-      //           friend.poopInfo = profile.poopInfo;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
     });
 
     PoopStore.update((s) => {
