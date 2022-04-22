@@ -16,14 +16,9 @@ import {
 } from "@ionic/react";
 import { thumbsDown, thumbsUp } from "ionicons/icons";
 import { differenceInDays } from 'date-fns';
-// import { FriendStore } from "../../store";
-// import { getFriends } from "../../store/Selectors";
-// import { useStoreState } from "pullstate";
+
 import React, { useEffect, useRef, useState } from "react";
 import useResourcePoop from "../../hooks/useResourcePoop"
-// import { useForm, SubmitHandler, Controller } from "react-hook-form";
-
-
 import { useAuth } from "../../contexts/auth.js";
 import "./getPoopSurvey.scss";
 
@@ -137,7 +132,6 @@ const PoopSurvey: React.FC = () => {
                     <IonRadio slot="start" value="idk" />
                   </IonItem>
                 </IonRadioGroup>
-                {/* <IonItem>{q1selected ?? "none selected"}</IonItem> */}
               </IonList>
             </div>
             <div className="form-footer">
@@ -177,8 +171,6 @@ const PoopSurvey: React.FC = () => {
          
             </IonRange>
           </IonItem>
-
-          {/* <IonItem>{fiberValue ?? "none selected"}</IonItem> */}
 
             </div>
             <div className="form-footer">

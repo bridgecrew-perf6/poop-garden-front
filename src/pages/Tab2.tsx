@@ -21,12 +21,11 @@ import SkeletonFriends from "../components/SkeletonFriends/skeletonfriends";
 import { UserStore } from "../store";
 import { FriendStore } from "../store";
 import { useStoreState } from "pullstate";
-import { getUserInfo, getFriends } from "../store/Selectors";
+import { getUserInfo } from "../store/Selectors";
 import useResourceFriends from "../hooks/useResourceFriends";
 
 const Tab2: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
-  const friends = useStoreState(FriendStore, getFriends);
   const { resourcesFriends } = useResourceFriends();
 
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
