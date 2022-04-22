@@ -1,5 +1,4 @@
 import {
-  
   IonIcon,
   IonList,
   IonRadioGroup,
@@ -8,7 +7,7 @@ import {
   IonItem,
   IonListHeader,
 
-  IonDatetime,
+  IonInput,
   IonRange,
   IonSlides,
   IonSlide,
@@ -38,7 +37,7 @@ const PoopSurvey: React.FC = () => {
   const { createResourcePoop } = useResourcePoop();
 
   const [q1selected, setq1Selected] = useState<string>('avg');
-  const [selectedDate, setSelectedDate] = useState<any>("1987-12-03");
+  const [selectedDate, setSelectedDate] = useState<any>();
   const [fiberValue, setFiberValue] = useState<any>(5);
 
   const router = useIonRouter();
@@ -150,17 +149,16 @@ const PoopSurvey: React.FC = () => {
           <div className="slide-main">
           <h3 className="ion-text-center">Birthday</h3>
             <div className="form-content">
-            <IonLabel >don't worry, no one is gonna check</IonLabel>
+            <p >don't worry, no one is gonna check</p>
           <IonItem>
-            <IonDatetime presentation={"date"} value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)} >
-              <p>don't worry, no one is gonna check</p>
-            </IonDatetime>
+            <IonInput type="date" required={true} value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)} >
+            </IonInput>
 
           </IonItem>
 
 
 
-              <IonItem>{selectedDate ?? "none selected"}</IonItem>
+              <IonItem>{selectedDate ?? ""}</IonItem>
             </div>
             <div className="form-footer">
               <IonButton onClick={() => previous()}>Prev</IonButton>

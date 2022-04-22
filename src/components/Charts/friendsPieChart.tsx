@@ -3,9 +3,10 @@ import { Pie } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 //connecting to state store
 // import { FriendStore } from "../../store";
+import { FriendStore } from "../../store";
 import { UserStore } from "../../store"
 import { PoopStore } from "../../store";
-import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
+import { getPoopProfiles, getUserInfo, getFriends } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
 
 Chart.register(...registerables);
@@ -14,6 +15,7 @@ const FriendsPieChart: React.FC = () => {
   // const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
+  const friends = useStoreState(FriendStore, getFriends);
 
   const [tempNames, setTempNames] = useState<any>([]);
   const [tempPoop, setTempPoop] = useState<any>([]);
@@ -43,15 +45,15 @@ const FriendsPieChart: React.FC = () => {
   // };
 
   useEffect(() => {
-    if (userInfo && poopProfiles){
-      for (let i = 0; i < poopProfiles.length; i++){
-        let name = poopProfiles[i].nickname
-        let poopInfo = poopProfiles[i].poopInfo
+    if (userInfo && friends){
+      for (let i = 0; i < friends.length; i++){
+        let name = friends[i].nickname
+        let poopInfo = friends[i].poopInfo
         setTempNames((tempNames: any) =>[...tempNames, name]);
         setTempPoop((tempPoop: any) =>[...tempPoop, poopInfo]);
       }
     }
-  }, [userInfo, poopProfiles]);
+  }, [userInfo, friends]);
 
   const data = {
     labels: tempNames,
