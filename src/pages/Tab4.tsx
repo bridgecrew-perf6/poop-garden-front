@@ -64,6 +64,20 @@ const Tab4: React.FC = () => {
       break;
   }
 
+  const handleLogout = () => {
+    UserStore.update((s) => {
+      s.userInfo = {};
+    });
+    FriendStore.update((s) => {
+      s.friends = [];
+
+    });
+    PoopStore.update((s) => {
+      s.poopProfiles = [];
+    });
+    logout()
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -84,7 +98,7 @@ const Tab4: React.FC = () => {
             type="button"
             strong={true}
             expand="block"
-            onClick={() => logout()}
+            onClick={() => handleLogout()}
           >
             Log Out
           </IonButton>
