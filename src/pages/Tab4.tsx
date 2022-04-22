@@ -32,7 +32,6 @@ const Tab4: React.FC = () => {
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
-
   const userInfo = useStoreState(UserStore, getUserInfo);
 
   // bringing all of our necessary api information into state and editing when necessary
@@ -43,9 +42,7 @@ const Tab4: React.FC = () => {
     });
     FriendStore.update((s) => {
       s.friends = resourcesFriends;
-
     });
-
     PoopStore.update((s) => {
       s.poopProfiles = resourcesPoop;
     });
@@ -63,6 +60,20 @@ const Tab4: React.FC = () => {
       component = <SignupForm />;
       break;
   }
+
+  const handleLogout = () => {
+    UserStore.update((s) => {
+      s.userInfo = {};
+    });
+    FriendStore.update((s) => {
+      s.friends = [];
+    });
+    PoopStore.update((s) => {
+      s.poopProfiles = [];
+    });
+    logout()
+  }
+
 
   return (
     <IonPage>
@@ -84,7 +95,7 @@ const Tab4: React.FC = () => {
             type="button"
             strong={true}
             expand="block"
-            onClick={() => logout()}
+            onClick={() => handleLogout()}
           >
             Log Out
           </IonButton>
