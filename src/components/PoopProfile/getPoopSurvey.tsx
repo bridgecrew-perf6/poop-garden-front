@@ -152,7 +152,7 @@ const PoopSurvey: React.FC = () => {
 
 
 
-              <IonItem>{selectedDate ?? ""}</IonItem>
+              {/* <IonItem>{selectedDate ?? ""}</IonItem> */}
             </div>
             <div className="form-footer">
               <IonButton onClick={() => previous()}>Prev</IonButton>
