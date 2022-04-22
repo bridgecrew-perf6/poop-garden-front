@@ -51,9 +51,6 @@ const PoopSurvey: React.FC = () => {
     let totalDays = differenceInDays(current, bornDate)
     let totalOunces = totalDays * 14
     let totalPounds = Math.round(totalOunces / 16)
-    console.log(bornDate)
-    console.log(current)
-    console.log(totalDays)
     return totalPounds
     
     
