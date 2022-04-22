@@ -46,11 +46,14 @@ const PoopSurvey: React.FC = () => {
   const getTotalPoop = (info:any) => {
     /// function that will use the 3 states above (mostly the birthday) and turn it into a single poop number that i can send to the back
     let current = new Date()
-    let currentDate: any = new Date(`${current.getMonth()}-${current.getDate()}-${current.getFullYear()}`);
+    // let currentDate: any = new Date(`${current.getMonth()}-${current.getDate()}-${current.getFullYear()}`);
     let bornDate = new Date(info.selectedDate);
-    let totalDays = differenceInDays(currentDate, bornDate)
+    let totalDays = differenceInDays(current, bornDate)
     let totalOunces = totalDays * 14
     let totalPounds = Math.round(totalOunces / 16)
+    console.log(bornDate)
+    console.log(current)
+    console.log(totalDays)
     return totalPounds
     
     
@@ -64,13 +67,16 @@ const PoopSurvey: React.FC = () => {
       selectedDate: selectedDate,
       fiber: fiberValue,
     };
-    let poopInfo = getTotalPoop(formInfo)
+    let poopInfo = await getTotalPoop(formInfo)
+    // console.log(user.id, user.username, poopInfo)
 
-    let newPoopProfile = await createResourcePoop({
+    let postInfo = {
       user: user.id,
       nickname: user.username,
       poopInfo: poopInfo,
-    })
+    }
+    // console.log(poopInfo)
+    let newPoopProfile = await createResourcePoop(postInfo)
 
     console.log(newPoopProfile)
     //should end up push ing to tab3
