@@ -85,3 +85,5 @@ I think I have the accept functionality working. needs some testing to make sure
 ## day 26 april 18
 
 Completed request declone ability. Also added 3 step form to allow user to input poop information. right now total pounds of poop is just being console logged. It needs to be send to the back end to create/edit a poop profile.
+
+## days 27, 28, 29 april 19-21

@@ -168,7 +168,7 @@ const AddFriends: React.FC = () => {
                 if (
                   possibleFriend &&
                   user.username !== userInfo.username &&
-                  user.username.includes(`${possibleFriend}`)
+                  user.username.toLowerCase().includes(`${possibleFriend.toLowerCase()}`)
                 ) {
                   return (
                     <IonItem key={index}>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/react';
+// import { RefresherEventDetail } from '@ionic/core';
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 //connecting to state store
@@ -9,6 +11,7 @@ import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
 
 Chart.register(...registerables);
+
 
 const FriendsBarChart: React.FC = () => {
   // variables retrieved from global state
