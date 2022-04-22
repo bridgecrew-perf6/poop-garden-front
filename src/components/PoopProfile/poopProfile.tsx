@@ -8,6 +8,7 @@ import {
   IonAvatar,
   IonText,
   IonButton,
+  useIonViewWillLeave,
 } from "@ionic/react";
 import { ribbonOutline } from "ionicons/icons";
 // import { FriendStore } from "../../store";
@@ -51,6 +52,10 @@ const AllPoopProfile: React.FC = () => {
   useEffect(() => {
     setShowPoopSurvey(false)
   },[userInfo]);
+
+  useIonViewWillLeave(() => {
+    setShowPoopSurvey(false);
+  });
 
   // console.log(userPoop);
 

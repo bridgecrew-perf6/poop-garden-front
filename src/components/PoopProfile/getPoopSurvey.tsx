@@ -32,7 +32,7 @@ const PoopSurvey: React.FC = () => {
   const { createResourcePoop } = useResourcePoop();
 
   const [q1selected, setq1Selected] = useState<string>('avg');
-  const [selectedDate, setSelectedDate] = useState<any>();
+  const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [fiberValue, setFiberValue] = useState<any>(5);
 
   const router = useIonRouter();
