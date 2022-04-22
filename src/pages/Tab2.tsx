@@ -20,18 +20,24 @@ import SkeletonFriends from "../components/SkeletonFriends/skeletonfriends";
 
 import { UserStore } from "../store";
 import { FriendStore } from "../store";
+import { PoopStore } from "../store";
 import { useStoreState } from "pullstate";
 import { getUserInfo } from "../store/Selectors";
 import useResourceFriends from "../hooks/useResourceFriends";
+import useResourcePoop from "../hooks/useResourcePoop"
 
 const Tab2: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   const { resourcesFriends } = useResourceFriends();
+  const { resourcesPoop } = useResourcePoop();
 
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
     console.log('Begin async operation');
   
     setTimeout(() => {
+      PoopStore.update((s) => {
+        s.poopProfiles = resourcesPoop;
+      });
       FriendStore.update((s) => {
         s.friends = resourcesFriends;
       });
