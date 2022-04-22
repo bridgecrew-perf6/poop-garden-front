@@ -4,13 +4,15 @@ import {
   IonLabel,
   IonButton,
   IonAvatar,
-  IonBadge,
+  IonBadge, IonContent, IonRefresher, IonRefresherContent
 } from "@ionic/react";
+import { RefresherEventDetail } from '@ionic/core';
 import { FriendStore } from "../../store";
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import { useStoreState } from "pullstate";
 import { getUserInfo, getFriends, getPoopProfiles } from "../../store/Selectors";
+import useResourceFriends from "../../hooks/useResourceFriends";
 
 // import useResourceFriends from "../../hooks/useResourceFriends";
 
@@ -18,9 +20,18 @@ const FriendsList: React.FC = () => {
   const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
+  const { resourcesFriends } = useResourceFriends();
 
-  // const { resourcesFriends } = useResourceFriends();
-
+  function doRefresh(event: CustomEvent<RefresherEventDetail>) {
+    console.log('Begin async operation');
+  
+    setTimeout(() => {
+      FriendStore.update((s) => {
+        s.friends = resourcesFriends;
+      });
+      event.detail.complete();
+    }, 2000);
+  }
 
 
   const hasPoopProfile = (friend: any) => {
@@ -39,12 +50,12 @@ const FriendsList: React.FC = () => {
     }
   };
 
-  // console.log(friends)
-  // console.log(poopProfiles)
-  // console.log(userInfo)
 
   return (
-    <>
+    <IonContent>
+      <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
+        <IonRefresherContent ></IonRefresherContent>
+      </IonRefresher>
       {(friends) && (friends.length > 0) ? (
         <IonList>
           {
@@ -82,7 +93,7 @@ const FriendsList: React.FC = () => {
           Looks like you need some bathroom buddies!
         </h1>
       )}
-    </>
+    </IonContent>
   );
 };
 

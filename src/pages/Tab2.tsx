@@ -7,27 +7,20 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-} from "@ionic/react"; // IonItem, IonAvatar, IonImg, IonLabel, IonList
+} from "@ionic/react";
 import React, { useState } from "react";
 import "./Tab2.scss";
 import FriendsBarChart from "../components/Charts/friendsBarChart";
 import FriendsPieChart from "../components/Charts/friendsPieChart";
 import PoopProfile from "../components/PoopProfile/poopProfile";
 import AllPoopProfile from "../components/AllPoopProfile/allPoopProfile";
-// import { useAuth } from "../contexts/auth.js";
 import SkeletonFriends from "../components/SkeletonFriends/skeletonfriends";
 
-// import Card from '../components/Card'
-// import Charty from '../components/Charty/charty';
-
 import { UserStore } from "../store";
-// import { PoopStore } from '../store';
-// import { FriendStore } from '../store';
 import { useStoreState } from "pullstate";
 import { getUserInfo } from "../store/Selectors";
 
 const Tab2: React.FC = () => {
-  // const { user } = useAuth();
   const userInfo = useStoreState(UserStore, getUserInfo);
 
   const [segment, setSegment] = useState<any>("user");

@@ -64,7 +64,6 @@ const Tab4: React.FC = () => {
       break;
   }
 
-  // console.log(user)
   return (
     <IonPage>
       <IonHeader>
