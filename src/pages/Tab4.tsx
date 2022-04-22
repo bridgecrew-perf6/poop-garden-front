@@ -32,7 +32,6 @@ const Tab4: React.FC = () => {
   // resources hook variables
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
-
   const userInfo = useStoreState(UserStore, getUserInfo);
 
   // bringing all of our necessary api information into state and editing when necessary
@@ -43,9 +42,7 @@ const Tab4: React.FC = () => {
     });
     FriendStore.update((s) => {
       s.friends = resourcesFriends;
-
     });
-
     PoopStore.update((s) => {
       s.poopProfiles = resourcesPoop;
     });
@@ -70,7 +67,6 @@ const Tab4: React.FC = () => {
     });
     FriendStore.update((s) => {
       s.friends = [];
-
     });
     PoopStore.update((s) => {
       s.poopProfiles = [];
