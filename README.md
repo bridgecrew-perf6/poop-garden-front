@@ -28,19 +28,19 @@ connected my frontend to backend. am now pulling from my api and showing it in a
 
 am making differnt api calls now for different information. the friends list currently pull all users and shows their info. The poop statistics page now only shows a bar chart for the user signed in.
 
-i also applied some conditional rendering to make sure the user is logged in. once the user signs in, and we pull their info from the backend, if we dont have a username to pull, we know they are not in the database, so we render a create user page. here the user will be prompted to enter a userName that will be saved to state. once the user submits the name, they will be saved to the database along with their name and email and redirecte3d to the poop statistics page.
+i also applied some conditional rendering to make sure the user is logged in. once the user signs in, and we pull their info from the backend, if we dont have a username to pull, we know they are not in the database, so we render a create user page. here the user will be prompted to enter a userName that will be saved to state. once the user submits the name, they will be saved to the database along with their name and email and redirected to the poop statistics page.
 
-Can now fully add a user to the database through the front end. the user can only look at the graphs if they hav inputed information. Tab 3 has been modified to make ti where the user poop information is grabbed. If they havent inputed information, there is an input box for them to do so. If they have, it will direct them to their graphs.
+Can now fully add a user to the database through the front end. the user can only look at the graphs if they have inputed information. Tab 3 has been modified to make to where the user poop information is grabbed. If they havent inputed information, there is an input box for them to do so. If they have, it will direct them to their graphs.
 
 ## days 8-11 march 27-31
 
-Spent the last 4 days working on the API, mostly the friends part of it I took a shot at writing some friends models and methods from scratch, but ended up going with a couple of libraries. I am glad i went through writing most of it, because it really helped me understand what is going on under the hood, but i like the expanded functionality of the third pary libraries. I am using django-friendships which is a library that helps creat friend, friend request, etc, models. I also used django-rest-friendships which is a wrapper around django-friendships to turn everything into api endpoints that i can reach from my front end. I also expanded my profile app so that once i expand past poop to other profiles, it wont be too hard to scale. tomorrow I want to focus on connecting the front and the back end. I think i still need to figure out some more authentication stuu to do that, but i want to be able to create a new user from the front end(which should also allow me to create a poop profile and friend list for that user)
+Spent the last 4 days working on the API, mostly the friends part of it I took a shot at writing some friends models and methods from scratch, but ended up going with a couple of libraries. I am glad i went through writing most of it, because it really helped me understand what is going on under the hood, but i like the expanded functionality of the third pary libraries. I am using django-friendships which is a library that helps create friend, friend request, etc, models. I also used django-rest-friendships which is a wrapper around django-friendships to turn everything into api endpoints that i can reach from my front end. I also expanded my profile app so that once i expand past poop to other profiles, it wont be too hard to scale. tomorrow I want to focus on connecting the front and the back end. I think i still need to figure out some more authentication stuff to do that, but i want to be able to create a new user from the front end(which should also allow me to create a poop profile and friend list for that user)
 
 ## day 12 april 1
 
 made some pretty cool changes in my ionic front end. put all of the routes/tabs into a list so that i can easily traverse through it as well as add new tabs or routes.
 
-On the backend, i installed jwt to my django api and can now sign in with a token or on the views. I also added the ability to sign in from my react app. tomorrw i will go back into the react app to connect via token
+On the backend, I installed jwt to my django api and can now sign in with a token or on the views. I also added the ability to sign in from my react app. tomorrw I will go back into the react app to connect via token
 
 ## day 13 april 2
 
@@ -52,11 +52,11 @@ switched from auth0 to my own custom auth to work in tandem with my django autho
 
 ## days 15-16 april 4-5
 
-a loooong couple of days. Ihave really been struggling with different api calls and how to mich multiple together. today i refactored my entire pullstate store into seperate stores for each of the api pulls i need(user info, friends info, and poop profiles) as well as connecting to reselect. These 2 together allow me to just pull in what i need from the api when the user first logs in, and then it will be saved there for me to grab what i need from it whenever. I was also able to write a function directly in my friends store(took it out later) that grabs the poop information of every friend from their poop profile and saves it their friend profile. tomorrow i think i should finally be able to actually render a friends list
+a loooong couple of days. I have really been struggling with different api calls and how to make multiple together. today i refactored my entire pullstate store into seperate stores for each of the api pulls I need(user info, friends info, and poop profiles) as well as connecting to reselect. These 2 together allow me to just pull in what I need from the api when the user first logs in, and then it will be saved there for me to grab what I need from it whenever. I was also able to write a function directly in my friends store(took it out later) that grabs the poop information of every friend from their poop profile and saves it their friend profile. tomorrow i think i should finally be able to actually render a friends list
 
 ## days 17-18 april 6-7
 
-I have been working a lot with the passing around of my state the last couple of days. i took a function out of my store and put it directly in my component which solved alot of problems. I am now doing all of my loading from my sign in page. I am also adding the user to their own friends list. once the user signs in, i am rendering a friends list, and i can now navgate to the poop statistics tab and see a bar chart of friends including the user. next up is adding a pie chart and then starting to tackle the segments.
+I have been working a lot with the passing around of my state the last couple of days. i took a function out of my store and put it directly in my component which solved a lot of problems. I am now doing all of my loading from my sign in page. I am also adding the user to their own friends list. once the user signs in, I am rendering a friends list, and I can now navgate to the poop statistics tab and see a bar chart of friends including the user. next up is adding a pie chart and then starting to tackle the segments.
 
 ## april 8-10
 
@@ -64,11 +64,11 @@ Rest days, and boy did i need them. need to remember to take days off
 
 ## day 19 april 11
 
-was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I also changed a bit of the color theme. lastly i used bottts via dicebear avatars to give each user a robot avatar.
+was able to tackle the Ionic segments. those plus a switch has given me some cool functionality for my stats page. I also changed a bit of the color theme. lastly I used bottts via dicebear avatars to give each user a robot avatar.
 
 ## days 20, 21 april 12, 13
 
-worked on the backend a bit to allow the ability to create a new user with a hashed password. Also have a functional sign in and out page. added the ability to create a user from the front end. once the user is created, they are signed in but have no information. once the user is signed in they are taken to their friends list which just shows a string until they have friends. i created an input to search for friends, and right now it just console logs the search result.
+worked on the backend a bit to allow the ability to create a new user with a hashed password. Also have a functional sign in and out page. added the ability to create a user from the front end. once the user is created, they are signed in but have no information. once the user is signed in they are taken to their friends list which just shows a string until they have friends. I created an input to search for friends, and right now it just console logs the search result.
 
 ## days 22 april 14
 
