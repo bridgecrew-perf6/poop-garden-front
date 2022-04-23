@@ -4,6 +4,7 @@ import {
   IonInput,
   useIonRouter,
   IonLabel,
+  IonToast,
 } from "@ionic/react";
 import React, { useState } from "react";
 // import { useAuth } from '../../contexts/auth.js';
@@ -16,6 +17,7 @@ const SignupForm: React.FC = () => {
   const [tempName, setTempName] = useState<string>();
   const [tempPassword, setTempPassword] = useState<any>();
   const [tempEmail, setTempEmail] = useState<any>();
+  const [showToast, setShowToast] = useState(false);
   const router = useIonRouter();
   // const { user, login, logout } = useAuth();
   const { createResourceUsers } = useResourceUsers();
@@ -23,17 +25,27 @@ const SignupForm: React.FC = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    // login(tempName, tempPassword)
     createResourceUsers({
       username: tempName,
       email: tempEmail,
       password: tempPassword,
-    });
-    // login(tempName, tempPassword)
-    router.push("/tab1");
+    }).then(() => {
+      router.push("/tab1");
+    }).catch(() => {
+      setShowToast(true);
+    })
   };
 
   return (
+    <>
+    <IonToast
+        isOpen={showToast}
+        onDidDismiss={() => setShowToast(false)}
+        message="Unfortunately, that username has been taken"
+        duration={2000}
+        color="danger"
+        position="top"
+      />
     <form
       onSubmit={(e) => {
         handleSubmit(e);
@@ -60,6 +72,7 @@ const SignupForm: React.FC = () => {
         Sign Up
       </IonButton>
     </form>
+    </>
   );
 };
 
