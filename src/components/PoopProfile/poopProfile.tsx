@@ -2,7 +2,6 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  // IonCardSubtitle,
   IonCardTitle,
   IonIcon,
   IonAvatar,
@@ -11,7 +10,6 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import { ribbonOutline } from "ionicons/icons";
-// import { FriendStore } from "../../store";
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import {
@@ -22,18 +20,13 @@ import {
 import { useStoreState } from "pullstate";
 import React, { useState, useEffect } from "react";
 import PoopSurvey from "./getPoopSurvey";
-// import { useAuth } from "../../contexts/auth.js";
+import UhaulComp from "./uhaulcomp"
 import "./poopProfile.scss";
 
 const AllPoopProfile: React.FC = () => {
-  // const { user } = useAuth();
 
-  // const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
-
-  // const [userPoop, setUserPoop] = useState();
-  // const [userId, setUserId] = useState();
   const [showPoopSurvey, setShowPoopSurvey] = useState<boolean>(false);
 
   const checkForUserPoop = (id: any) => {
@@ -61,9 +54,6 @@ const AllPoopProfile: React.FC = () => {
 
   return (
     <>
-      {/* {showPoopSurvey ?
-    
-      <PoopSurvey /> : */}
       {userInfo && poopProfiles && (showPoopSurvey===false) ? (
         <div>
           <IonCard>
@@ -104,11 +94,12 @@ const AllPoopProfile: React.FC = () => {
               )}
             </IonCardContent>
           </IonCard>
+          {checkForUserPoop(userInfo.id) ? <UhaulComp /> : ""}
         </div>
       ) : (
         ""
       )}
-      {showPoopSurvey?<PoopSurvey />:""}
+      {showPoopSurvey ? <PoopSurvey /> : ""}
     </>
   );
 };
