@@ -4,6 +4,7 @@ import { IonList,
   // IonThumbnail,
   IonImg,
   IonLabel,
+  IonText,
 } from '@ionic/react';
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
@@ -38,7 +39,7 @@ const UhaulComp: React.FC = () => {
 //     'Uhaul 26ft Moving Truck': string;
 // }
 
-  const vehicles: any = {'Uhaul Pickup Truck': 'assets/img/uhaul-pickup-SM.png', 'Uhaul 10 Foot Truck': 'assets/img/10Small.png', 'Uhaul Cargo Van': 'assets/img/uhaul-cargo-van-SM.png', 'Uhaul 15 Foot Truck': 'assets/img/15Small.png', 'Uhaul 26ft Moving Truck': 'assets/img/26Small.png'}
+  const vehicles: any = {'Uhaul Pickup Truck': 'assets/img/uhaul-pickup-SM.png', 'Uhaul 10 Foot Truck': 'assets/img/10Small.png', 'Uhaul Cargo Van': 'assets/img/uhaul-cargo-van-SM.png', 'Uhaul 15 Foot Truck': 'assets/img/15Small.png', 'Uhaul 26ft Moving Truck': 'assets/img/26Small.png', 'Standard Shopping Cart': 'assets/img/cart.png'}
   
 
   const getTruck = async () => {
@@ -73,6 +74,10 @@ const UhaulComp: React.FC = () => {
       totalTrucks.push('Uhaul Pickup Truck')
       goal -= 1980;
     }
+    while (goal > 1100){
+      totalTrucks.push('Standard Shopping Cart')
+      goal -= 1100;
+    }
     setTrucksNeeded(totalTrucks);
     setLeftOver(goal)
     
@@ -92,19 +97,24 @@ const UhaulComp: React.FC = () => {
   return (
     <>
     {trucksNeeded && leftOver ?
+    <>
+      <IonText color="tertiary">
+        <h3>
+          {`If you filled all of these to their maximum weight capacity, you would still have ${leftOver} pounds of crap left over!`}
+        </h3>
+      </IonText>
       <IonList>
       {trucksNeeded.map((truck: any, index: number) => (
         <IonItem key={index}>
-          <IonImg src={vehicles[truck]} />
-          <IonLabel></IonLabel>
+          <IonImg src={vehicles[truck]} alt={`picture of ${truck}`}/>
+          <IonLabel >{truck}</IonLabel>
         </IonItem>
         
-      ))}
-      <h2>
-        {leftOver}
-      </h2>
-    </IonList>
+        ))}
+
+      </IonList>
       
+    </>
     :
     ""  
     }
