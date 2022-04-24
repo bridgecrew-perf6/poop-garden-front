@@ -4,7 +4,6 @@ import { IonList,
   // IonThumbnail,
   IonImg,
   IonLabel,
-  IonText
 } from '@ionic/react';
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
