@@ -8,7 +8,6 @@ import {
   IonContent,
   IonRefresher,
   IonRefresherContent,
-  IonModal,
 } from "@ionic/react";
 import { RefresherEventDetail } from "@ionic/core";
 import { FriendStore } from "../../store";
@@ -22,6 +21,7 @@ import {
 } from "../../store/Selectors";
 import useResourceFriends from "../../hooks/useResourceFriends";
 import React, { useState } from "react";
+import FriendCard from "../FriendCard/friendCard"
 
 const FriendsList: React.FC = () => {
   //global state variables
@@ -32,8 +32,8 @@ const FriendsList: React.FC = () => {
   const { resourcesFriends } = useResourceFriends();
   //Local State Variables
   const [openFriendModal, setOpenFriendModal] = useState<boolean>(false);
-  const [chosenFriendPoop, setChosenFriendPoop] = useState<number>();
-  const [chosenFriendName, setChosenFriendName] = useState<string>();
+  const [chosenFriendPoop, setChosenFriendPoop] = useState<number>(0);
+  const [chosenFriendName, setChosenFriendName] = useState<string>('');
 
   //function for pulldown refresh
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -78,9 +78,10 @@ const FriendsList: React.FC = () => {
     setOpenFriendModal(true);
   };
 
-  const closeModal = () => {
-    setOpenFriendModal(false);
-  };
+  // const closeModal = () => {
+  //   setOpenFriendModal(false);
+  // };
+
 
   return (
     <IonContent>
@@ -133,16 +134,7 @@ const FriendsList: React.FC = () => {
               )
             }
           </IonList>
-          <IonModal
-            isOpen={openFriendModal}
-            onDidDismiss={closeModal}
-            breakpoints={[0, 0.2, 0.5, 1]}
-            initialBreakpoint={0.5}
-            backdropBreakpoint={0.2}
-          >
-            <h1 className="ion-text-center">{chosenFriendName}</h1>
-            <h3 className="ion-text-center">{`${chosenFriendPoop} Pounds of Poop!!`}</h3>
-          </IonModal>
+          <FriendCard chosenFriendPoop={chosenFriendPoop} chosenFriendName={chosenFriendName} openFriendModal={openFriendModal} setOpenFriendModal={setOpenFriendModal}/>
         </>
       ) : (
         <h1 className="ion-text-center">

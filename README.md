@@ -93,3 +93,7 @@ completed ability to fill out poop profile and send it to the back end to be sav
 ## days 32-33 april 24-25
 
 Added some very cool graphics to the user poop profile. the poop profiles now show how many uhaul vehicles the users poop could fill up. also the vie button on the friends list shows the friends name and their poop total. that just needs to be spiffed up next.
+
+## day 34 april 26
+
+componetized the friend modal which required learning how to pass hooks as props in typescript. learning typscript has been an unexpected hurdle in this project, but i'm getting the hang of it and might be one of the most important things i learn from this. Also was able to use the same concept to create a bar graph component on the friend card. Next up I want 1 more component on the friends card and one more in the user's poop profile
