@@ -8,7 +8,6 @@ import { useStoreState } from "pullstate";
 const UhaulComp: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
-  // const [userPoop, setUserPoop] = useState<any>()
   const [trucksNeeded, setTrucksNeeded] = useState<any>();
   const [leftOver, setLeftOver] = useState<any>();
 
@@ -66,8 +65,8 @@ const UhaulComp: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [poopProfiles, userInfo]);
 
-  console.log(trucksNeeded);
-  console.log(leftOver);
+  // console.log(trucksNeeded);
+  // console.log(leftOver);
 
   return (
     <>

@@ -89,3 +89,7 @@ Completed request declone ability. Also added 3 step form to allow user to input
 ## days 27-31 april 19-23
 
 completed ability to fill out poop profile and send it to the back end to be saved. also spent a bunch of time to get the survey to unrender once finished. it took me way too long to find the "componentWillUnmount" function. Also added a bunch more error handling. The individual pages are all conditionally rendered so everything is smoother when logging out. i am also clearing the global state out now when user logs out which has helped clear things up. major error handling added to the login page. if a user enters an incorrect name or password, the app doesnt break anymore, they just get a toast alert. the same goes for tyring to create a user with a name that already exists.
+
+## days 32-33 april 24-25
+
+Added some very cool graphics to the user poop profile. the poop profiles now show how many uhaul vehicles the users poop could fill up. also the vie button on the friends list shows the friends name and their poop total. that just needs to be spiffed up next.
