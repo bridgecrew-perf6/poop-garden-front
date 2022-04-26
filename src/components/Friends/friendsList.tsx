@@ -97,8 +97,8 @@ const FriendsList: React.FC = () => {
         <>
           <IonList>
             {
-              // eslint-disable-next-line array-callback-return
               friends.map(
+                // eslint-disable-next-line array-callback-return
                 (friend: any, index: React.Key | null | undefined) => {
                   // taking user out so that they are not on their own friendsList
                   if (friend.username !== userInfo.username) {
