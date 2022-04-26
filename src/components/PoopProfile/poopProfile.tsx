@@ -56,7 +56,7 @@ const AllPoopProfile: React.FC = () => {
     <>
       {userInfo && poopProfiles && (showPoopSurvey===false) ? (
         <div>
-          <IonCard>
+          <IonCard color="light">
             <IonAvatar className="image-center">
               <img
                 src={`https://avatars.dicebear.com/api/bottts/${userInfo.id}.svg?colorful=true`}
