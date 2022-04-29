@@ -27,7 +27,7 @@ const FriendCard: React.FC<FriendProps> = ({
     <IonModal
       isOpen={openFriendModal}
       onDidDismiss={closeModal}
-      breakpoints={[0, 1]}
+      breakpoints={[0, 0.2, 0.5, 1]}
       initialBreakpoint={1}
       backdropBreakpoint={0.2}
     >

@@ -9,17 +9,36 @@ export const vehicles: any = {
 
 export const weightComparisons: any = {
   4600 : "the weight of a Rhinoceros",
-  // 6000 : "the weight of the tongue of a Blue Whale",
+  6000 : "the weight of the charging bull",
   8400 : "the weight of a Hippo",
   1300 : "the weight of a African Bush Elephant",
-  15760 : "the weight of a howitzer",
+  16000 : "the weight of a school bus",
   19400 : "the estimated weight of Tyrannosaurus Rex",
-  24900 : "the weight of the anchor of a cruise ship",
+  27000 : "the weight of the Hubble Space Telescope",
+  35000 : "the weight of a seme truck with an empty trailer",
   40000 : "the weight of a greyhound bus",
-  45000 : " the weight of an F-15 jet fighter",
+  45000 : "the weight of an F-15 jet fighter",
   50000 : "the weight of a fully loaded garbage truck",
   63000 : "the weight of a railroad boxcar",
   82000 : "the weight of a NYC subway car",
   100000 : "the weight of 2 Stonehenge Sarsen stones",
   220000 : "the weight of a space shuttle"
+}
+
+export const imageObject: any = {
+  "the weight of a Rhinoceros": "assets/img/rhino.jpeg",
+  "the weight of the charging bull" : "assets/img/bull.jpg",
+  "the weight of a Hippo" : "assets/img/hippo.jpeg",
+  "the weight of a African Bush Elephant" : "assets/img/elephant.jpeg",
+  "the weight of a school bus" : "assets/img/school.jpg",
+  "the estimated weight of Tyrannosaurus Rex" : "assets/img/trex.jpeg",
+  "the weight of the Hubble Space Telescope" : "assets/img/hubble.jpeg",
+  "the weight of a seme truck with an empty trailer" : "assets/img/semi.jpeg",
+  "the weight of a greyhound bus" : "assets/img/greyhound/jpeg",
+  "the weight of an F-15 jet fighter" : "assets/img/f-15.jpeg",
+  "the weight of a fully loaded garbage truck" : "assets/img/garbage/jpeg",
+  "the weight of a railroad boxcar" : "assets/img/boxcar.jpg",
+  "the weight of a NYC subway car" : "assets/img/subway.jpeg",
+  "the weight of 2 Stonehenge Sarsen stones" : "assets/img/sarsens.jpeg",
+  "the weight of a space shuttle" : "assets/img/shuttle.jpeg",
 }
