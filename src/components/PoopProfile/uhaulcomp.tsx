@@ -4,21 +4,13 @@ import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import { getUserInfo, getPoopProfiles } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
+import { vehicles } from "../../data/data"
 
 const UhaulComp: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
   const [trucksNeeded, setTrucksNeeded] = useState<any>();
   const [leftOver, setLeftOver] = useState<any>();
-
-  const vehicles: any = {
-    "Uhaul Pickup Truck": "assets/img/uhaul-pickup-SM.png",
-    "Uhaul 10 Foot Truck": "assets/img/10Small.png",
-    "Uhaul Cargo Van": "assets/img/uhaul-cargo-van-SM.png",
-    "Uhaul 15 Foot Truck": "assets/img/15Small.png",
-    "Uhaul 26ft Moving Truck": "assets/img/26Small.png",
-    "Standard Shopping Cart": "assets/img/cart.png",
-  };
 
   const getTruck = async () => {
     let totalTrucks: any = [];
