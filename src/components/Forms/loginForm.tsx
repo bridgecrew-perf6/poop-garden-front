@@ -21,7 +21,7 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     login(tempName, tempPassword)
     .then(() => {
-      router.push("/tab2");
+      router.push("/tab1");
     }).catch(() => {
       // console.log('wrong password')
       setShowToast(true);
