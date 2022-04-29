@@ -29,7 +29,7 @@ export const imageObject: any = {
   "the weight of a Rhinoceros": "assets/img/rhino.jpeg",
   "the weight of the charging bull" : "assets/img/bull.jpg",
   "the weight of a Hippo" : "assets/img/hippo.jpeg",
-  "the weight of a African Bush Elephant" : "assets/img/elephant.jpeg",
+  "the weight of an African Bush Elephant" : "assets/img/elephant.jpeg",
   "the weight of a school bus" : "assets/img/school.jpg",
   "the estimated weight of Tyrannosaurus Rex" : "assets/img/trex.jpeg",
   "the weight of the Hubble Space Telescope" : "assets/img/hubble.jpeg",
