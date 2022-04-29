@@ -7,23 +7,23 @@ export const vehicles: any = {
   "Standard Shopping Cart": "assets/img/cart.png",
 };
 
-export const weightComparisons: any = {
-  4600 : "the weight of a Rhinoceros",
-  6000 : "the weight of the charging bull",
-  8400 : "the weight of a Hippo",
-  1300 : "the weight of a African Bush Elephant",
-  16000 : "the weight of a school bus",
-  19400 : "the estimated weight of Tyrannosaurus Rex",
-  27000 : "the weight of the Hubble Space Telescope",
-  35000 : "the weight of a seme truck with an empty trailer",
-  40000 : "the weight of a greyhound bus",
-  45000 : "the weight of an F-15 jet fighter",
-  50000 : "the weight of a fully loaded garbage truck",
-  63000 : "the weight of a railroad boxcar",
-  82000 : "the weight of a NYC subway car",
-  100000 : "the weight of 2 Stonehenge Sarsen stones",
-  220000 : "the weight of a space shuttle"
-}
+// export const weightComparisons: any = {
+//   4600 : "the weight of a Rhinoceros",
+//   6000 : "the weight of the charging bull",
+//   8400 : "the weight of a Hippo",
+//   13000 : "the weight of an African Bush Elephant",
+//   16000 : "the weight of a school bus",
+//   19400 : "the estimated weight of Tyrannosaurus Rex",
+//   27000 : "the weight of the Hubble Space Telescope",
+//   35000 : "the weight of a seme truck with an empty trailer",
+//   40000 : "the weight of a greyhound bus",
+//   45000 : "the weight of an F-15 jet fighter",
+//   50000 : "the weight of a fully loaded garbage truck",
+//   63000 : "the weight of a railroad boxcar",
+//   82000 : "the weight of a NYC subway car",
+//   100000 : "the weight of 2 Stonehenge Sarsen stones",
+//   220000 : "the weight of a space shuttle"
+// }
 
 export const imageObject: any = {
   "the weight of a Rhinoceros": "assets/img/rhino.jpeg",

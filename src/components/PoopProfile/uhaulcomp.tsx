@@ -12,7 +12,7 @@ const UhaulComp: React.FC = () => {
   const [trucksNeeded, setTrucksNeeded] = useState<any>();
   const [leftOver, setLeftOver] = useState<any>();
 
-  const getTruck = async () => {
+  const getTruck = () => {
     let totalTrucks: any = [];
     let goal: any;
     for (let i = 0; i < poopProfiles.length; i++) {
