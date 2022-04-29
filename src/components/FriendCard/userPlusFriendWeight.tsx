@@ -73,7 +73,7 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
         <>
           <IonText>
           <h1 className="ion-text-center">Your poop combined weighs {duoTotal}</h1>
-          <p>That is more than {duoItem}</p>
+          <p className="ion-text-center">That is more than {duoItem}</p>
 
           </IonText>
           <IonImg src={imageObject[duoItem]} />
