@@ -7,7 +7,8 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonRefresher, IonRefresherContent
+  IonRefresher,
+  IonRefresherContent
 } from "@ionic/react";
 import { RefresherEventDetail } from '@ionic/core';
 import React, { useState } from "react";
