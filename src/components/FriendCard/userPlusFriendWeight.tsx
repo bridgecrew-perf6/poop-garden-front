@@ -38,20 +38,30 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
       setDuoItem("the weight of a seme truck with an empty trailer")
     } else if (pounds > 27000){
       setDuoItem("the weight of the Hubble Space Telescope")
-    } else if (pounds > 19400){
+    } else if (pounds > 22000){
+      setDuoItem("the weight of a Blackhawk helicopter")
+    }  else if (pounds > 19400){
       setDuoItem("the estimated weight of Tyrannosaurus Rex")
     } else if (pounds > 16000){
       setDuoItem("the weight of a school bus")
     } else if (pounds > 13000){
       setDuoItem("the weight of an African Bush Elephant")
+    } else if (pounds > 10000){
+      setDuoItem("the minimum weight of a monster truck")
     } else if (pounds > 8400){
       setDuoItem("the weight of a hippo")
+    } else if (pounds > 7000){
+      setDuoItem("the weight of a large limosuine")
     } else if (pounds > 6000){
       setDuoItem("the weight of the charging bull")
+    } else if (pounds > 5000){
+      setDuoItem("the weight of a small forklift")
     } else if (pounds > 4600){
       setDuoItem("the weight of a Rhinoceros")
     } 
   }
+
+
 
   useEffect(() => {
     if (userInfo && poopProfiles && chosenFriendPoop) {
@@ -72,7 +82,7 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
       {duoTotal && duoItem ? (
         <>
           <IonText>
-          <h1 className="ion-text-center">Your poop combined weighs {duoTotal}</h1>
+          <h1 className="ion-text-center">Your poop combined weighs {duoTotal} pounds</h1>
           <p className="ion-text-center">That is more than {duoItem}</p>
 
           </IonText>

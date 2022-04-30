@@ -34,6 +34,8 @@ const FriendsList: React.FC = () => {
   const [openFriendModal, setOpenFriendModal] = useState<boolean>(false);
   const [chosenFriendPoop, setChosenFriendPoop] = useState<number>(0);
   const [chosenFriendName, setChosenFriendName] = useState<string>('');
+  // const [viewButton, setViewButton] = useState<boolean>(false);
+  
 
   //function for pulldown refresh
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -119,14 +121,16 @@ const FriendsList: React.FC = () => {
                             {hasPoopProfile(friend)[0]}
                           </IonBadge>
                         </IonLabel>
+                        {hasPoopProfile(friend)[0]==="poop info" ?
                         <IonButton
-                          fill="outline"
-                          slot="end"
-                          color="medium"
-                          onClick={() => openModal(friend)}
+                        fill="outline"
+                        slot="end"
+                        color="medium"
+                        onClick={() => openModal(friend)}
                         >
                           View
-                        </IonButton>
+                        </IonButton> :
+                        ""}
                       </IonItem>
                     );
                   }
