@@ -21,10 +21,12 @@ import { useAuth } from "../contexts/auth.js";
 //useResource hooks
 import useResourcePoop from "../hooks/useResourcePoop";
 import useResourceFriends from "../hooks/useResourceFriends";
+// import { SplashScreen } from '@capacitor/splash-screen';
 import LoginForm from "../components/Forms/loginForm";
 import SignupForm from "../components/Forms/signupForm";
 
 // This is basically a landing page where the user can sign in. It is also used to grab all of the information that we need from the backend and store it in state.
+
 
 const Tab4: React.FC = () => {
   // Auth Variables
@@ -33,7 +35,6 @@ const Tab4: React.FC = () => {
   const { resourcesPoop } = useResourcePoop();
   const { resourcesFriends } = useResourceFriends();
   const userInfo = useStoreState(UserStore, getUserInfo);
-
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
 
@@ -116,7 +117,8 @@ const Tab4: React.FC = () => {
             {component}
           </div>
         )}
-        <h1 className="ion-text-center">💩Welcome to the Poop Garden!💩</h1>
+        <h1 className="ion-text-center">💩Welcome to QuickPoops!💩</h1>
+        
       </IonContent>
     </IonPage>
   );
