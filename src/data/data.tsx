@@ -41,4 +41,8 @@ export const imageObject: any = {
   "the weight of a NYC subway car" : "assets/img/subway.jpeg",
   "the weight of 2 Stonehenge Sarsen stones" : "assets/img/sarsens.jpeg",
   "the weight of a space shuttle" : "assets/img/shuttle.jpeg",
+  "the minimum weight of a monster truck" : "assets/img/monster.jpeg",
+  "the weight of a Blackhawk helicopter" : "assets/img/blackhawk.jpeg",
+  "the weight of a small forklift" : "assets/img/forklift.jpeg",
+  "the weight of a large limosuine" : "assets/img/limo.jpeg"
 }
