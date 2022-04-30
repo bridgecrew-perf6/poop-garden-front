@@ -3,13 +3,13 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonIcon,
+  // IonIcon,
   IonAvatar,
   IonText,
   IonButton,
   useIonViewWillLeave,
 } from "@ionic/react";
-import { ribbonOutline } from "ionicons/icons";
+// import { ribbonOutline } from "ionicons/icons";
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import {
@@ -22,6 +22,7 @@ import React, { useState, useEffect } from "react";
 import PoopSurvey from "./getPoopSurvey";
 import UhaulComp from "./uhaulcomp"
 import "./poopProfile.scss";
+import { Share } from '@capacitor/share';
 
 const AllPoopProfile: React.FC = () => {
 
@@ -41,6 +42,15 @@ const AllPoopProfile: React.FC = () => {
 
     return null;
   };
+
+  const sharePoop = () => {
+    Share.share({
+      title: 'QuickPoops',
+      text: 'calculate a lifetime of poop',
+      url: 'http://iridescent-maamoul-4cbbf2.netlify.app/',
+      dialogTitle: 'Share your poop',
+    });
+  }
 
   useEffect(() => {
     setShowPoopSurvey(false)
@@ -73,10 +83,12 @@ const AllPoopProfile: React.FC = () => {
             <IonCardContent>
               {checkForUserPoop(userInfo.id) ? (
                 <>
-                  <IonIcon icon={ribbonOutline} size="large" />
                   <IonText>
+                    <p className="ion-text-center">
+                    {/* <IonIcon icon={ribbonOutline} size="large" /> */}
                     You have expended about {checkForUserPoop(userInfo.id)}{" "}
                     pounds of poop so far! What a feeling that must be!
+                    </p>
                   </IonText>
                 </>
               ) : (
@@ -94,7 +106,13 @@ const AllPoopProfile: React.FC = () => {
               )}
             </IonCardContent>
           </IonCard>
-          {checkForUserPoop(userInfo.id) ? <UhaulComp /> : ""}
+          {checkForUserPoop(userInfo.id) ?
+          <div>
+            <UhaulComp />
+            <IonButton expand="full" onClick={() => sharePoop()}>Share yo shit with the world!</IonButton>
+          </div>
+          :
+          ""}
         </div>
       ) : (
         ""
