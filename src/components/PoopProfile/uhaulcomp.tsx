@@ -65,7 +65,7 @@ const UhaulComp: React.FC = () => {
       {trucksNeeded && leftOver ? (
         <>
           <IonText color="tertiary">
-            <h3>
+            <h3 className="ion-text-center">
               {`If you filled all of these to their maximum weight capacity, you would still have ${leftOver} pounds of crap left over!`}
             </h3>
           </IonText>

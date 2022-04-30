@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import "./Tab3.scss";
-import { Share } from '@capacitor/share';
+// import { Share } from '@capacitor/share';
 // import { MyStore } from '../store'
 
 import React from "react";
@@ -8,12 +8,7 @@ import React from "react";
 // import { text } from 'ionicons/icons';
 
 const Tab3: React.FC = () => {
-  Share.share({
-    title: 'See cool stuff',
-    text: 'Really awesome thing you need to see right meow',
-    url: 'http://ionicframework.com/',
-    dialogTitle: 'Share with buddies',
-  });
+  
   // Right now you absolutely have to start on tab 2 on every refresh. will haveto see how i feel about that in the long run
 
   // const PoopProfileInfo = MyStore.useState(s => s.PoopProfileInfo);

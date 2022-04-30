@@ -31,7 +31,7 @@ export const pages = [
     path: "/tab3",
     icon: paperPlaneOutline,
     component: Tab3,
-    isTab: true,
+    isTab: false,
     redirect: false,
   },
   {
