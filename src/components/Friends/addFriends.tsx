@@ -10,6 +10,7 @@ import {
   IonIcon,
   IonBadge,
   IonText,
+  IonContent,
 } from "@ionic/react";
 import { personAddOutline } from "ionicons/icons";
 import { FriendStore } from "../../store";
@@ -120,7 +121,7 @@ const AddFriends: React.FC = () => {
       {possibleFriend ? (
         ""
       ) : (
-        <>
+        <IonContent>
           <IonText>
             <h2 className="ion-text-center">
               You cant just go snooping around people's crap!
@@ -145,7 +146,7 @@ const AddFriends: React.FC = () => {
               <IonIcon icon={personAddOutline} />
             </IonFabButton>
           </IonFab>
-        </>
+        </IonContent>
       )}
 
       <IonItem>

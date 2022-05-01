@@ -97,3 +97,7 @@ Added some very cool graphics to the user poop profile. the poop profiles now sh
 ## day 34 april 26
 
 componetized the friend modal which required learning how to pass hooks as props in typescript. learning typscript has been an unexpected hurdle in this project, but i'm getting the hang of it and might be one of the most important things i learn from this. Also was able to use the same concept to create a bar graph component on the friend card. Next up I want 1 more component on the friends card and one more in the user's poop profile
+
+## days 35-38 april 27-may 1
+
+I was able to add a combined weight item in the friend card. I also created a weight comparison Item in the user poop profile. I was able to use the same object to grab the pictures for those 2 because i refactored my code to hold all of my data objects in 1 file. this makes my code much dryer. I was also able to dive into capacitor. I am using it to give the user the ability to sharte the app or a screenshot of it with a friend. It is really cool and does most of the work connecting natively to the phone. I also implemented Lazy loading to make my app not take too long to load. it looks like it working, but i definitely want to spiff up the "Loading" situation, which looks like it might be its own component. perhaps i can make it the skeletonFriends screen to start and then move to a splash screen.
