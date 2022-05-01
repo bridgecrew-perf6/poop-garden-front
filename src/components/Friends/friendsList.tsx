@@ -79,10 +79,6 @@ const FriendsList: React.FC = () => {
     setOpenFriendModal(true);
   };
 
-  // const closeModal = () => {
-  //   setOpenFriendModal(false);
-  // };
-
   return (
     <>
       {friends && friends.length > 0 ? (

@@ -4,7 +4,7 @@ import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import { getUserInfo, getPoopProfiles } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
-import { vehicles } from "../../data/data"
+import { vehicles, weightCapacities } from "../../data/data"
 
 const UhaulComp: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
@@ -12,6 +12,7 @@ const UhaulComp: React.FC = () => {
   const [trucksNeeded, setTrucksNeeded] = useState<any>();
   const [leftOver, setLeftOver] = useState<any>();
 
+  //uses dataObjects to figure out what array of trucks to display
   const getTruck = () => {
     let totalTrucks: any = [];
     let goal: any;
@@ -22,30 +23,16 @@ const UhaulComp: React.FC = () => {
         goal = poopInfo;
       }
     }
-    while (goal > 9600) {
-      totalTrucks.push("Uhaul 26ft Moving Truck");
-      goal -= 9600;
-    }
-    while (goal > 6385) {
-      totalTrucks.push("Uhaul 15 Foot Truck");
-      goal -= 6385;
-    }
-    while (goal > 4000) {
-      totalTrucks.push("Uhaul Cargo Van");
-      goal -= 4000;
-    }
-    while (goal > 2810) {
-      totalTrucks.push("Uhaul 10 Foot Truck");
-      goal -= 2810;
-    }
-    while (goal > 1980) {
-      totalTrucks.push("Uhaul Pickup Truck");
-      goal -= 1980;
-    }
-    while (goal > 1100) {
-      totalTrucks.push("Standard Shopping Cart");
-      goal -= 1100;
-    }
+    
+    const weights = Object.keys(weightCapacities).reverse();
+
+    weights.forEach(key => {
+      while (goal > parseInt(key)) {
+        totalTrucks.push(weightCapacities[key]);
+        goal -= parseInt(key)
+      }
+    })
+
     setTrucksNeeded(totalTrucks);
     setLeftOver(goal);
   };
@@ -56,9 +43,6 @@ const UhaulComp: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [poopProfiles, userInfo]);
-
-  // console.log(trucksNeeded);
-  // console.log(leftOver);
 
   return (
     <>

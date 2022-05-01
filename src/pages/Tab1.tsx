@@ -50,7 +50,7 @@ const Tab1: React.FC = () => {
           }
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      {/* <IonContent fullscreen> */}
         {/* <IonHeader collapse='condense'>
           <IonToolbar>
             <IonTitle size='large'>Your Friends</IonTitle>
@@ -74,7 +74,7 @@ const Tab1: React.FC = () => {
         ) : (
           <SkeletonFriends />
         )}
-      </IonContent>
+      {/* </IonContent> */}
     </IonPage>
   );
 };
