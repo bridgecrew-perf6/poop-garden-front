@@ -21,7 +21,7 @@ import {
 } from "../../store/Selectors";
 import useResourceFriends from "../../hooks/useResourceFriends";
 import React, { useState } from "react";
-import FriendCard from "../FriendCard/friendCard"
+import FriendCard from "../FriendCard/friendCard";
 
 const FriendsList: React.FC = () => {
   //global state variables
@@ -33,9 +33,8 @@ const FriendsList: React.FC = () => {
   //Local State Variables
   const [openFriendModal, setOpenFriendModal] = useState<boolean>(false);
   const [chosenFriendPoop, setChosenFriendPoop] = useState<number>(0);
-  const [chosenFriendName, setChosenFriendName] = useState<string>('');
+  const [chosenFriendName, setChosenFriendName] = useState<string>("");
   // const [viewButton, setViewButton] = useState<boolean>(false);
-  
 
   //function for pulldown refresh
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -84,68 +83,72 @@ const FriendsList: React.FC = () => {
   //   setOpenFriendModal(false);
   // };
 
-
   return (
-    <IonContent>
-      <IonRefresher
-        slot="fixed"
-        onIonRefresh={doRefresh}
-        pullFactor={0.5}
-        pullMin={100}
-        pullMax={200}
-      >
-        <IonRefresherContent></IonRefresherContent>
-      </IonRefresher>
+    <>
       {friends && friends.length > 0 ? (
-        <>
+        <IonContent>
+          <IonRefresher
+            slot="fixed"
+            onIonRefresh={doRefresh}
+            pullFactor={0.5}
+            pullMin={100}
+            pullMax={200}
+          >
+            <IonRefresherContent></IonRefresherContent>
+          </IonRefresher>
           <IonList>
-            {
-              friends.map(
-                // eslint-disable-next-line array-callback-return
-                (friend: any, index: React.Key | null | undefined) => {
-                  // taking user out so that they are not on their own friendsList
-                  if (friend.username !== userInfo.username) {
-                    return (
-                      <IonItem key={index}>
-                        <IonAvatar>
-                          <img
-                            src={`https://avatars.dicebear.com/api/bottts/${friend.id}${friend.poopInfo}.svg?colorful=true`}
-                            alt={"little robot avatar for each person"}
-                          />
-                        </IonAvatar>
-                        <IonLabel>
-                          <h1>{friend.username}</h1>
-                          <h3>{friend.email}</h3>
-                          {/* <p>{friend.poopInfo}</p> */}
-                          <IonBadge color={hasPoopProfile(friend)[1]}>
-                            {hasPoopProfile(friend)[0]}
-                          </IonBadge>
-                        </IonLabel>
-                        {hasPoopProfile(friend)[0]==="poop info" ?
+            {friends.map(
+              // eslint-disable-next-line array-callback-return
+              (friend: any, index: React.Key | null | undefined) => {
+                // taking user out so that they are not on their own friendsList
+                if (friend.username !== userInfo.username) {
+                  return (
+                    <IonItem key={index}>
+                      <IonAvatar>
+                        <img
+                          src={`https://avatars.dicebear.com/api/bottts/${friend.id}${friend.poopInfo}.svg?colorful=true`}
+                          alt={"little robot avatar for each person"}
+                        />
+                      </IonAvatar>
+                      <IonLabel>
+                        <h1>{friend.username}</h1>
+                        <h3>{friend.email}</h3>
+                        {/* <p>{friend.poopInfo}</p> */}
+                        <IonBadge color={hasPoopProfile(friend)[1]}>
+                          {hasPoopProfile(friend)[0]}
+                        </IonBadge>
+                      </IonLabel>
+                      {hasPoopProfile(friend)[0] === "poop info" ? (
                         <IonButton
-                        fill="outline"
-                        slot="end"
-                        color="medium"
-                        onClick={() => openModal(friend)}
+                          fill="outline"
+                          slot="end"
+                          color="medium"
+                          onClick={() => openModal(friend)}
                         >
                           View
-                        </IonButton> :
-                        ""}
-                      </IonItem>
-                    );
-                  }
+                        </IonButton>
+                      ) : (
+                        ""
+                      )}
+                    </IonItem>
+                  );
                 }
-              )
-            }
+              }
+            )}
           </IonList>
-          <FriendCard chosenFriendPoop={chosenFriendPoop} chosenFriendName={chosenFriendName} openFriendModal={openFriendModal} setOpenFriendModal={setOpenFriendModal}/>
-        </>
+          <FriendCard
+            chosenFriendPoop={chosenFriendPoop}
+            chosenFriendName={chosenFriendName}
+            openFriendModal={openFriendModal}
+            setOpenFriendModal={setOpenFriendModal}
+          />
+        </IonContent>
       ) : (
         <h1 className="ion-text-center">
           Looks like you need some bathroom buddies!
         </h1>
       )}
-    </IonContent>
+    </>
   );
 };
 
