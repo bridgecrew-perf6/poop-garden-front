@@ -1,10 +1,10 @@
 import { IonImg, IonText } from "@ionic/react";
 import React, { useState, useEffect } from "react";
-import { imageObject } from "../../data/data";
 import { UserStore } from "../../store";
 import { PoopStore } from "../../store";
 import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
+import { imageObject, weightComparisons } from "../../data/data";
 
 interface FriendProps {
   chosenFriendPoop: number;
@@ -19,48 +19,16 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
   const [duoTotal, setDuoTotal] = useState<number>();
   const [duoItem, setDuoItem] = useState<any>();
 
+  
   const getItem = (pounds: number) => {
-    if (pounds > 220000){
-      setDuoItem("the weight of a space shuttle")
-    } else if (pounds > 100000){
-      setDuoItem("the weight of 2 Stonehenge Sarsen stones")
-    } else if (pounds > 82000){
-      setDuoItem("the weight of a NYC subway car")
-    } else if (pounds > 63000){
-      setDuoItem("the weight of a railroad boxcar")
-    } else if (pounds > 50000){
-      setDuoItem("the weight of a fully loaded garbage truck")
-    } else if (pounds > 45000){
-      setDuoItem("the weight of an F-15 jet fighter")
-    } else if (pounds > 40000){
-      setDuoItem("the weight of a greyhound bus")
-    } else if (pounds > 35000){
-      setDuoItem("the weight of a seme truck with an empty trailer")
-    } else if (pounds > 27000){
-      setDuoItem("the weight of the Hubble Space Telescope")
-    } else if (pounds > 22000){
-      setDuoItem("the weight of a Blackhawk helicopter")
-    }  else if (pounds > 19400){
-      setDuoItem("the estimated weight of Tyrannosaurus Rex")
-    } else if (pounds > 16000){
-      setDuoItem("the weight of a school bus")
-    } else if (pounds > 13000){
-      setDuoItem("the weight of an African Bush Elephant")
-    } else if (pounds > 10000){
-      setDuoItem("the minimum weight of a monster truck")
-    } else if (pounds > 8400){
-      setDuoItem("the weight of a hippo")
-    } else if (pounds > 7000){
-      setDuoItem("the weight of a large limosuine")
-    } else if (pounds > 6000){
-      setDuoItem("the weight of the charging bull")
-    } else if (pounds > 5000){
-      setDuoItem("the weight of a small forklift")
-    } else if (pounds > 4600){
-      setDuoItem("the weight of a Rhinoceros")
-    } 
-  }
+    const weights = Object.keys(weightComparisons);
 
+    weights.forEach(key => {
+      if (pounds > parseInt(key)) {
+        setDuoItem(weightComparisons[key])
+      }
+    })
+  }
 
 
   useEffect(() => {
