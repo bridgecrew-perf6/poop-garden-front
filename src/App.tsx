@@ -1,5 +1,4 @@
 import { Redirect, Route } from 'react-router-dom';
-import React, { Suspense } from 'react';
 import {
   IonApp,
   IonIcon,
@@ -41,40 +40,37 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <Suspense fallback={'some sort of loading feature'}>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            {pages.map((page, index) => {
-              return <Route key={index} path={page.path} component={page.component} />
-            })}
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          {pages.map((page, index) => {
+            return <Route key={index} path={page.path} component={page.component} />
+          })}
 
-            <Route exact path="/">
-              <Redirect to={pages.filter(page => page.redirect)[0].path} />
-            </Route>
+          <Route exact path="/">
+            <Redirect to={pages.filter(page => page.redirect)[0].path} />
+          </Route>
 
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            {pages.map((page, index) => {
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          {pages.map((page, index) => {
 
-              const {label, path, icon, isTab} = page;
+            const {label, path, icon, isTab} = page;
 
-              if (isTab) {
+            if (isTab) {
 
-                return (
-                  // tab= could also be label
-                  <IonTabButton key={index} tab={label} href={path}>
-                    <IonIcon icon={icon} />
-                    <IonLabel>{label}</IonLabel>
-                  </IonTabButton>
-                )
-              } else return null;
-            })}
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-
-    </Suspense>
+              return (
+                // tab= could also be label
+                <IonTabButton key={index} tab={label} href={path}>
+                  <IonIcon icon={icon} />
+                  <IonLabel>{label}</IonLabel>
+                </IonTabButton>
+              )
+            } else return null;
+          })}
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
   </IonApp>
 );
 
