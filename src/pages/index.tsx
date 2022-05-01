@@ -1,20 +1,19 @@
 
-import {  lazy } from 'react';
 import {
   barChart,
   people,
   paperPlaneOutline,
   idCardOutline,
 } from "ionicons/icons";
-// import Tab1 from "./Tab1";
-// import Tab2 from "./Tab2";
-// import Tab3 from "./Tab3";
-// import Tab4 from "./Tab4";
+import Tab1 from "./Tab1";
+import Tab2 from "./Tab2";
+import Tab3 from "./Tab3";
+import Tab4 from "./Tab4";
 
-const Tab1 = lazy(() => import("./Tab1"));
-const Tab2 = lazy(() => import("./Tab2"));
-const Tab3 = lazy(() => import("./Tab3"));
-const Tab4 = lazy(() => import("./Tab4"));
+// const Tab1 = lazy(() => import("./Tab1"));
+// const Tab2 = lazy(() => import("./Tab2"));
+// const Tab3 = lazy(() => import("./Tab3"));
+// const Tab4 = lazy(() => import("./Tab4"));
 
 export const pages = [
   {
