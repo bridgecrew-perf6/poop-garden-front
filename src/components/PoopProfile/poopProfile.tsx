@@ -21,6 +21,7 @@ import { useStoreState } from "pullstate";
 import React, { useState, useEffect } from "react";
 import PoopSurvey from "./getPoopSurvey";
 import UhaulComp from "./uhaulcomp"
+import WeightComp from "./weightComp"
 import "./poopProfile.scss";
 import { Share } from '@capacitor/share';
 
@@ -109,6 +110,8 @@ const AllPoopProfile: React.FC = () => {
           {checkForUserPoop(userInfo.id) ?
           <div>
             <UhaulComp />
+            <IonButton expand="full" onClick={() => sharePoop()}>Share yo shit with the world!</IonButton>
+            <WeightComp />
             <IonButton expand="full" onClick={() => sharePoop()}>Share yo shit with the world!</IonButton>
           </div>
           :

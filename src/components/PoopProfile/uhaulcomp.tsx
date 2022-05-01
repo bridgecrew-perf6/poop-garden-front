@@ -4,7 +4,7 @@ import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
 import { getUserInfo, getPoopProfiles } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
-import { vehicles, weightCapacities } from "../../data/data"
+import { vehicles, weightCapacities } from "../../data/data";
 
 const UhaulComp: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
@@ -23,15 +23,15 @@ const UhaulComp: React.FC = () => {
         goal = poopInfo;
       }
     }
-    
+
     const weights = Object.keys(weightCapacities).reverse();
 
-    weights.forEach(key => {
+    weights.forEach((key) => {
       while (goal > parseInt(key)) {
         totalTrucks.push(weightCapacities[key]);
-        goal -= parseInt(key)
+        goal -= parseInt(key);
       }
-    })
+    });
 
     setTrucksNeeded(totalTrucks);
     setLeftOver(goal);
