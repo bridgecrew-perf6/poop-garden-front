@@ -49,6 +49,7 @@ const Tab4: React.FC = () => {
     });
   }, [resourcesFriends, resourcesPoop, user, userInfo]);
 
+
   const [segment, setSegment] = useState<any>("signIn");
   let component = null;
 
