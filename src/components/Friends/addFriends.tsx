@@ -117,11 +117,11 @@ const AddFriends: React.FC = () => {
   // console.log(potentialFriends)
 
   return (
-    <>
+    <IonContent>
       {possibleFriend ? (
         ""
       ) : (
-        <IonContent>
+        <>
           <IonText>
             <h2 className="ion-text-center">
               You cant just go snooping around people's crap!
@@ -146,7 +146,7 @@ const AddFriends: React.FC = () => {
               <IonIcon icon={personAddOutline} />
             </IonFabButton>
           </IonFab>
-        </IonContent>
+        </>
       )}
 
       <IonItem>
@@ -204,7 +204,7 @@ const AddFriends: React.FC = () => {
         ""
       )}
       {showRequests ? <PendingRequests /> : ""}
-    </>
+    </IonContent>
   );
 };
 
