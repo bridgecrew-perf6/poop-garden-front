@@ -16,9 +16,16 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
+
+  let storedUser = localStorage.getItem("user")
+  let parsedUser = JSON.parse(storedUser)
+
+  let storedToken = localStorage.getItem("token")
+  let parsedToken = JSON.parse(storedToken)
+
   const [state, setState] = useState({
-    tokens: null,
-    user: null,
+    tokens: parsedToken || null,
+    user: parsedUser || null,
     login,
     logout,
   });
@@ -38,6 +45,8 @@ export function AuthProvider(props) {
     };
 
     setState((prevState) => ({ ...prevState, ...newState }));
+    localStorage.setItem("token", JSON.stringify(newState.tokens));
+    localStorage.setItem("user", JSON.stringify(newState.user));
   }
 
   function logout() {

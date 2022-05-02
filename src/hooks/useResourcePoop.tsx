@@ -18,6 +18,7 @@ export default function useResourcePoop() {
     try {
       const response = await axios.get(url, config());
 
+      localStorage.setItem("poop",JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       handleError(error);
