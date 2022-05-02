@@ -80,9 +80,9 @@ const FriendsList: React.FC = () => {
   };
 
   return (
-    <>
+    <IonContent>
       {friends && friends.length > 0 ? (
-        <IonContent>
+        <>
           <IonRefresher
             slot="fixed"
             onIonRefresh={doRefresh}
@@ -138,13 +138,13 @@ const FriendsList: React.FC = () => {
             openFriendModal={openFriendModal}
             setOpenFriendModal={setOpenFriendModal}
           />
-        </IonContent>
+        </>
       ) : (
         <h1 className="ion-text-center">
           Looks like you need some bathroom buddies!
         </h1>
       )}
-    </>
+    </IonContent>
   );
 };
 
