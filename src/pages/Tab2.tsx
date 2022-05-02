@@ -8,10 +8,11 @@ import {
   IonTitle,
   IonToolbar,
   IonRefresher,
-  IonRefresherContent
+  IonRefresherContent,
+  // useIonRouter,
 } from "@ionic/react";
 import { RefresherEventDetail } from '@ionic/core';
-import React, { useState } from "react";
+import React, { useState} from "react";
 import "./Tab2.scss";
 import FriendsBarChart from "../components/Charts/friendsBarChart";
 import FriendsPieChart from "../components/Charts/friendsPieChart";
@@ -31,6 +32,9 @@ const Tab2: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   const { resourcesFriends } = useResourceFriends();
   const { resourcesPoop } = useResourcePoop();
+  // const router = useIonRouter();
+
+  
 
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
     console.log('Begin async operation');

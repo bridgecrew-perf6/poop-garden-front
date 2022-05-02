@@ -10,6 +10,7 @@ import Tab2 from "./Tab2";
 import Tab3 from "./Tab3";
 import Tab4 from "./Tab4";
 
+
 // const Tab1 = lazy(() => import("./Tab1"));
 // const Tab2 = lazy(() => import("./Tab2"));
 // const Tab3 = lazy(() => import("./Tab3"));

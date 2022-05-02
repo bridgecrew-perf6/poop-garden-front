@@ -22,6 +22,7 @@ export default function useResourceFriends() {
 
     try {
       const response = await axios.get(url, config());
+      localStorage.setItem("friends",JSON.stringify(response.data));
 
       return response.data;
     } catch (error) {

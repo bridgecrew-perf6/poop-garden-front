@@ -23,7 +23,8 @@ import { getFriends, getPoopProfiles, getUserInfo } from "../store/Selectors";
 const Tab1: React.FC = () => {
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
   const friends = useStoreState(FriendStore, getFriends);
-  const userInfo = useStoreState(UserStore, getUserInfo)
+  const userInfo = useStoreState(UserStore, getUserInfo);
+  
 
   const [segment, setSegment] = useState<any>("friendsList");
   let component = null;

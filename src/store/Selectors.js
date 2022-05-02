@@ -14,9 +14,5 @@ export const getPoopProfiles = createSelector(
   (state) => state.poopProfiles
 );
 
-//havnt finished messing with this yet, but below is a way of only pulling the poop profiles that i want. I think i found another way to accomplish what i was going for, but this might still come in handy
-
-// export const getFriendsPoops = (getState, state => state.poopProfiles.filter(person => person.id > 5))
-
 //user info store selectore
 export const getUserInfo = createSelector(getState, (state) => state.userInfo);
