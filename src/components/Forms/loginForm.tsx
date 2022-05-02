@@ -9,6 +9,8 @@ import {
 } from "@ionic/react";
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/auth.js";
+import { SplashScreen } from '@capacitor/splash-screen';
+
 
 const LoginForm: React.FC = () => {
   const [tempName, setTempName] = useState<string>();
@@ -17,8 +19,12 @@ const LoginForm: React.FC = () => {
   const router = useIonRouter();
   const { login } = useAuth();
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    await SplashScreen.show({
+      showDuration: 2000,
+      autoHide: true
+    });
     login(tempName, tempPassword)
     .then(() => {
       router.push("/tab1");
