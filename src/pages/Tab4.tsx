@@ -24,6 +24,7 @@ import useResourceFriends from "../hooks/useResourceFriends";
 // import { SplashScreen } from '@capacitor/splash-screen';
 import LoginForm from "../components/Forms/loginForm";
 import SignupForm from "../components/Forms/signupForm";
+import { SplashScreen } from '@capacitor/splash-screen';
 
 // This is basically a landing page where the user can sign in. It is also used to grab all of the information that we need from the backend and store it in state.
 
@@ -75,6 +76,8 @@ const Tab4: React.FC = () => {
     });
     logout()
   }
+  SplashScreen.hide();
+
 
 
   return (
