@@ -1,10 +1,7 @@
 import {
   IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
   useIonRouter,
-  IonImg,
+  IonSpinner
 } from "@ionic/react";
 import "./Tab3.scss";
 import React, { useEffect } from "react";
@@ -26,19 +23,9 @@ const Tab3: React.FC = () => {
   }, [storedUser, storedToken]);
 
   return (
-    <div>
-      <IonPage>
-        <IonHeader>
-          <IonToolbar color="secondary"></IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar></IonToolbar>
-          </IonHeader>
-          <IonImg src={"assets/icon/favicon.png"} />
-        </IonContent>
-      </IonPage>
-    </div>
+    <IonContent>
+      <IonSpinner name="bubbles"/>
+    </IonContent>
   );
 };
 
