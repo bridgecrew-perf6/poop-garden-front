@@ -39,7 +39,7 @@ export const pages = [
     icon: paperPlaneOutline,
     component: Tab3,
     isTab: false,
-    redirect: false,
+    redirect: true,
   },
   {
     label: "Sign in/out Page",
@@ -47,6 +47,6 @@ export const pages = [
     icon: idCardOutline,
     component: Tab4,
     isTab: true,
-    redirect: true,
+    redirect: false,
   },
 ];
