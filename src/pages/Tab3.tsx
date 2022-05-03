@@ -54,8 +54,9 @@ const Tab3: React.FC = () => {
     else {
       router.push("/tab4")
     }
+    // router.push("/tab2")
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[storedUser])
+  },[storedUser, storedToken])
 
 
 
@@ -73,7 +74,6 @@ const Tab3: React.FC = () => {
               <IonTitle size="large">Tab 3</IonTitle>
             </IonToolbar>
           </IonHeader>
-          tab3 stuff
           <IonImg src={"assets/icon/favicon.png"}/>
           {/* <IonList>
           <IonItem>
