@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-//connecting to state store
-import { UserStore } from "../../store"
+import { UserStore } from "../../store";
 import { PoopStore } from "../../store";
 import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
 
 Chart.register(...registerables);
 
-
 const FriendsBarChart: React.FC = () => {
   // variables retrieved from global state
   const userInfo = useStoreState(UserStore, getUserInfo);
-  const poopProfiles = useStoreState(PoopStore, getPoopProfiles)
+  const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
 
   const [tempNames, setTempNames] = useState<any>([]);
   const [tempPoop, setTempPoop] = useState<any>([]);
 
-
   useEffect(() => {
-    if (userInfo && poopProfiles){
-      for (let i = 0; i < poopProfiles.length; i++){
-        let name = poopProfiles[i].nickname
-        let poopInfo = poopProfiles[i].poopInfo
-        setTempNames((tempNames: any) =>[...tempNames, name]);
-        setTempPoop((tempPoop: any) =>[...tempPoop, poopInfo]);
+    if (userInfo && poopProfiles) {
+      for (let i = 0; i < poopProfiles.length; i++) {
+        let name = poopProfiles[i].nickname;
+        let poopInfo = poopProfiles[i].poopInfo;
+        setTempNames((tempNames: any) => [...tempNames, name]);
+        setTempPoop((tempPoop: any) => [...tempPoop, poopInfo]);
       }
     }
   }, [userInfo, poopProfiles]);
@@ -54,8 +51,6 @@ const FriendsBarChart: React.FC = () => {
     <div>
       <Bar
         data={data}
-        // height="30%"
-        // width="75%"
         options={{
           maintainAspectRatio: true,
           responsive: true,

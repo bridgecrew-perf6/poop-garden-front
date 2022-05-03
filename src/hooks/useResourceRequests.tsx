@@ -4,8 +4,8 @@ import useSWR from "swr";
 import { useAuth } from "../contexts/auth";
 const baseUrl = process.env.REACT_APP_BACKEND;
 export const apiUrl = baseUrl + "/api/friends/requests/";
-export const acceptUrl = baseUrl + "/api/friends/accept_request/"
-export const declineUrl = baseUrl + "/api/friends/reject_request/"
+export const acceptUrl = baseUrl + "/api/friends/accept_request/";
+export const declineUrl = baseUrl + "/api/friends/reject_request/";
 
 export default function useResourceRequests() {
   const { tokens, logout } = useAuth();
@@ -38,22 +38,11 @@ export default function useResourceRequests() {
     }
   }
 
-  // async function deleteResourceRequests(id: string) {
-  //   try {
-  //     const url = apiUrl + id;
-  //     await axios.delete(url, config());
-  //     mutate(); // mutate causes complete collection to be refetched
-  //   } catch (error) {
-  //     handleError(error);
-  //   }
-  // }
-
   async function acceptRequest(info: any) {
     try {
       let response = await axios.post(acceptUrl, info, config());
       mutate();
       return response.data;
-
     } catch (error) {
       handleError(error);
     }
@@ -64,13 +53,10 @@ export default function useResourceRequests() {
       let response = await axios.post(declineUrl, info, config());
       mutate();
       return response.data;
-
     } catch (error) {
       handleError(error);
     }
   }
-
-  
 
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
@@ -84,8 +70,6 @@ export default function useResourceRequests() {
   function handleError(error: unknown) {
     console.error(error);
     // currently just log out on error
-    // but a common error will be short lived token expiring
-    // STRETCH: refresh the access token when it has expired
     logout();
   }
 
@@ -94,7 +78,6 @@ export default function useResourceRequests() {
     error,
     loadingRequests: tokens && !error && !data,
     createResourceRequests,
-    // deleteResourceRequests,
     acceptRequest,
     declineRequest,
   };

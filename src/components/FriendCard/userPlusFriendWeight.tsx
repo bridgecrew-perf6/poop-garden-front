@@ -19,17 +19,15 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
   const [duoTotal, setDuoTotal] = useState<number>();
   const [duoItem, setDuoItem] = useState<any>();
 
-  
   const getItem = (pounds: number) => {
     const weights = Object.keys(weightComparisons);
 
-    weights.forEach(key => {
+    weights.forEach((key) => {
       if (pounds > parseInt(key)) {
-        setDuoItem(weightComparisons[key])
+        setDuoItem(weightComparisons[key]);
       }
-    })
-  }
-
+    });
+  };
 
   useEffect(() => {
     if (userInfo && poopProfiles && chosenFriendPoop) {
@@ -37,7 +35,6 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
         let user = poopProfiles[i].user;
         if (user === userInfo.id) {
           let poopInfo = poopProfiles[i].poopInfo;
-          // let name = poopProfiles[i].nickname;
           getItem(chosenFriendPoop + poopInfo);
           setDuoTotal(chosenFriendPoop + poopInfo);
         }
@@ -50,9 +47,10 @@ const UserPlusFriendWeight: React.FC<FriendProps> = ({
       {duoTotal && duoItem ? (
         <>
           <IonText>
-          <h1 className="ion-text-center">Your poop combined weighs {duoTotal} pounds</h1>
-          <p className="ion-text-center">That is more than {duoItem}</p>
-
+            <h1 className="ion-text-center">
+              Your poop combined weighs {duoTotal} pounds
+            </h1>
+            <p className="ion-text-center">That is more than {duoItem}</p>
           </IonText>
           <IonImg src={imageObject[duoItem]} />
         </>

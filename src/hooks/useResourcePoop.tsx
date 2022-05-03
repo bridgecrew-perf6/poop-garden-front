@@ -18,7 +18,7 @@ export default function useResourcePoop() {
     try {
       const response = await axios.get(url, config());
 
-      localStorage.setItem("poop",JSON.stringify(response.data));
+      localStorage.setItem("poop", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       handleError(error);
@@ -35,19 +35,8 @@ export default function useResourcePoop() {
     }
   }
 
-  // async function deleteResourcePoop(id: string) {
-  //   try {
-  //     const url = apiUrl + id;
-  //     await axios.delete(url, config());
-  //     mutate(); // mutate causes complete collection to be refetched
-  //   } catch (error) {
-  //     handleError(error);
-  //   }
-  // }
-
   // async function updateResourcePoop(resource: any) {
-  //   // STRETCH
-  //   // Add ability for user to update an existing resource
+  //   // Add ability for user to update poop profile
   // }
 
   // helper function to handle getting Authorization headers EXACTLY right
@@ -62,8 +51,6 @@ export default function useResourcePoop() {
   function handleError(error: unknown) {
     console.error(error);
     // currently just log out on error
-    // but a common error will be short lived token expiring
-    // STRETCH: refresh the access token when it has expired
     logout();
   }
 
@@ -72,7 +59,6 @@ export default function useResourcePoop() {
     error,
     loadingPoop: tokens && !error && !data,
     createResourcePoop,
-    // deleteResourcePoop,
     // updateResourcePoop,
   };
 }

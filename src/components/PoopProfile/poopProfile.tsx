@@ -3,30 +3,23 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  // IonIcon,
   IonAvatar,
   IonText,
   IonButton,
   useIonViewWillLeave,
 } from "@ionic/react";
-// import { ribbonOutline } from "ionicons/icons";
 import { PoopStore } from "../../store";
 import { UserStore } from "../../store";
-import {
-  getUserInfo,
-  // getFriends,
-  getPoopProfiles,
-} from "../../store/Selectors";
+import { getUserInfo, getPoopProfiles } from "../../store/Selectors";
 import { useStoreState } from "pullstate";
 import React, { useState, useEffect } from "react";
 import PoopSurvey from "./getPoopSurvey";
-import UhaulComp from "./uhaulcomp"
-import WeightComp from "./weightComp"
+import UhaulComp from "./uhaulcomp";
+import WeightComp from "./weightComp";
 import "./poopProfile.scss";
-import { Share } from '@capacitor/share';
+import { Share } from "@capacitor/share";
 
 const AllPoopProfile: React.FC = () => {
-
   const userInfo = useStoreState(UserStore, getUserInfo);
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
   const [showPoopSurvey, setShowPoopSurvey] = useState<boolean>(false);
@@ -36,36 +29,32 @@ const AllPoopProfile: React.FC = () => {
       let user = poopProfiles[i].user;
       let poopInfo = poopProfiles[i].poopInfo;
       if (user === id) {
-        // console.log(poopInfo);
         return poopInfo;
       }
     }
-
     return null;
   };
 
   const sharePoop = () => {
     Share.share({
-      title: 'QuickPoops',
-      text: 'calculate a lifetime of poop',
-      url: 'http://iridescent-maamoul-4cbbf2.netlify.app/',
-      dialogTitle: 'Share your poop',
+      title: "QuickPoops",
+      text: "Calculate a lifetime of poop",
+      url: "http://quickpoops/",
+      dialogTitle: "Share your poop",
     });
-  }
+  };
 
   useEffect(() => {
-    setShowPoopSurvey(false)
-  },[userInfo]);
+    setShowPoopSurvey(false);
+  }, [userInfo]);
 
   useIonViewWillLeave(() => {
     setShowPoopSurvey(false);
   });
 
-  // console.log(userPoop);
-
   return (
     <>
-      {userInfo && poopProfiles && (showPoopSurvey===false) ? (
+      {userInfo && poopProfiles && showPoopSurvey === false ? (
         <div>
           <IonCard color="light">
             <IonAvatar className="image-center">
@@ -75,7 +64,6 @@ const AllPoopProfile: React.FC = () => {
               />
             </IonAvatar>
             <IonCardHeader>
-              {/* <IonCardSubtitle>PoopProfile</IonCardSubtitle> */}
               <IonCardTitle className="ion-text-center">
                 {userInfo.username}
               </IonCardTitle>
@@ -86,9 +74,8 @@ const AllPoopProfile: React.FC = () => {
                 <>
                   <IonText>
                     <p className="ion-text-center">
-                    {/* <IonIcon icon={ribbonOutline} size="large" /> */}
-                    You have expended about {checkForUserPoop(userInfo.id)}{" "}
-                    pounds of poop so far! What a feeling that must be!
+                      You have expended about {checkForUserPoop(userInfo.id)}{" "}
+                      pounds of poop so far! What a feeling that must be!
                     </p>
                   </IonText>
                 </>
@@ -107,15 +94,20 @@ const AllPoopProfile: React.FC = () => {
               )}
             </IonCardContent>
           </IonCard>
-          {checkForUserPoop(userInfo.id) ?
-          <div>
-            <UhaulComp />
-            <IonButton expand="full" onClick={() => sharePoop()}>Share yo shit with the world!</IonButton>
-            <WeightComp />
-            <IonButton expand="full" onClick={() => sharePoop()}>Share yo shit with the world!</IonButton>
-          </div>
-          :
-          ""}
+          {checkForUserPoop(userInfo.id) ? (
+            <div>
+              <UhaulComp />
+              <IonButton expand="full" onClick={() => sharePoop()}>
+                Share yo shit with the world!
+              </IonButton>
+              <WeightComp />
+              <IonButton expand="full" onClick={() => sharePoop()}>
+                Share yo shit with the world!
+              </IonButton>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""

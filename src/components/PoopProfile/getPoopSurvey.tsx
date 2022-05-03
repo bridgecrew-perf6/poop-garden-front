@@ -6,7 +6,6 @@ import {
   IonLabel,
   IonItem,
   IonListHeader,
-
   IonInput,
   IonRange,
   IonSlides,
@@ -15,10 +14,10 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { thumbsDown, thumbsUp } from "ionicons/icons";
-import { differenceInDays } from 'date-fns';
+import { differenceInDays } from "date-fns";
 
 import React, { useEffect, useRef, useState } from "react";
-import useResourcePoop from "../../hooks/useResourcePoop"
+import useResourcePoop from "../../hooks/useResourcePoop";
 import { useAuth } from "../../contexts/auth.js";
 import "./getPoopSurvey.scss";
 
@@ -31,48 +30,40 @@ const PoopSurvey: React.FC = () => {
   const { user } = useAuth();
   const { createResourcePoop } = useResourcePoop();
 
-  const [q1selected, setq1Selected] = useState<string>('avg');
+  const [q1selected, setq1Selected] = useState<string>("avg");
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [fiberValue, setFiberValue] = useState<any>(5);
 
   const router = useIonRouter();
 
-  const getTotalPoop = (info:any) => {
+  const getTotalPoop = (info: any) => {
     /// function that will use the 3 states above (mostly the birthday) and turn it into a single poop number that i can send to the back
-    let current = new Date()
-    // let currentDate: any = new Date(`${current.getMonth()}-${current.getDate()}-${current.getFullYear()}`);
+    let current = new Date();
     let bornDate = new Date(info.selectedDate);
-    let totalDays = differenceInDays(current, bornDate)
-    let totalOunces = totalDays * 14
-    let totalPounds = Math.round(totalOunces / 16)
-    return totalPounds
-    
-    
-  }
+    let totalDays = differenceInDays(current, bornDate);
+    let totalOunces = totalDays * 14;
+    let totalPounds = Math.round(totalOunces / 16);
+    return totalPounds;
+  };
 
   async function sendDataToServer(e: React.FormEvent<HTMLFormElement>) {
-    //send Ajax request to your web server
     e.preventDefault();
     let formInfo = {
       baby: q1selected,
       selectedDate: selectedDate,
       fiber: fiberValue,
     };
-    let poopInfo = await getTotalPoop(formInfo)
-    // console.log(user.id, user.username, poopInfo)
+    let poopInfo = await getTotalPoop(formInfo);
 
     let postInfo = {
       user: user.id,
       nickname: user.username,
       poopInfo: poopInfo,
-    }
-    // console.log(poopInfo)
-    let newPoopProfile = await createResourcePoop(postInfo)
+    };
+    let newPoopProfile = await createResourcePoop(postInfo);
 
-    console.log(newPoopProfile)
-    //should end up push ing to tab3
+    console.log(newPoopProfile);
     router.push("/tab3");
-
   }
 
   const mySlides = useRef<any>(null);
@@ -94,7 +85,7 @@ const PoopSurvey: React.FC = () => {
   };
 
   return (
-    <form onSubmit={e => sendDataToServer(e)}>
+    <form onSubmit={(e) => sendDataToServer(e)}>
       <IonSlides pager={true} options={slideOpts} ref={mySlides}>
         <IonSlide>
           <div className="slide-main">
@@ -118,7 +109,9 @@ const PoopSurvey: React.FC = () => {
                   </IonItem>
 
                   <IonItem>
-                    <IonLabel>I was a baby, I pooped. Not much to tell</IonLabel>
+                    <IonLabel>
+                      I was a baby, I pooped. Not much to tell
+                    </IonLabel>
                     <IonRadio slot="start" value="avg" />
                   </IonItem>
 
@@ -141,18 +134,17 @@ const PoopSurvey: React.FC = () => {
         </IonSlide>
         <IonSlide>
           <div className="slide-main">
-          <h3 className="ion-text-center">Birthday</h3>
+            <h3 className="ion-text-center">Birthday</h3>
             <div className="form-content">
-            <p >don't worry, no one is gonna check</p>
-          <IonItem>
-            <IonInput type="date" required={true} value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)} >
-            </IonInput>
-
-          </IonItem>
-
-
-
-              {/* <IonItem>{selectedDate ?? ""}</IonItem> */}
+              <p>don't worry, no one is gonna check</p>
+              <IonItem>
+                <IonInput
+                  type="date"
+                  required={true}
+                  value={selectedDate}
+                  onIonChange={(e) => setSelectedDate(e.detail.value!)}
+                ></IonInput>
+              </IonItem>
             </div>
             <div className="form-footer">
               <IonButton onClick={() => previous()}>Prev</IonButton>
@@ -162,16 +154,20 @@ const PoopSurvey: React.FC = () => {
         </IonSlide>
         <IonSlide>
           <div className="slide-main">
-          <h3 className="ion-text-center">How do you feel about fiber?</h3>
+            <h3 className="ion-text-center">How do you feel about fiber?</h3>
             <div className="form-content">
-            <IonItem>
-            <IonRange min={1} max={10} step={1} value={fiberValue} onIonChange={e => setFiberValue(e.detail.value!)} >
-              <IonIcon size="small" slot="start" icon={thumbsDown} />
-              <IonIcon slot="end" icon={thumbsUp} />
-         
-            </IonRange>
-          </IonItem>
-
+              <IonItem>
+                <IonRange
+                  min={1}
+                  max={10}
+                  step={1}
+                  value={fiberValue}
+                  onIonChange={(e) => setFiberValue(e.detail.value!)}
+                >
+                  <IonIcon size="small" slot="start" icon={thumbsDown} />
+                  <IonIcon slot="end" icon={thumbsUp} />
+                </IonRange>
+              </IonItem>
             </div>
             <div className="form-footer">
               <IonButton onClick={() => previous()}>Prev</IonButton>
@@ -181,7 +177,6 @@ const PoopSurvey: React.FC = () => {
         </IonSlide>
       </IonSlides>
     </form>
-  
   );
 };
 
