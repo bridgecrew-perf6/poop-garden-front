@@ -4,6 +4,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonText,
   // IonIcon
 } from "@ionic/react";
 // import { PoopStore } from "../../store";
@@ -39,8 +40,9 @@ const PoopProfile: React.FC = () => {
         </IonCardHeader>
 
         <IonCardContent>
-          This app has counted alot of poop!  pounds total to be
-          exact!
+          <IonText color="primary">
+            <h1 className="ion-text-center">Area Under Cunstruction!</h1>
+          </IonText>
         </IonCardContent>
       </IonCard>
     </div>
