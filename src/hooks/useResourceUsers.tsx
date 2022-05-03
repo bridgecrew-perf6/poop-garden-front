@@ -26,15 +26,11 @@ export default function useResourceUsers() {
   }
 
   async function createResourceUsers(info: any) {
-    // try {
-      let response = await axios.post(createUrl, info);
-      //logging in with the user just created
-      await login(info.username, info.password);
-      mutate(); // mutate causes complete collection to be refetched
-      return response.data;
-    // } catch (error) {
-    //   handleError(error);
-    // }
+    let response = await axios.post(createUrl, info);
+    //logging in with the user just created
+    await login(info.username, info.password);
+    mutate(); // mutate causes complete collection to be refetched
+    return response.data;
   }
 
   // async function deleteResourceUsers(id: string) {
@@ -48,7 +44,6 @@ export default function useResourceUsers() {
   // }
 
   // async function updateResourceUsers(resource: any) {
-  //   // STRETCH
   //   // Add ability for user to update an existing resource
   // }
 
@@ -64,8 +59,6 @@ export default function useResourceUsers() {
   function handleError(error: unknown) {
     console.error(error);
     // currently just log out on error
-    // but a common error will be short lived token expiring
-    // STRETCH: refresh the access token when it has expired
     logout();
   }
 

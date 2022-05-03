@@ -38,21 +38,6 @@ export default function useResourceSentRequests() {
     }
   }
 
-  // async function deleteResourceSentRequests(id: string) {
-  //   try {
-  //     const url = apiUrl + id;
-  //     await axios.delete(url, config());
-  //     mutate(); // mutate causes complete collection to be refetched
-  //   } catch (error) {
-  //     handleError(error);
-  //   }
-  // }
-
-  // async function updateResourceSentRequests(resource: any) {
-  //   // STRETCH
-  //   // Add ability for user to update an existing resource
-  // }
-
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
     return {
@@ -65,8 +50,6 @@ export default function useResourceSentRequests() {
   function handleError(error: unknown) {
     console.error(error);
     // currently just log out on error
-    // but a common error will be short lived token expiring
-    // STRETCH: refresh the access token when it has expired
     logout();
   }
 
@@ -75,7 +58,5 @@ export default function useResourceSentRequests() {
     error,
     loadingSentRequests: tokens && !error && !data,
     createResourceSentRequests,
-    // deleteResourceSentRequests,
-    // updateResourceSentRequests,
   };
 }

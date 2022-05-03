@@ -34,7 +34,6 @@ const FriendsList: React.FC = () => {
   const [openFriendModal, setOpenFriendModal] = useState<boolean>(false);
   const [chosenFriendPoop, setChosenFriendPoop] = useState<number>(0);
   const [chosenFriendName, setChosenFriendName] = useState<string>("");
-  // const [viewButton, setViewButton] = useState<boolean>(false);
 
   //function for pulldown refresh
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -73,7 +72,6 @@ const FriendsList: React.FC = () => {
       if (user === friendId) {
         setChosenFriendPoop(poopProfiles[i].poopInfo);
         setChosenFriendName(friend.username);
-        // console.log(friend)
       }
     }
     setOpenFriendModal(true);

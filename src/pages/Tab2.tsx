@@ -9,10 +9,9 @@ import {
   IonToolbar,
   IonRefresher,
   IonRefresherContent,
-  // useIonRouter,
 } from "@ionic/react";
-import { RefresherEventDetail } from '@ionic/core';
-import React, { useState} from "react";
+import { RefresherEventDetail } from "@ionic/core";
+import React, { useState } from "react";
 import "./Tab2.scss";
 import FriendsBarChart from "../components/Charts/friendsBarChart";
 import FriendsPieChart from "../components/Charts/friendsPieChart";
@@ -26,19 +25,16 @@ import { PoopStore } from "../store";
 import { useStoreState } from "pullstate";
 import { getUserInfo } from "../store/Selectors";
 import useResourceFriends from "../hooks/useResourceFriends";
-import useResourcePoop from "../hooks/useResourcePoop"
+import useResourcePoop from "../hooks/useResourcePoop";
 
 const Tab2: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   const { resourcesFriends } = useResourceFriends();
   const { resourcesPoop } = useResourcePoop();
-  // const router = useIonRouter();
-
-  
 
   function doRefresh(event: CustomEvent<RefresherEventDetail>) {
-    console.log('Begin async operation');
-  
+    console.log("Begin async operation");
+
     setTimeout(() => {
       PoopStore.update((s) => {
         s.poopProfiles = resourcesPoop;
@@ -71,12 +67,17 @@ const Tab2: React.FC = () => {
 
   return (
     <IonPage>
-      
       {userInfo ? (
         <IonContent>
-          <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
-        <IonRefresherContent ></IonRefresherContent>
-      </IonRefresher>
+          <IonRefresher
+            slot="fixed"
+            onIonRefresh={doRefresh}
+            pullFactor={0.5}
+            pullMin={100}
+            pullMax={200}
+          >
+            <IonRefresherContent></IonRefresherContent>
+          </IonRefresher>
           <IonHeader>
             <IonToolbar color="secondary">
               <IonTitle className="ion-text-center">

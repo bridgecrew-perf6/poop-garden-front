@@ -18,13 +18,10 @@ import { FriendStore } from "../store";
 import { useStoreState } from "pullstate";
 import { getFriends, getPoopProfiles, getUserInfo } from "../store/Selectors";
 
-//This is the page that the user is (currently) sent to right after they sign in. Its main purpose is to show a list of the user's friends
-
 const Tab1: React.FC = () => {
   const poopProfiles = useStoreState(PoopStore, getPoopProfiles);
   const friends = useStoreState(FriendStore, getFriends);
   const userInfo = useStoreState(UserStore, getUserInfo);
-  
 
   const [segment, setSegment] = useState<any>("friendsList");
   let component = null;
@@ -43,38 +40,38 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="secondary">
-          {userInfo ? 
-          <IonTitle className="ion-text-center">{`${userInfo.username}'s` || ""} friends</IonTitle>
-          :
-          ""
-          }
+          {userInfo ? (
+            <IonTitle className="ion-text-center">
+              {`${userInfo.username}'s` || ""} friends
+            </IonTitle>
+          ) : (
+            ""
+          )}
         </IonToolbar>
       </IonHeader>
-      {/* <IonContent fullscreen> */}
-        <IonHeader collapse='condense'>
-          <IonToolbar>
-            <IonTitle size='large'>Your Friends</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        {friends && poopProfiles && userInfo ? (
-          <>
-            <IonSegment
-              onIonChange={(e) => setSegment(e.detail.value)}
-              color="warning"
-            >
-              <IonSegmentButton value="friendsList">
-                <IonLabel>Bathroom Buddies</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value="addFriends">
-                <IonLabel>Add Buddies</IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
-            {component}
-          </>
-        ) : (
-          <SkeletonFriends />
-        )}
-      {/* </IonContent> */}
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">Your Friends</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      {friends && poopProfiles && userInfo ? (
+        <>
+          <IonSegment
+            onIonChange={(e) => setSegment(e.detail.value)}
+            color="warning"
+          >
+            <IonSegmentButton value="friendsList">
+              <IonLabel>Bathroom Buddies</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="addFriends">
+              <IonLabel>Add Buddies</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
+          {component}
+        </>
+      ) : (
+        <SkeletonFriends />
+      )}
     </IonPage>
   );
 };

@@ -1,9 +1,6 @@
 import { createContext, useContext, useState } from "react";
-// import jwt from 'jsonwebtoken';
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-// const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-// const baseUrl = 'http://127.0.0.1:8000';
 const baseUrl = process.env.REACT_APP_BACKEND;
 const tokenUrl = baseUrl + "/api/token/";
 
@@ -16,12 +13,11 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
+  let storedUser = localStorage.getItem("user");
+  let parsedUser = JSON.parse(storedUser);
 
-  let storedUser = localStorage.getItem("user")
-  let parsedUser = JSON.parse(storedUser)
-
-  let storedToken = localStorage.getItem("token")
-  let parsedToken = JSON.parse(storedToken)
+  let storedToken = localStorage.getItem("token");
+  let parsedToken = JSON.parse(storedToken);
 
   const [state, setState] = useState({
     tokens: parsedToken || null,

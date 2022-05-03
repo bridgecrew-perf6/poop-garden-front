@@ -24,10 +24,9 @@ import useResourceFriends from "../hooks/useResourceFriends";
 // import { SplashScreen } from '@capacitor/splash-screen';
 import LoginForm from "../components/Forms/loginForm";
 import SignupForm from "../components/Forms/signupForm";
-import { SplashScreen } from '@capacitor/splash-screen';
+import { SplashScreen } from "@capacitor/splash-screen";
 
 // This is basically a landing page where the user can sign in. It is also used to grab all of the information that we need from the backend and store it in state.
-
 
 const Tab4: React.FC = () => {
   // Auth Variables
@@ -38,7 +37,6 @@ const Tab4: React.FC = () => {
   const userInfo = useStoreState(UserStore, getUserInfo);
   // bringing all of our necessary api information into state and editing when necessary
   useEffect(() => {
-
     UserStore.update((s) => {
       s.userInfo = user;
     });
@@ -49,7 +47,6 @@ const Tab4: React.FC = () => {
       s.poopProfiles = resourcesPoop;
     });
   }, [resourcesFriends, resourcesPoop, user, userInfo]);
-
 
   const [segment, setSegment] = useState<any>("signIn");
   let component = null;
@@ -74,12 +71,10 @@ const Tab4: React.FC = () => {
     PoopStore.update((s) => {
       s.poopProfiles = [];
     });
-    localStorage.clear()
-    logout()
-  }
+    localStorage.clear();
+    logout();
+  };
   SplashScreen.hide();
-
-
 
   return (
     <IonPage>
@@ -123,7 +118,6 @@ const Tab4: React.FC = () => {
           </div>
         )}
         <h1 className="ion-text-center">💩Welcome to QuickPoops!💩</h1>
-        
       </IonContent>
     </IonPage>
   );

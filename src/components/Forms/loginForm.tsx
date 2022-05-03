@@ -4,13 +4,11 @@ import {
   IonInput,
   useIonRouter,
   IonLabel,
-  // IonContent,
   IonToast,
 } from "@ionic/react";
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/auth.js";
-import { SplashScreen } from '@capacitor/splash-screen';
-
+import { SplashScreen } from "@capacitor/splash-screen";
 
 const LoginForm: React.FC = () => {
   const [tempName, setTempName] = useState<string>();
@@ -23,15 +21,15 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     await SplashScreen.show({
       showDuration: 2000,
-      autoHide: true
+      autoHide: true,
     });
     login(tempName, tempPassword)
-    .then(() => {
-      router.push("/tab3");
-    }).catch(() => {
-      // console.log('wrong password')
-      setShowToast(true);
-    })
+      .then(() => {
+        router.push("/tab3");
+      })
+      .catch(() => {
+        setShowToast(true);
+      });
   };
 
   return (
@@ -51,7 +49,9 @@ const LoginForm: React.FC = () => {
       >
         <IonItem>
           <IonLabel position="floating">Name</IonLabel>
-          <IonInput onIonChange={(e) => setTempName(e.detail.value!)}></IonInput>
+          <IonInput
+            onIonChange={(e) => setTempName(e.detail.value!)}
+          ></IonInput>
         </IonItem>
 
         <IonItem>
@@ -66,7 +66,6 @@ const LoginForm: React.FC = () => {
           Log In
         </IonButton>
       </form>
-
     </>
   );
 };

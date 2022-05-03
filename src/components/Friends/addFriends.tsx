@@ -14,7 +14,7 @@ import {
 } from "@ionic/react";
 import { personAddOutline } from "ionicons/icons";
 import { FriendStore } from "../../store";
-import { UserStore } from "../../store"
+import { UserStore } from "../../store";
 import { useStoreState } from "pullstate";
 import { getFriends, getUserInfo } from "../../store/Selectors";
 import React, { useState, useEffect } from "react";
@@ -32,7 +32,7 @@ const AddFriends: React.FC = () => {
 
   // Global state variables
   const friends = useStoreState(FriendStore, getFriends);
-  const userInfo = useStoreState(UserStore, getUserInfo)
+  const userInfo = useStoreState(UserStore, getUserInfo);
 
   //local state variables
   const [possibleFriend, setPossibleFriend] = useState<any>();
@@ -48,7 +48,7 @@ const AddFriends: React.FC = () => {
     let disabled: boolean | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if ((request.to_user === user.username) && (request.rejected === null)) {
+      if (request.to_user === user.username && request.rejected === null) {
         disabled = true;
         return disabled;
       } else {
@@ -62,7 +62,7 @@ const AddFriends: React.FC = () => {
     let color: string | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if ((request.to_user === user.username) && (request.rejected === null)) {
+      if (request.to_user === user.username && request.rejected === null) {
         color = "medium";
         return color;
       } else {
@@ -76,7 +76,7 @@ const AddFriends: React.FC = () => {
     let string: string | undefined = undefined;
     for (let i = 0; i < sentRequests.length; i++) {
       let request = sentRequests[i];
-      if ((request.to_user === user.username) && (request.rejected === null)) {
+      if (request.to_user === user.username && request.rejected === null) {
         string = "pending";
         return string;
       } else {
@@ -87,12 +87,10 @@ const AddFriends: React.FC = () => {
   };
 
   const handleRequest = async (user: any) => {
-    // setHopefullFriend(user)
     let newRequest = await createResourceSentRequests({
       to_user: user.username,
     });
     setSentRequests([...sentRequests, newRequest]);
-    // setPossibleFriend(null)
   };
 
   useEffect(() => {
@@ -104,7 +102,7 @@ const AddFriends: React.FC = () => {
         let friend = friends[i];
         let id = friend.id;
         friendIds.push(id);
-        friendIds.push(userInfo.id)
+        friendIds.push(userInfo.id);
       }
       setPotentialFriends(
         resourcesUsers.filter((user: any) => !friendIds.includes(user.id))
@@ -112,9 +110,6 @@ const AddFriends: React.FC = () => {
       setSentRequests(resourcesSentRequests);
     }
   }, [resourcesUsers, friends, resourcesSentRequests, userInfo]);
-
-  // console.log(userInfo)
-  // console.log(potentialFriends)
 
   return (
     <IonContent>
@@ -169,7 +164,9 @@ const AddFriends: React.FC = () => {
                 if (
                   possibleFriend &&
                   user.username !== userInfo.username &&
-                  user.username.toLowerCase().includes(`${possibleFriend.toLowerCase()}`)
+                  user.username
+                    .toLowerCase()
+                    .includes(`${possibleFriend.toLowerCase()}`)
                 ) {
                   return (
                     <IonItem key={index}>
@@ -182,7 +179,6 @@ const AddFriends: React.FC = () => {
                       <IonLabel>
                         <h1>{user.username}</h1>
                         <h3>{user.email}</h3>
-                        {/* <p>{friend.poopInfo}</p> */}
                       </IonLabel>
                       <IonButton
                         fill="outline"

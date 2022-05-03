@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-//connecting to state store
 import { UserStore } from "../../store";
 import { PoopStore } from "../../store";
 import { getPoopProfiles, getUserInfo } from "../../store/Selectors";
@@ -62,8 +61,6 @@ const UserVsFriendsChart: React.FC<FriendProps> = ({
     <div>
       <Bar
         data={data}
-        // height="30%"
-        // width="75%"
         options={{
           maintainAspectRatio: true,
           responsive: true,

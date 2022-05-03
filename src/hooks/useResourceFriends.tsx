@@ -2,10 +2,8 @@ import axios from "axios";
 import useSWR from "swr";
 
 import { useAuth } from "../contexts/auth";
-// export const apiUrl = 'http://127.0.0.1:8000/api/friends/';
 const baseUrl = process.env.REACT_APP_BACKEND;
 export const apiUrl = baseUrl + "/api/friends/";
-// export const sendRequestUrl = baseUrl + '/api/friends/add_friend/'
 
 export default function useResourceFriends() {
   const { tokens, logout } = useAuth();
@@ -22,7 +20,7 @@ export default function useResourceFriends() {
 
     try {
       const response = await axios.get(url, config());
-      localStorage.setItem("friends",JSON.stringify(response.data));
+      localStorage.setItem("friends", JSON.stringify(response.data));
 
       return response.data;
     } catch (error) {
@@ -49,11 +47,6 @@ export default function useResourceFriends() {
   //   }
   // }
 
-  // async function updateResourceFriends(resource: any) {
-  //   // STRETCH
-  //   // Add ability for user to update an existing resource
-  // }
-
   // helper function to handle getting Authorization headers EXACTLY right
   function config() {
     return {
@@ -66,8 +59,6 @@ export default function useResourceFriends() {
   function handleError(error: unknown) {
     console.error(error);
     // currently just log out on error
-    // but a common error will be short lived token expiring
-    // STRETCH: refresh the access token when it has expired
     logout();
   }
 
@@ -77,7 +68,5 @@ export default function useResourceFriends() {
     loadingFriends: tokens && !error && !data,
     createResourceFriends,
     // deleteResourceFriends,
-    // updateResourceFriends,
-    // sendFriendRequest
   };
 }

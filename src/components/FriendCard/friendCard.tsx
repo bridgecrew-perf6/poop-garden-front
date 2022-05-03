@@ -2,8 +2,8 @@
 
 import { IonModal, IonContent, IonButton } from "@ionic/react";
 import React from "react";
-import UserVsFriendChart from '../Charts/userVsFriendChart'
-import UserPlusFriendWeight from './userPlusFriendWeight'
+import UserVsFriendChart from "../Charts/userVsFriendChart";
+import UserPlusFriendWeight from "./userPlusFriendWeight";
 
 interface FriendProps {
   chosenFriendPoop: number;
@@ -23,7 +23,6 @@ const FriendCard: React.FC<FriendProps> = ({
   };
 
   return (
-    
     <IonModal
       isOpen={openFriendModal}
       onDidDismiss={closeModal}
@@ -32,16 +31,23 @@ const FriendCard: React.FC<FriendProps> = ({
       backdropBreakpoint={0.2}
     >
       <IonContent>
-        <IonButton size="large" onClick={closeModal} className="ion-padding-start">Close</IonButton>
+        <IonButton
+          size="large"
+          onClick={closeModal}
+          className="ion-padding-start"
+        >
+          Close
+        </IonButton>
         <h1 className="ion-text-center">{chosenFriendName}</h1>
         <h5 className="ion-text-center">{`${chosenFriendPoop} Pounds of Poop!!`}</h5>
-        
-      <UserVsFriendChart chosenFriendPoop={chosenFriendPoop} chosenFriendName={chosenFriendName}/>
-      <UserPlusFriendWeight chosenFriendPoop={chosenFriendPoop}/>
 
+        <UserVsFriendChart
+          chosenFriendPoop={chosenFriendPoop}
+          chosenFriendName={chosenFriendName}
+        />
+        <UserPlusFriendWeight chosenFriendPoop={chosenFriendPoop} />
       </IonContent>
     </IonModal>
-    
   );
 };
 
