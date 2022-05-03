@@ -74,6 +74,7 @@ const Tab4: React.FC = () => {
     PoopStore.update((s) => {
       s.poopProfiles = [];
     });
+    localStorage.clear()
     logout()
   }
   SplashScreen.hide();

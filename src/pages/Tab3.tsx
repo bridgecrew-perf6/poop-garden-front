@@ -1,9 +1,9 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonRouter, IonImg } from '@ionic/react';
 import "./Tab3.scss";
 // import { Share } from '@capacitor/share';
 // import { MyStore } from '../store'
 
-import React from "react";
+import React, { useEffect} from "react";
 // import axios from 'axios';
 // import { text } from 'ionicons/icons';
 
@@ -39,6 +39,25 @@ const Tab3: React.FC = () => {
   //   })
 
   // }
+  const router = useIonRouter();
+
+  let storedUser: any = localStorage.getItem("user")
+  // let parsedUser = JSON.parse(storedUser)
+
+  let storedToken: any = localStorage.getItem("token")
+  // let parsedToken = JSON.parse(storedToken)
+
+  useEffect(() => {
+    if (storedToken && storedUser) {
+      router.push("/tab2")
+    }
+    else {
+      router.push("/tab4")
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[storedUser])
+
+
 
   return (
     <div>
@@ -55,6 +74,7 @@ const Tab3: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           tab3 stuff
+          <IonImg src={"assets/icon/favicon.png"}/>
           {/* <IonList>
           <IonItem>
             {userPoopInfo === 0 ?
