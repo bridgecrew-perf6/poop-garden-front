@@ -112,7 +112,7 @@ const AllPoopProfile: React.FC = () => {
       ) : (
         ""
       )}
-      {showPoopSurvey ? <PoopSurvey /> : ""}
+      {showPoopSurvey ? <PoopSurvey setShowPoopSurvey={setShowPoopSurvey}/> : ""}
     </>
   );
 };
