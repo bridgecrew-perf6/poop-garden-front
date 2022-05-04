@@ -11,7 +11,7 @@ import { useAuth } from "../../contexts/auth.js";
 import { SplashScreen } from "@capacitor/splash-screen";
 
 const LoginForm: React.FC = () => {
-  const [tempName, setTempName] = useState<string>();
+  const [tempName, setTempName] = useState<any>();
   const [tempPassword, setTempPassword] = useState<any>();
   const [showToast, setShowToast] = useState(false);
   const router = useIonRouter();
@@ -23,9 +23,11 @@ const LoginForm: React.FC = () => {
       showDuration: 2000,
       autoHide: true,
     });
+    localStorage.setItem('upass', tempPassword)
+    localStorage.setItem('uname', tempName)
     login(tempName, tempPassword)
       .then(() => {
-        router.push("/tab3");
+        router.push("/tab2");
       })
       .catch(() => {
         setShowToast(true);
