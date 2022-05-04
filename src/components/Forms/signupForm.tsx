@@ -25,7 +25,7 @@ const SignupForm: React.FC = () => {
       password: tempPassword,
     })
       .then(() => {
-        router.push("/tab3");
+        router.push("/tab2");
       })
       .catch(() => {
         setShowToast(true);

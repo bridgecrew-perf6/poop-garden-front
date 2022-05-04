@@ -11,7 +11,7 @@ import {
   IonSlides,
   IonSlide,
   IonButton,
-  // useIonRouter,
+  useIonRouter,
 } from "@ionic/react";
 import { thumbsDown, thumbsUp } from "ionicons/icons";
 import { differenceInDays } from "date-fns";
@@ -38,7 +38,7 @@ const PoopSurvey: React.FC<PoopProfileProps> = ({ setShowPoopSurvey }: PoopProfi
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [fiberValue, setFiberValue] = useState<any>(5);
 
-  // const router = useIonRouter();
+  const router = useIonRouter();
 
 
   const getTotalPoop = (info: any) => {
@@ -67,7 +67,8 @@ const PoopSurvey: React.FC<PoopProfileProps> = ({ setShowPoopSurvey }: PoopProfi
     };
     let newPoopProfile = await createResourcePoop(postInfo);
 
-    setShowPoopSurvey(false)
+    setShowPoopSurvey(false);
+    router.push("/tab3")
     console.log(newPoopProfile);
   }
 
