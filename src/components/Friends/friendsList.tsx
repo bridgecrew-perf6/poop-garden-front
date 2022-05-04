@@ -106,7 +106,8 @@ const FriendsList: React.FC = () => {
                       </IonAvatar>
                       <IonLabel>
                         <h1>{friend.username}</h1>
-                        <h3>{friend.email}</h3>
+                        {/*currently only showing username. can show more */}
+                        {/* <h3>{friend.email}</h3> */}
                         {/* <p>{friend.poopInfo}</p> */}
                         <IonBadge color={hasPoopProfile(friend)[1]}>
                           {hasPoopProfile(friend)[0]}
