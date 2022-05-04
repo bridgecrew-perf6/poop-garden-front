@@ -11,7 +11,7 @@ import {
   IonSlides,
   IonSlide,
   IonButton,
-  useIonRouter,
+  // useIonRouter,
 } from "@ionic/react";
 import { thumbsDown, thumbsUp } from "ionicons/icons";
 import { differenceInDays } from "date-fns";
@@ -26,7 +26,11 @@ const slideOpts = {
   speed: 400,
 };
 
-const PoopSurvey: React.FC = () => {
+interface PoopProfileProps {
+  setShowPoopSurvey: any;
+}
+
+const PoopSurvey: React.FC<PoopProfileProps> = ({ setShowPoopSurvey }: PoopProfileProps) => {
   const { user } = useAuth();
   const { createResourcePoop } = useResourcePoop();
 
@@ -34,7 +38,8 @@ const PoopSurvey: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [fiberValue, setFiberValue] = useState<any>(5);
 
-  const router = useIonRouter();
+  // const router = useIonRouter();
+
 
   const getTotalPoop = (info: any) => {
     /// function that will use the 3 states above (mostly the birthday) and turn it into a single poop number that i can send to the back
@@ -62,8 +67,8 @@ const PoopSurvey: React.FC = () => {
     };
     let newPoopProfile = await createResourcePoop(postInfo);
 
+    setShowPoopSurvey(false)
     console.log(newPoopProfile);
-    router.push("/tab3");
   }
 
   const mySlides = useRef<any>(null);
@@ -139,6 +144,7 @@ const PoopSurvey: React.FC = () => {
               <p>don't worry, no one is gonna check</p>
               <IonItem>
                 <IonInput
+                placeholder="Birthday"
                   type="date"
                   required={true}
                   value={selectedDate}
