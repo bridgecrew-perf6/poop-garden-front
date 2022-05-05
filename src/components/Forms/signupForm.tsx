@@ -48,14 +48,14 @@ const SignupForm: React.FC = () => {
         }}
       >
         <IonItem>
-          <IonLabel position="floating">Name</IonLabel>
+          <IonLabel position="floating">username</IonLabel>
           <IonInput
             onIonChange={(e) => setTempName(e.detail.value!)}
           ></IonInput>
         </IonItem>
 
         <IonItem>
-          <IonLabel position="floating">Password</IonLabel>
+          <IonLabel position="floating">password</IonLabel>
           <IonInput
             onIonChange={(e) => setTempPassword(e.detail.value!)}
           ></IonInput>
